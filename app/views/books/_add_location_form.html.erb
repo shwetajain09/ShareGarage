@@ -1,0 +1,44 @@
+
+
+		 <%=form_tag share_books_path,method: :post do %>
+     <div class="items-collection">
+                
+                  <% @locations.each do |location| %>
+                    <div class="items col-xs-6 col-sm-3 col-md-3 col-lg-3">
+                        <div class="info-block block-info clearfix">
+                            <div data-toggle="buttons" class="btn-group bizmoduleselect">
+                                <label class="btn btn-default">
+                                    <div class="itemcontent">
+                                        <input type="checkbox" name="location_ids[]" autocomplete="off" value="<%=location.id%>">
+                                        <span class="fa fa-car fa-2x"></span>
+                                        <h6><%= h location.name -%></h6>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                        
+                        
+                    <% end %>
+                    <%= hidden_field_tag 'isbn'%>
+                    
+                </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <%=submit_tag :share,:class=>"btn btn-primary"%>
+      </div>
+      
+    <%end%>
+
+    <script>
+$(function () {
+    $('#search').on('keyup', function () {
+        var pattern = $(this).val();
+        $('.items-collection .items').hide();
+        $('.items-collection .items').filter(function () {
+            return $(this).text().match(new RegExp(pattern, 'i'));
+        }).show();
+    });
+});
+</script>

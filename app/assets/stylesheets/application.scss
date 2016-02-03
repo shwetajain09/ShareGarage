@@ -1,0 +1,113 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "font-awesome";
+
+body { padding-top: 60px; }
+
+#cnt1 {            
+     background-color:rgba(215, 212, 212, 0.88);
+     width:90%;
+     margin-bottom:70px;
+ }
+  
+ .feature{
+     padding: 20px 0;
+    text-align: center;
+ }
+ .feature > div > div{
+    padding: 10px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    transition: 0.2s;
+ }
+ .feature > div:hover > div{
+    margin-top: -10px;
+    border: 1px solid rgb(128, 128, 128);
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 5px 5px 5px;
+    background: rgba(232, 215, 215, 0.10);
+    transition: 0.3s;
+ }
+
+ #search {
+    width:90%;
+}
+
+.searchicon {
+    color:#5CB85C;
+}
+
+.items-collection{
+    margin:20px 0 0 0;
+}
+.items-collection label.btn-default.active{
+    background-color:#007ba7;
+    color:#FFF;
+}
+.items-collection label.btn-default{
+    width:90%;
+    border:1px solid #305891;
+    margin:5px; 
+    border-radius: 17px;
+    color: #305891;
+}
+.items-collection label .itemcontent{
+    width:100%;
+}
+.items-collection .btn-group{
+    width:90%
+}
+
+.btn-squared-default {
+  width: 100px !important;
+  height: 100px !important;
+  font-size: 10px;
+}
+.btn-squared-default:hover {
+  border: 3px solid white;
+  font-weight: 800;
+}
+
+.btn-squared-default-plain {
+  width: 100px !important;
+  height: 100px !important;
+  font-size: 10px;
+}
+.btn-squared-default-plain:hover {
+  border: 0px solid white;
+}
+
+
+#container1 {
+    background-color: #e2dada;
+}
+
+.centered-form {
+    margin-top: 120px;
+    margin-bottom: 300px;
+}
+
+.centered-form .panel {
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: rgba(0, 0, 0, 0.3) 20px 20px 20px;
+}
+
+#portfolio .portfolio-item .portfolio-caption h4,p{
+                
+                overflow:hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;}

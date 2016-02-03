@@ -1,0 +1,6 @@
+<%=current_user.first_name%>
+<%=current_user.last_name%>
+<%= image_tag @user.avatar.url %>
+<%= image_tag @user.avatar.url(:medium) %>
+<%= image_tag @user.avatar.url(:thumb) %>
+<%=link_to 'Edit',edit_user_registration_path()%>

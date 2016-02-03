@@ -1,0 +1,32 @@
+
+                <div class="col-md-4 col-sm-6 portfolio-item">
+                    <%= link_to path ,:remote => true, :class => "portfolio-link" do %>
+                      
+                      <div class="portfolio-hover">
+                            <div class="portfolio-hover-content">
+                                <i class="fa <%=action_class%> fa-3x"></i>
+                            </div>
+                        </div>
+                        <img src="/assets/portfolio/roundicons.png" class="img-responsive" alt="">
+                    <% end %>
+                   
+                    <div class="portfolio-caption">
+                        <h4 title="<%=book.title%>"><%=book.title%></h4>
+                        <p class="text-muted" title="<%=book.authors.collect(&:name).join(',')%>"><%=book.authors.collect(&:name).join(',')%></p>
+                    </div>
+                </div>
+                
+                <!-- <div class="col-md-4 col-sm-6 portfolio-item">
+                    <a href="#portfolioModal6" class="portfolio-link" data-toggle="modal">
+                        <div class="portfolio-hover">
+                            <div class="portfolio-hover-content">
+                                <i class="fa fa-plus fa-3x"></i>
+                            </div>
+                        </div>
+                        <img src="/assets/portfolio/dreams.png" class="img-responsive" alt="">
+                    </a>
+                    <div class="portfolio-caption">
+                        <h4>Dreams</h4>
+                        <p class="text-muted">A Dreamer</p>
+                    </div>
+                </div> -->

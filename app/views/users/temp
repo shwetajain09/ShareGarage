@@ -1,0 +1,31 @@
+
+        <div class="col-md-4">
+            <div>
+                <img src="http://lorempixel.com/200/200/city/1/" alt="Texto Alternativo" class="img-circle img-thumbnail">
+                <h2><%=book.title%></h2>
+                <p>
+                    <%=book.description%>                
+                </p>
+                <p><%=book.isbn%></p>
+                <p>
+                    <%=book.authors.collect(&:name).join(',')%>
+                </p>
+                <p>
+                    <%=book.pick_locations.collect(&:name).join(',')%>
+                </p>
+
+              <%=link_to t('.edit', :default => t("helpers.links.edit")),"javascript:void(0);",:onclick=> "showModal('share book',#{book.isbn},'/books/#{book.id}/update_pick_location');",:class=>"btn btn-success lower"%>
+		          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+		                      delete_shared_book_path(book),
+		                      :method => :delete,
+		                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+		                      :class => 'btn btn-xs btn-danger' %>
+		        <%if not_shared?(book)%>
+
+		        	<%=link_to 'share',"javascript:void(0);",:onclick=> "showModal('share book',#{book.isbn},'/books/#{book.id}/update_pick_location');",:class=>"btn btn-success lower"%>
+
+		                <%#=render :partial => 'books/add_location_form',:locals=>{:isbn => book.isbn,:path => "update_pick_location_book_path"}%>
+		        <%end%>
+            </div>
+        </div>            
+    
