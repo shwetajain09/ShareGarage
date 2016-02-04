@@ -245,6 +245,7 @@ DEPENDENCIES
   googlebooks (~> 0.0.9)
   jbuilder (~> 2.0)
   jquery-rails
+  json
   mysql2 (>= 0.3.13, < 0.5)
   paperclip (~> 4.3)
   progress_bar
