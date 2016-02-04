@@ -2,16 +2,14 @@
   <thead>
     <tr>
       <th>Name</th>
-      <th>Rating</th>
       <th>Pick Locations</th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+      <th>Contact</th>
     </tr>
   </thead>
   <tbody>
     <% @providers.each do |provider| %>
       <tr>
         <td><%= provider.full_name %></td>
-        <td><%= provider %></td>
         <td><%= @book.pick_locations.collect(&:name).join(',') %></td>
         <td>
           <%= link_to 'Call','',

@@ -14,9 +14,7 @@ module ApplicationHelper
 		nil
 	end
 
-	def full_name
-		first_name+last_name
-	end
+	
 
 	def can_grab?
 		current_user.tokens.count > 0
