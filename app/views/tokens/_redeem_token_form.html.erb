@@ -1,0 +1,4 @@
+<%=form_tag redeem_token_user_tokens_path(current_user.id) do %>
+	<%=text_field_tag :token%>
+	<%=submit_tag :redeem%>
+<%end%>

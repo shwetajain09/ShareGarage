@@ -17,8 +17,11 @@
 <body id="page-top" class="index">
 	<%= render 'layouts/header' %>
   <%= render 'layouts/modal'%>
-  <%= flash_messages %>
-  <%= yield %>
-  
+  <section id="portfolio" class="bg-light-gray">
+    <div class="container">
+      <%= flash_messages %>
+      <%= yield %>
+      </div>
+</section>
 </body>
 </html>

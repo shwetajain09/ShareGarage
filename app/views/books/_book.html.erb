@@ -1,4 +1,3 @@
-
                 <div class="col-md-4 col-sm-6 portfolio-item">
                     <%= link_to path ,:remote => true, :class => "portfolio-link" do %>
                       
@@ -7,12 +6,27 @@
                                 <i class="fa <%=action_class%> fa-3x"></i>
                             </div>
                         </div>
-                        <img src="/assets/portfolio/roundicons.png" class="img-responsive" alt="">
-                    <% end %>
+
+                        <%= image_tag image_link, alt: "Edit Entry",:class=>"img-responsive google_book_image"%>
+<!--                         <img src="/assets/portfolio/dreams.png" class="img-responsive" alt="">
+ -->                    <% end %>
                    
                     <div class="portfolio-caption">
-                        <h4 title="<%=book.title%>"><%=book.title%></h4>
-                        <p class="text-muted" title="<%=book.authors.collect(&:name).join(',')%>"><%=book.authors.collect(&:name).join(',')%></p>
+                        <h4 title="<%=book.title%>"><%=book.title%>
+
+                        </h4>
+                        <p class="text-muted" title="<%=authors%>">
+                            <%if local_assigns.has_key? :show_actions%> 
+                            <%= link_to delete_shared_book_path(book), :method => :delete,:data => { :confirm => 'Do you really want to unshare it?' } do %>
+                              <i class="fa fa-chain-broken"></i>
+                            <% end %>                            
+                            <%=authors%>
+                        <%end%>
+                        </p>
+                        <p class="text-muted" title="<%=book.try(:isbn)%>"><%=book.try(:isbn)%>
+                            
+                        </p>
+                       
                     </div>
                 </div>
                 

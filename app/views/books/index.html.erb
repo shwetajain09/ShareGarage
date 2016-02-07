@@ -1,11 +1,57 @@
-    <header>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Share Garage</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+
+  <%= csrf_meta_tags %>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+
+<body id="page-top" class="index">
+    <%= render 'layouts/header' %>
+    <%= render 'layouts/modal'%>
+       <header>
         <div class="container">
             <div class="intro-text">
                 <div class="intro-lead-in">Spread Some Love!</div>
         <div class="intro-lead-in">Share and take what you/they need</div>
                 <!--<div class="intro-heading">Get What you're looking for and share what they are looking for</div>-->
-                <a href="#services" class="page-scroll btn btn-xl">Give Away</a>
-        <a href="#services" class="page-scroll btn btn-xl">Grab One</a>
+                <a href="javascript:void(0);" class="page-scroll btn btn-xl" onclick="toggleDiv(give_away,take);">Grab One</a>
+
+        <a href="javascript:void(0);" class="page-scroll btn btn-xl" onclick="toggleDiv(take,give_away);">Give Away</a>
+        <%=form_tag search_books_path, method: :get, :class=>"form-inline", :role=>"search",:id=>"give_away" ,:style => 'display:none' do %>
+          <div class="input-group">
+             
+             <div class="form-group">
+              <%=text_field_tag :book_query,nil,:placeholder => "Enter book title,author,isbn",:class=> "form-control"%>
+             </div>            
+            <div class="input-group-btn">
+              <button id="btn-search" class="btn btn-info" type="submit"><i class="fa fa-search fa-fw"></i></button>
+            </div>
+          </div>
+        <%end%>
+
+        <%=form_tag library_books_path, method: :get, :class=>"form-inline", :role=>"search",:id=>"take" do %>
+          <div class="input-group">
+             <span class="input-group-addon"><i class="fa fa-map-marker "></i></span>
+             <div class="form-group">
+              <%=select_tag "location_query", options_for_select(Location.all.map { |e| e.name }),:class=>"form-control"%>
+             </div>
+             <div class="form-group">
+              <%=text_field_tag :book_query,nil,:placeholder => "Enter book title,author,isbn",:class=> "form-control"%>
+             </div>            
+            <div class="input-group-btn">
+              <button id="btn-search" class="btn btn-info" type="submit"><i class="fa fa-search fa-fw"></i></button>
+            </div>
+          </div>
+        <%end%>
             </div>
         </div>
     </header>
@@ -560,3 +606,8 @@
             </div>
         </div>
     </div>
+
+</body>
+</html>
+
+   

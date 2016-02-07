@@ -1,15 +1,12 @@
-<!-- Portfolio Grid Section -->
-<section id="portfolio" class="bg-light-gray">
-    <div class="container">
-        <%if @books.size>0%>
+        <%if @books.count>0%>
             <div class="row">
                 <%@books.each do |book|%>
-                    <%= render partial: "books/book", :locals => {:book => book,:path => show_share_modal_book_path(book.isbn),:action_class =>"fa-share"} %>
+                
+                    <%= render partial: "books/book", :locals => {:book => book,:path => show_share_modal_book_path((book.respond_to? :google_id=) ? book.google_id : book.id),:action_class =>"fa-share",:authors => book.authors.is_a?(String) ? book.authors : book.authors.collect(&:name).join(','),:image_link => (book.respond_to? :avatar=) ? book.avatar : book.image_link(:zoom => 2, :curl => true)} %>
                 <%end%>
             </div>
         <%else%>
             <h2>No books available</h2>
         <%end%>
-    </div>
-</section>
+
 

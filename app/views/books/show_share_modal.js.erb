@@ -1,6 +1,6 @@
 modal = $('#app_modal');
 modal.find('.modal-title').text('Add Location');
 modal.find('.modal-footer').remove();
-modal.find('.modal-body').html("<%= escape_javascript(render(:partial => 'add_location_form',:locals=>{:isbn => params[:isbn]})) %>");
+modal.find('.modal-body').html("<%= escape_javascript(render(:partial => 'add_location_form',:locals=>{:google_id => params[:id],:book_id => params[:book_id]})) %>");
 
 $('#app_modal').modal('show');

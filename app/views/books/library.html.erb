@@ -1,16 +1,11 @@
 
-<!-- Portfolio Grid Section -->
-<section id="portfolio" class="bg-light-gray">
-    <div class="container">
         <%if @books.size>0%>
             <div class="row">
                 <%@books.each do |book|%>
-                    <%= render partial: "books/book", :locals => {:book => book,:path => show_providers_book_path(book),:action_class =>"fa-hand-grab-o"} %>
+                    <%= render partial: "books/book", :locals => {:book => book,:path => show_providers_book_path(book),:action_class =>"fa-hand-grab-o",:authors => book.authors.collect(&:name).join(','),:image_link => (book.respond_to? :avatar=) ? book.avatar : '/assets/no_book_cover.jpg'} %>
                 <%end%>
             </div>
         <%else%>
             <h2>No books available</h2>
         <%end%>
-    </div>
-</section>
 

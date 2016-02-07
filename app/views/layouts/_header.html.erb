@@ -12,41 +12,48 @@
       <a class="navbar-brand" href="<%=root_url%>">Share Garage</a>
     </div>
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
+<%if !current_page?(root_url)%>
+  <div class="col-md-1">
+    <select>
+    
+    <option onclick="toggleDiv(give_away,take);">Grab</option>
+    <option onclick="toggleDiv(take,give_away);">Give Away</option>
+  </select>
+</div>
+  <div class="col-md-5">
 
-        <button type="button" class="btn btn-squared-default-plain btn-primary" onclick="toggleDiv(take,give_away);">
-          <i class="fa fa-barcode fa-5x"></i><br/>
-          Give <br/>away </button>
-        <button type="button" class="btn btn-squared-default-plain btn-warning" onclick="toggleDiv(give_away,take);">
-          <i class="fa fa-pencil fa-5x"></i><br/>
-        Take</button>
-          
-          
-
-      </ul>
-
-      <%=form_tag search_books_path, method: :get, :class=>"form-horizontal", :role=>"search",:id=>"give_away" do %>
+   <%=form_tag search_books_path, method: :get, :class=>"form-inline", :role=>"search",:id=>"give_away" ,:style => 'display:none' do %>
           <div class="input-group">
-            <div class="form-control">
-            <%=text_field_tag :book_query,nil,:placeholder => "Enter book title,author,isbn"%>
-            
-          <button id="btn-search" class="btn btn-info" type="submit"><i class="fa fa-search fa-fw"></i></button>
-          </div>
-          </div>
-      <%end%>
-      <%=form_tag library_books_path, method: :get,:class=>"form-horizontal", :role=>"search",:id=>"take",:style => 'display:none' do %>
-          <div class="input-group">
-            <div class="form-control">
-              <%=select_tag "location_query", options_for_select(Location.all.map { |e| e.name })%>
-              <%=text_field_tag :book_query,nil,:placeholder => "search by book title,author"%>
              
-              
+             <div class="form-group">
+              <%=text_field_tag :book_query,nil,:placeholder => "Enter book title,author,isbn",:class=> "form-control"%>
+             </div>            
+            <div class="input-group-btn">
               <button id="btn-search" class="btn btn-info" type="submit"><i class="fa fa-search fa-fw"></i></button>
-               </div>
-          </div>         
-      <%end%>
+            </div>
+          </div>
+        <%end%>
+
+        <%=form_tag library_books_path, method: :get, :class=>"form-inline", :role=>"search",:id=>"take" do %>
+          <div class="input-group">
+             <span class="input-group-addon"><i class="fa fa-map-marker "></i></span>
+             <div class="form-group">
+              <%=select_tag "location_query", options_for_select(Location.all.map { |e| e.name }),:class=>"form-control"%>
+             </div>
+             <div class="form-group">
+              <%=text_field_tag :book_query,nil,:placeholder => "Enter book title,author,isbn",:class=> "form-control"%>
+             </div>            
+            <div class="input-group-btn">
+              <button id="btn-search" class="btn btn-info" type="submit"><i class="fa fa-search fa-fw"></i></button>
+            </div>
+          </div>
+        <%end%>
+  </div>
+<%end%>
+
+
+     
+     
          
       <ul class="nav navbar-nav navbar-right">
         <%if user_signed_in?%>
@@ -59,6 +66,7 @@
             </ul>
           </li>
           <li><%= link_to 'Book Shelf',shelf_user_path(current_user)%></li>
+          <li><%= link_to 'Redeem Token',show_token_form_user_tokens_path(current_user),:remote => true%></li>
           <li><%= link_to 'Log out',destroy_user_session_path, method: :delete%></li>
         <%else%>
           <li><%=link_to 'Login',show_modal_home_path('login'),:remote => true%></li>

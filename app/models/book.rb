@@ -1,12 +1,17 @@
 class Book < ActiveRecord::Base	
 	belongs_to :language
 	has_and_belongs_to_many :authors, :uniq => true, :read_only => true
-	has_many :books_users
-	has_many :providers, ->{where "books_users.is_provided = true"}, through: :books_users, source: :user
-	has_many :readers, ->{where "books_users.is_provided = false"}, through: :books_users, source: :user
+	has_many :books_users,dependent: :destroy
+	has_many :providers, ->{where "books_users.is_provided = true"}, through: :books_users, source: :user,dependent: :destroy
+	has_many :readers, ->{where "books_users.is_provided = false"}, through: :books_users, source: :user,dependent: :destroy
 	scope :available, ->{Book.joins(:providers)}
-	has_many :pick_locations, ->{where "books_users.is_provided = true"}, through: :books_users, source: :locations
+	has_many :pick_locations, ->{where "books_users.is_provided = true"}, through: :books_users, source: :locations,dependent: :destroy
 	has_many :transactions
+
+	has_attached_file :avatar, styles: { medium: "300x400>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
+  	validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
+	validates_presence_of :google_id
+	validates_uniqueness_of :google_id
 	
 	after_touch :index
 	acts_as_taggable
@@ -20,6 +25,4 @@ class Book < ActiveRecord::Base
 		end
 		text :isbn
 	end
-
-
 end

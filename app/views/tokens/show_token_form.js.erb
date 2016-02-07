@@ -1,0 +1,6 @@
+modal = $('#app_modal');
+modal.find('.modal-title').text('Redeem Token');
+modal.find('.modal-body').html("<%= escape_javascript(render(:partial => 'redeem_token_form')) %>");
+modal.find('.modal-footer').html('<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>');
+
+$('#app_modal').modal('show');

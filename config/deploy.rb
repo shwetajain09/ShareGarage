@@ -18,7 +18,7 @@ task :symlink_directories do
 run "ln -nfs #{shared_path}/uploads #{release_path}/public/uploads"
 end
 task :custom_symlink, :roles => :app do
-run "ln -s #{ shared_path }/database.yml #{ current_path }/config/database.yml"
+#run "ln -s #{ shared_path }/database.yml #{ current_path }/config/database.yml"
 run "ln -s #{ shared_path }/solr/pids #{ current_path }/solr/pids"
 run "ln -s #{ shared_path }/solr/data #{ current_path }/solr/data"
 end
@@ -27,6 +27,6 @@ task :restart do
 run "#{ try_sudo } touch #{ File.join(current_path, 'tmp', 'restart.txt') }"
 end
 end
-after "deploy", "deploy:symlink_directories","deploy:custom_symlink","deploy:migrate"
+after "deploy", "deploy:symlink_directories","deploy:custom_symlink"#,"deploy:migrate"
 after "deploy", "deploy:restart"
 after "deploy", "deploy:cleanup"

@@ -6,5 +6,6 @@
 Language.destroy_all
 languages = Language.create([{ title: 'English' ,:locale => "en"}, { title: 'Hindi' ,:locale => "hn"}])
 Location.destroy_all
-Location.create([{ name: 'Dwarka'},{ name: 'All delhi/Ncr'},{name: 'Janakpuri'},{name: 'Yamuna Vihar'}])
+parent_loc = Location.create(name: 'All delhi/Ncr')
+Location.create([{ name: 'Dwarka', parent_id: parent_loc.id},{name: 'Janakpuri', parent_id: parent_loc.id},{name: 'Yamuna Vihar', parent_id: parent_loc.id}])
 #   Mayor.create(name: 'Emanuel', city: cities.first)

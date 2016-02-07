@@ -1,10 +1,14 @@
-
-$('#app_modal').on('show.bs.modal', function (event) {
-  var modal = $(this)
+var modal = $('#app_modal');
+modal.on('show.bs.modal', function (event) {
+  
   <% case params[:format] 
      when 'login' %> modal.find('.modal-body').html('<%= escape_javascript(render(:partial => "/users/sessions/form")) %>');
+  					modal.find('.modal-title').html("Login");
   <% when 'sign up' %> modal.find('.modal-body').html('<%= escape_javascript(render(:partial => "/users/registrations/form")) %>');
+ 					modal.find('.modal-title').html("Sign Up");
   <% end %>  
   
 })
-$('#app_modal').modal('show');
+modal.find('.modal-footer').hide();
+
+modal.modal('show');

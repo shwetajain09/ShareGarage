@@ -1,37 +1,45 @@
-
-
-		 <%=form_tag share_books_path,method: :post do %>
-     <div class="items-collection">
-                
-                  <% @locations.each do |location| %>
-                    <div class="items col-xs-6 col-sm-3 col-md-3 col-lg-3">
-                        <div class="info-block block-info clearfix">
-                            <div data-toggle="buttons" class="btn-group bizmoduleselect">
-                                <label class="btn btn-default">
-                                    <div class="itemcontent">
-                                        <input type="checkbox" name="location_ids[]" autocomplete="off" value="<%=location.id%>">
-                                        <span class="fa fa-car fa-2x"></span>
-                                        <h6><%= h location.name -%></h6>
-                                    </div>
-                                </label>
-                            </div>
+    <div class="row">
+        <br>
+        <div class="form-group">
+            <div class="col-sm-12 col-md-12 col-lg-12">                
+                <i class="fa fa-search fa-2x pull-left searchicon"></i><input type="search" class="form-control" id="search" placeholder="Filter items...">
+            </div>
+        </div>
+    </div>    
+<%=form_tag share_books_path,method: :post do %>
+    <div class="row">
+        <div class="form-group">
+            <div class="items-collection">  
+            <% @locations.each do |location| %>                        
+                <div class="items col-xs-6 col-sm-3 col-md-3 col-lg-3">
+                    <div class="info-block block-info clearfix">
+                        <div data-toggle="buttons" class="btn-group itemcontent">
+                            <label class="btn btn-default <%=get_location_class(book_id,location.id)%>">
+                                <div class="itemcontent">
+                                    <input type="checkbox" name="location_ids[]" autocomplete="off" value=<%=location.id%>>
+                                    <h6 class="location-cell"><%= h location.name -%></h6>
+                                </div>
+                            </label>
                         </div>
                     </div>
-                    
-                        
-                        
-                    <% end %>
-                    <%= hidden_field_tag 'isbn'%>
-                    
-                </div>
-        <div class="modal-footer">
+                </div>                
+            <% end %>
+            <%if local_assigns.has_key? :google_id%>
+                <%= hidden_field_tag 'google_id',google_id%>
+            <%end%> 
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         <%=submit_tag :share,:class=>"btn btn-primary"%>
-      </div>
-      
-    <%end%>
+    </div>
+    
+<%end%>
 
-    <script>
+
+<script>
 $(function () {
     $('#search').on('keyup', function () {
         var pattern = $(this).val();
@@ -42,3 +50,4 @@ $(function () {
     });
 });
 </script>
+

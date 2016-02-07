@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160131204303) do
+ActiveRecord::Schema.define(version: 20160207160600) do
 
   create_table "authors", force: :cascade do |t|
     t.string   "name",         limit: 255
@@ -31,19 +31,24 @@ ActiveRecord::Schema.define(version: 20160131204303) do
   add_index "authors_books", ["book_id", "author_id"], name: "index_authors_books_on_book_id_and_author_id", using: :btree
 
   create_table "books", force: :cascade do |t|
-    t.string   "title",          limit: 255
-    t.string   "subtitle",       limit: 255
-    t.string   "link",           limit: 255
-    t.text     "description",    limit: 65535
-    t.text     "json_details",   limit: 65535
-    t.string   "publisher",      limit: 255
+    t.string   "title",               limit: 255
+    t.string   "subtitle",            limit: 255
+    t.string   "link",                limit: 255
+    t.text     "description",         limit: 65535
+    t.text     "json_details",        limit: 65535
+    t.string   "publisher",           limit: 255
     t.date     "published_date"
-    t.string   "isbn",           limit: 255
-    t.integer  "page_count",     limit: 4
-    t.integer  "language_id",    limit: 4
-    t.integer  "count",          limit: 4
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.string   "isbn",                limit: 255
+    t.integer  "page_count",          limit: 4
+    t.integer  "language_id",         limit: 4
+    t.integer  "count",               limit: 4
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+    t.string   "google_id",           limit: 255
+    t.string   "avatar_file_name",    limit: 255
+    t.string   "avatar_content_type", limit: 255
+    t.integer  "avatar_file_size",    limit: 4
+    t.datetime "avatar_updated_at"
   end
 
   add_index "books", ["isbn"], name: "index_books_on_isbn", using: :btree
@@ -83,6 +88,7 @@ ActiveRecord::Schema.define(version: 20160131204303) do
     t.string   "name",       limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+    t.integer  "parent_id",  limit: 4
   end
 
   create_table "profiles", force: :cascade do |t|
@@ -118,7 +124,8 @@ ActiveRecord::Schema.define(version: 20160131204303) do
     t.string   "redeem_code", limit: 255
     t.boolean  "is_redeemed",             default: false
     t.datetime "valid_til"
-    t.integer  "provider",    limit: 4
+    t.integer  "owner",       limit: 4
+    t.float    "credit",      limit: 24
     t.datetime "created_at",                              null: false
     t.datetime "updated_at",                              null: false
   end

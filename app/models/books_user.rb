@@ -7,36 +7,39 @@ class BooksUser < ActiveRecord::Base
 
 	before_create :add_credit
 
-	UPLOAD_CREDIT=2
-	TOKEN_GENERATION_CREDIT = 10
-	TEAM = 'team'
-	TEAM_ID= 1
-	UPLOAD_BOOK = 'Uploaded a book'
-	GENERATED_TOKEN = 'Generated a token'
+
+	
+
 
 	def add_credit
-		self.user.profile.credit += UPLOAD_CREDIT
+		self.user.profile.credit += AppConfiguration::UPLOAD_CREDIT
 		@temp_credit = self.user.profile.credit
-		self.user.credit_transactions.create(:giver_id => TEAM_ID,:message => UPLOAD_BOOK,:book_id => self.book.id,:credit => UPLOAD_CREDIT)
+		self.user.credit_transactions.create(:giver_id => AppConfiguration::TEAM_ID,:message => AppConfiguration::UPLOAD_BOOK,:book_id => self.book.id,:credit => AppConfiguration::UPLOAD_CREDIT)
 		if validate_token_generation
 			generate_token
-		end
-		
+		end	
+		self.user.profile.save	
 	end
 
 	def validate_token_generation
-		@temp_credit >= TOKEN_GENERATION_CREDIT
+		@temp_credit >= AppConfiguration::TOKEN_GENERATION_CREDIT
 	end
 
 	def generate_token
 		raw_string = SecureRandom.random_number( 2**80 ).to_s( 20 ).reverse
 		long_code = raw_string.tr( '0123456789abcdefghij', '234679QWERTYUPADFGHX' )
 		short_code = long_code[0..3] + '-' + long_code[4..7] + '-' + long_code[8..11]
-		token = self.user.tokens.new(:redeem_code => short_code,:provider => TEAM)
+		token = self.user.tokens.new(:redeem_code => short_code,:owner => self.user_id,:credit => AppConfiguration::TOKEN_GENERATION_CREDIT)
 		if token.save
-			self.user.profile.credit -= TOKEN_GENERATION_CREDIT
-			self.user.debit_transactions.create(:receiver_id => TEAM_ID,:message => GENERATED_TOKEN,:book_id => self.book.id,:credit => TOKEN_GENERATION_CREDIT)
+			self.user.profile.credit -= AppConfiguration::TOKEN_GENERATION_CREDIT
+			self.user.debit_transactions.create(:receiver_id => AppConfiguration::TEAM_ID,:message => AppConfiguration::GENERATED_TOKEN,:credit => AppConfiguration::TOKEN_GENERATION_CREDIT,:token_id=>token.id)
 		end
+	end
+
+	def deduct_credit
+		self.user.profile.credit -= AppConfiguration::UNSHARE_CREDIT
+		self.user.debit_transactions.create(:receiver_id => AppConfiguration::TEAM_ID,:message => AppConfiguration::UNSHARED_BOOK,:book_id => self.book.id,:credit => AppConfiguration::UNSHARE_CREDIT)
+		self.user.profile.save
 	end
 
 end

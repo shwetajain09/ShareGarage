@@ -2,6 +2,15 @@ Rails.application.routes.draw do
   devise_for :users,:controllers => {:registrations => "users/registrations",:sessions => "users/sessions",:confirmations => "users/confirmations",
     :passwords => "users/passwords",:unlocks => "users/unlocks"}
   resources :users do
+    resources :tokens do
+      member do
+        
+      end
+      collection do 
+        get :show_token_form
+        post :redeem_token
+      end
+    end
     resource :profile
     resources :transactions
     member do
@@ -10,7 +19,8 @@ Rails.application.routes.draw do
 
   end
 
-  resources :tokens
+
+
   resource :home do
       get :show_modal
     end

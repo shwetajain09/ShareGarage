@@ -51,7 +51,7 @@ group :development, :test do
   gem 'byebug'
   gem 'capistrano', '2.15.4'
 	gem 'capistrano-ext'
-	gem 'rvm-capistrano'
+	gem 'rvm-capistrano',:require => false
 end
 
 
