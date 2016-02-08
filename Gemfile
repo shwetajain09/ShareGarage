@@ -29,6 +29,7 @@ gem 'googlebooks', '~> 0.0.9'
 gem 'acts-as-taggable-on', '~> 3.4'
 
 gem 'sunspot_rails'
+gem 'sunspot_solr'
 gem 'progress_bar'
 
 gem "twitter-bootstrap-rails"
@@ -58,7 +59,7 @@ end
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
-  gem 'sunspot_solr'
+  
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 end
