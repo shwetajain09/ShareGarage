@@ -1,7 +1,8 @@
+
 require "rvm/capistrano"
 require "bundler/capistrano"
 require 'capistrano/ext/multistage'
-# require 'rvm/capistrano'
+set :bundle_dir, "/home/ubuntu/.rvm/gems/ruby-2.2.3"
 set :stages, ["staging"]
 set :default_stage, 'staging'
 set :keep_releases, 3
