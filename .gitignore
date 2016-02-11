@@ -5,3 +5,4 @@
 /solr/development/*
 /solr/pids/*
 /public/*
+/tmp/cache/*
