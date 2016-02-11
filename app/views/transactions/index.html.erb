@@ -32,6 +32,7 @@
                 </tbody>
               </table>
           </div>
+          <%= will_paginate @transactions , renderer: BootstrapPagination::Rails%>
         <%else%>
             <h2>No transactions made yet!</h2>
         <%end%>

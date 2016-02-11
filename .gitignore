@@ -1,0 +1,7 @@
+/spec/*
+/tmp/*
+/tmp/pids/*
+/solr/*
+/solr/development/*
+/solr/pids/*
+/public/*

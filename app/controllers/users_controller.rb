@@ -16,13 +16,15 @@ def update
 end
 
 def shelf
-	@books = current_user.books
+	@books = current_user.books.paginate :page =>  params[:page], :per_page => 3
 end
 
-private
+    protected
 
-# Use strong_parameters for attribute whitelisting
-# Be sure to update your create() and update() controller methods.
+    def configure_permitted_parameters
+        devise_parameter_sanitizer.for(:create) { |u| u.permit(:avatar) }
+        # devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:name, :email, :password, :current_password, :is_female, :date_of_birth, :avatar) }
+    end
 
 	
 end

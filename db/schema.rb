@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160207160600) do
+ActiveRecord::Schema.define(version: 20160210175049) do
 
   create_table "authors", force: :cascade do |t|
     t.string   "name",         limit: 255
@@ -31,23 +31,24 @@ ActiveRecord::Schema.define(version: 20160207160600) do
   add_index "authors_books", ["book_id", "author_id"], name: "index_authors_books_on_book_id_and_author_id", using: :btree
 
   create_table "books", force: :cascade do |t|
-    t.string   "title",               limit: 255
-    t.string   "subtitle",            limit: 255
-    t.string   "link",                limit: 255
-    t.text     "description",         limit: 65535
-    t.text     "json_details",        limit: 65535
-    t.string   "publisher",           limit: 255
+    t.string   "title",                  limit: 255
+    t.string   "subtitle",               limit: 255
+    t.string   "link",                   limit: 255
+    t.text     "description",            limit: 65535
+    t.text     "json_details",           limit: 65535
+    t.string   "publisher",              limit: 255
     t.date     "published_date"
-    t.string   "isbn",                limit: 255
-    t.integer  "page_count",          limit: 4
-    t.integer  "language_id",         limit: 4
-    t.integer  "count",               limit: 4
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
-    t.string   "google_id",           limit: 255
-    t.string   "avatar_file_name",    limit: 255
-    t.string   "avatar_content_type", limit: 255
-    t.integer  "avatar_file_size",    limit: 4
+    t.string   "isbn",                   limit: 255
+    t.integer  "page_count",             limit: 4
+    t.integer  "language_id",            limit: 4
+    t.integer  "count",                  limit: 4
+    t.float    "google_provided_rating", limit: 24
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+    t.string   "google_id",              limit: 255
+    t.string   "avatar_file_name",       limit: 255
+    t.string   "avatar_content_type",    limit: 255
+    t.integer  "avatar_file_size",       limit: 4
     t.datetime "avatar_updated_at"
   end
 
@@ -61,20 +62,19 @@ ActiveRecord::Schema.define(version: 20160207160600) do
     t.integer  "book_id",     limit: 4
     t.integer  "user_id",     limit: 4
     t.boolean  "is_provided"
+    t.integer  "count",       limit: 4, default: 1
     t.datetime "created_at",                        null: false
     t.datetime "updated_at",                        null: false
-    t.integer  "count",       limit: 4, default: 1
   end
-
-  add_index "books_users", ["is_provided"], name: "index_books_users_on_is_provided", using: :btree
 
   create_table "books_users_locations", id: false, force: :cascade do |t|
-    t.integer "books_user_id", limit: 4, null: false
-    t.integer "location_id",   limit: 4, null: false
+    t.integer "books_user_id", limit: 4
+    t.integer "location_id",   limit: 4
   end
 
-  add_index "books_users_locations", ["books_user_id", "location_id"], name: "index_books_users_locations_on_books_user_id_and_location_id", using: :btree
-  add_index "books_users_locations", ["location_id", "books_user_id"], name: "index_books_users_locations_on_location_id_and_books_user_id", using: :btree
+  add_index "books_users_locations", ["books_user_id", "location_id"], name: "by_books_user_and_location", unique: true, using: :btree
+  add_index "books_users_locations", ["books_user_id"], name: "index_books_users_locations_on_books_user_id", using: :btree
+  add_index "books_users_locations", ["location_id"], name: "index_books_users_locations_on_location_id", using: :btree
 
   create_table "languages", force: :cascade do |t|
     t.string   "title",        limit: 255
@@ -145,7 +145,8 @@ ActiveRecord::Schema.define(version: 20160207160600) do
   create_table "users", force: :cascade do |t|
     t.string   "first_name",             limit: 255
     t.string   "last_name",              limit: 255
-    t.integer  "phone_no",               limit: 4
+    t.integer  "phone_no",               limit: 8
+    t.string   "gender",                 limit: 1
     t.datetime "created_at",                                      null: false
     t.datetime "updated_at",                                      null: false
     t.string   "email",                  limit: 255, default: "", null: false

@@ -10,3 +10,21 @@ To-do List
 
 Flow:
 1. on click of share a pop up will appear asking for location 
+2. rake sunspot:solr:reindex everytime?
+
+
+Reference:
+1. http://startbootstrap.com/template-overviews/agency/
+
+
+Html fixes:-
+1. Landing page
+2. Modal
+3. user profile show and edit page
+4. Transaction page
+5. scroll on add location form
+6. If not consuming the space lets say isbn is present in book tile
+7. Dynamic modal content on landing page
+8. Mobile responsive
+9. Autocomplete
+

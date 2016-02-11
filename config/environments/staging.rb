@@ -30,13 +30,27 @@ Rails.application.configure do
   # The :test delivery method accumulates sent emails in the
   # ActionMailer::Base.deliveries array.
   config.action_mailer.delivery_method = :test
-
+   config.assets.raise_runtime_errors = true
+  Paperclip.options[:command_path] = "/usr/local/bin/"
   # Randomize the order test cases are executed.
   config.active_support.test_order = :random
 
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
+  config.action_mailer.default_url_options = { host: 'sharegarage.com', port: 80 }
+config.action_mailer.raise_delivery_errors = true
+config.action_mailer.perform_deliveries = true 
+  config.action_mailer.delivery_method = :smtp
 
+config.action_mailer.smtp_settings = {
+  :address => "smtp.gmail.com",
+  :port => 587,
+  :domain => "gmail.com",
+  :authentication => :login,
+  :user_name => "linkitdude@gmail.com",
+  :password => "shweta@7764"
+  :enable_starttls_auto => true
+}
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 end

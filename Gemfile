@@ -24,18 +24,16 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'devise'
 gem "paperclip", "~> 4.3"
-
+gem 'will_paginate-bootstrap'
 gem 'googlebooks', '~> 0.0.9'
 gem 'acts-as-taggable-on', '~> 3.4'
 
 gem 'sunspot_rails'
 gem 'sunspot_solr'
 gem 'progress_bar'
-
 gem "twitter-bootstrap-rails"
 gem 'bootstrap-sass', '~> 3.3.6'
 gem "font-awesome-rails"
-
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use ActiveModel has_secure_password

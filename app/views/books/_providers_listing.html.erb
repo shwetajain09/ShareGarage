@@ -1,7 +1,8 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th>Name</th>
+      <th></th>
+      <th></th>
       <th>Pick Locations</th>
       <th>Contact</th>
     </tr>
@@ -9,13 +10,26 @@
   <tbody>
     <% @providers.each do |provider| %>
       <tr>
-        <td><%= provider.full_name %></td>
+      <td>
+        <%= image_tag provider.avatar.url(:thumb) %>
+        <span class="stars"><%= provider.profile.rating%></span>
+      </td>
+        <td>
+
+        <%= provider.full_name %></td>
         <td><%= @book.pick_locations.collect(&:name).join(',') %></td>
         <td>
-          <%= link_to 'Call','',
-                       :class => 'btn btn-default btn-xs' %>
+          <%= link_to get_contact_info(provider),'#',
+                       :class => 'btn btn-default btn-xs',:title=>'Make a great deal' %>
         </td>
       </tr>
     <% end %>
   </tbody>
 </table>
+
+<script type="text/javascript">
+  $(function() {
+    $('span.stars').stars();
+});
+
+</script>

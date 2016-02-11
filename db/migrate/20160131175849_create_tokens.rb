@@ -1,5 +1,5 @@
 class CreateTokens < ActiveRecord::Migration
-  def change
+  def up
     create_table :tokens do |t|
     	t.string :redeem_code
     	t.boolean :is_redeemed , :default => false
@@ -8,5 +8,8 @@ class CreateTokens < ActiveRecord::Migration
     	t.float :credit
       t.timestamps null: false
     end
+  end
+  def down
+    drop_table :tokens
   end
 end

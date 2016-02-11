@@ -3,6 +3,6 @@ class TransactionsController < ApplicationController
 	def index
 		@my_token = current_user.tokens_count
 		@my_credit = current_user.profile.credit
-		@transactions = (current_user.credit_transactions+current_user.debit_transactions).sort_by(&:created_at)
+		@transactions = (current_user.credit_transactions+current_user.debit_transactions).sort_by(&:created_at).reverse!.paginate :page =>  params[:page], :per_page => 10
 	end
 end

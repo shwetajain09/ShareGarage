@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  post '/rate' => 'rater#create', :as => 'rate'
   devise_for :users,:controllers => {:registrations => "users/registrations",:sessions => "users/sessions",:confirmations => "users/confirmations",
     :passwords => "users/passwords",:unlocks => "users/unlocks"}
   resources :users do
@@ -23,6 +24,7 @@ Rails.application.routes.draw do
 
   resource :home do
       get :show_modal
+      post :submit_form
     end
 
   resources :books do

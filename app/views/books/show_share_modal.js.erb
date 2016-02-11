@@ -1,6 +1,16 @@
-modal = $('#app_modal');
-modal.find('.modal-title').text('Add Location');
-modal.find('.modal-footer').remove();
-modal.find('.modal-body').html("<%= escape_javascript(render(:partial => 'add_location_form',:locals=>{:google_id => params[:id],:book_id => params[:book_id]})) %>");
+var modal = $('#app_modal');
+modal.on('show.bs.modal', function (event) {
+  
+	<%if current_user.present?%>
+		modal.find('.modal-title').text('Add Location');
+		modal.find('.modal-body').html("<%= escape_javascript(render(:partial => 'add_location_form',:locals=>{:google_id => params[:id],:book_id => params[:book_id]})) %>");
+	<%else%>
+		modal.find('.modal-body').html('<%= escape_javascript(render(:partial => "/users/sessions/form")) %>');
+	  	modal.find('.modal-title').html("You just need to fill this stupid form!");
+	<%end%>
+  
+})
 
-$('#app_modal').modal('show');
+modal.find('.modal-footer').hide();
+modal.modal('show');
+

@@ -25,11 +25,11 @@ class TokensController < ApplicationController
 
 	def redeem_token
 		@token = Token.find_by_redeem_code(params[:token])
-		if @token.is_redeemed == false
+		if @token.present? && (@token.is_redeemed == false)
 			@token.redeem_token(current_user)
 			message = "Redeemed Successfully"
 		else
-			message = "Already redeemed"
+			message = "Invalid token!"
 		end
 		redirect_to user_transactions_path(current_user),:notice => message
 	end	

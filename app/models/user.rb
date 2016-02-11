@@ -1,10 +1,9 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable,  :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,:confirmable,:lockable,
-         :recoverable, :rememberable, :trackable, :validatable
-  has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
-  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
+  devise :database_authenticatable, :registerable,:lockable,
+         :recoverable, :rememberable, :trackable, :validatable#,:confirmable
+  
 
 	has_many :books_users
 	has_many :books ,through: :books_users, source: :book
@@ -14,13 +13,19 @@ class User < ActiveRecord::Base
   has_many :credit_transactions, :class_name => 'Transaction',:foreign_key => :receiver_id
   has_many :debit_transactions, :class_name => 'Transaction',:foreign_key => :giver_id
   has_one :profile
-
+  validates_presence_of :gender
   after_create :generate_profile
 
+  def set_picture_respect_to_gender
+    self.gender == 'F' ? '/assets/girl.jpeg' : '/assets/boy.jpeg'
+  end
 
+  has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, :default_url => :set_picture_respect_to_gender
+  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
     
   def generate_profile
-    self.create_profile(:location_id => 2)
+    loc = Location.find_by_name(AppConfiguration::DEFAULT_LOCATION)
+    self.create_profile(:location_id => loc.id,:rating => AppConfiguration::DEFAULT_RATING)
   end
 
   def after_confirmation

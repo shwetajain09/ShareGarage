@@ -2,10 +2,17 @@
         <%if @books.size>0%>
             <div class="row">
                 <%@books.each do |book|%>
-                    <%= render partial: "books/book", :locals => {:book => book,:path => show_providers_book_path(book),:action_class =>"fa-hand-grab-o",:authors => book.authors.collect(&:name).join(','),:image_link => (book.respond_to? :avatar=) ? book.avatar : '/assets/no_book_cover.jpg'} %>
+                    <%= render partial: "books/book", :locals => {:book => book,:path => show_providers_book_path(book),:action_class =>"fa-hand-grab-o",:authors => book.authors.collect(&:name).join(','),:image_link => (book.respond_to? :avatar=) ? book.avatar : '/assets/no_book_cover.jpg',:average_rating => book.try(:google_provided_rating)} %>
                 <%end%>
             </div>
+            <%= will_paginate @books , renderer: BootstrapPagination::Rails%>
         <%else%>
             <h2>No books available</h2>
         <%end%>
 
+<script type="text/javascript">
+  $(function() {
+    $('span.stars').stars();
+});
+
+</script>

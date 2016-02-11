@@ -6,25 +6,28 @@
                                 <i class="fa <%=action_class%> fa-3x"></i>
                             </div>
                         </div>
-
-                        <%= image_tag image_link, alt: "Edit Entry",:class=>"img-responsive google_book_image"%>
-<!--                         <img src="/assets/portfolio/dreams.png" class="img-responsive" alt="">
- -->                    <% end %>
+                        <%= image_tag image_link, alt: "#{book.title}",:class=>"img-responsive google_book_image"%>
+                  <% end %>
                    
                     <div class="portfolio-caption">
                         <h4 title="<%=book.title%>"><%=book.title%>
 
                         </h4>
                         <p class="text-muted" title="<%=authors%>">
-                            <%if local_assigns.has_key? :show_actions%> 
-                            <%= link_to delete_shared_book_path(book), :method => :delete,:data => { :confirm => 'Do you really want to unshare it?' } do %>
-                              <i class="fa fa-chain-broken"></i>
-                            <% end %>                            
-                            <%=authors%>
-                        <%end%>
+
+                        <a href="" class="portfolio-link" data-toggle="modal">
+                             <i class="fa fa-info-circle fa-2x"></i>
+                             </a>
+                        <%=authors%>
                         </p>
-                        <p class="text-muted" title="<%=book.try(:isbn)%>"><%=book.try(:isbn)%>
-                            
+                        <p class="text-muted" title="<%=book.try(:isbn)%>">
+                            <%if local_assigns.has_key? :show_actions%> 
+                                <%= link_to delete_shared_book_path(book), :method => :delete,:data => { :confirm => 'Do you really want to unshare it?' } do %>
+                                  <i class="fa fa-chain-broken fa-2x"></i>
+                                <% end %>       
+                            <%end%>
+                        <%=book.try(:isbn)%>
+                          <span class="stars"><%=average_rating.presence || 3%></span>
                         </p>
                        
                     </div>
@@ -44,3 +47,4 @@
                         <p class="text-muted">A Dreamer</p>
                     </div>
                 </div> -->
+

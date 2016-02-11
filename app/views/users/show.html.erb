@@ -1,6 +1,9 @@
-<%=current_user.first_name%>
-<%=current_user.last_name%>
-<%= image_tag @user.avatar.url %>
-<%= image_tag @user.avatar.url(:medium) %>
+First name: <%=current_user.first_name%>
+Last name: <%=current_user.last_name%>
+Phone No. <%=current_user.phone_no%>
+Email: <%=current_user.email%>
+Location: <%=current_user.profile.try(:location).try(:name)%>
+Credit: <%=current_user.profile.credit%>
+Token Count: <%=current_user.tokens_count%>
 <%= image_tag @user.avatar.url(:thumb) %>
 <%=link_to 'Edit',edit_user_registration_path()%>

@@ -1,5 +1,5 @@
 class CreateTransactions < ActiveRecord::Migration
-  def change
+  def up
     create_table :transactions do |t|
     	t.references :book
     	t.integer :receiver_id
@@ -10,5 +10,8 @@ class CreateTransactions < ActiveRecord::Migration
       t.float :credit, :default => 0.0
       t.timestamps null: false
     end
+  end
+  def down
+    drop_table :transactions
   end
 end
