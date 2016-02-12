@@ -20,35 +20,37 @@
        <header>
         <div class="container">
             <div class="intro-text">
-                <div class="intro-lead-in">Spread Some Love!</div>
-        <div class="intro-lead-in">Share and take what you/they need</div>
-                <!--<div class="intro-heading">Get What you're looking for and share what they are looking for</div>-->
-                <a href="javascript:void(0);" class="page-scroll btn btn-xl" onclick="toggleDiv(give_away,take);">Grab One</a>
+        <div class="intro-lead-in"  id="GrabTXT">Spread Some Love!</div>
+        <div class="intro-lead-in"  id="GiveTXT" style="display:none">Share and take what </div>
+       <div class="mainlinks">
+           <a href="javascript:void(0);" class="active" onclick="toggleDiv(give_away,take);">Grab One</a>
+           <a href="javascript:void(0);" onclick="toggleDiv(take,give_away);">Give Away</a>
+        </div>
 
-        <a href="javascript:void(0);" class="page-scroll btn btn-xl" onclick="toggleDiv(take,give_away);">Give Away</a>
         <%=form_tag search_books_path, method: :get, :class=>"form-inline", :role=>"search",:id=>"give_away" ,:style => 'display:none' do %>
           <div class="input-group">
              
              <div class="form-group">
-              <%=text_field_tag :book_query,nil,:placeholder => "Enter book title,author,isbn",:class=> "form-control"%>
+              <%=text_field_tag :book_query,nil,:placeholder => "Enter book title,author,isbn",:class=> "inputgivaway col-lg-4 form-control"%>
              </div>            
             <div class="input-group-btn">
-              <button id="btn-search" class="btn btn-info" type="submit"><i class="fa fa-search fa-fw"></i></button>
+              <button id="btn-search" class="btn btn-info searchbtn" type="submit">Search</button>
             </div>
           </div>
         <%end%>
 
         <%=form_tag library_books_path, method: :get, :class=>"form-inline", :role=>"search",:id=>"take" do %>
           <div class="input-group">
-             <span class="input-group-addon"><i class="fa fa-map-marker "></i></span>
-             <div class="form-group">
-              <%=select_tag "location_query", options_for_select(Location.all.map { |e| e.name }),:class=>"form-control"%>
+            <div class="mobileinput"> <span class="input-group-addon"><i class="fa fa-map-marker "></i></span>
+             <div class="form-group pull-left">
+              <%=select_tag "location_query", options_for_select(Location.all.map { |e| e.name }),:class=>"inputGrab form-control"%>
              </div>
-             <div class="form-group">
-              <%=text_field_tag :book_query,nil,:placeholder => "Enter book title,author,isbn",:class=> "form-control"%>
+             </div>
+             <div class="form-group pull-left">
+              <%=text_field_tag :book_query,nil,:placeholder => "Enter book title,author,isbn",:class=> "inputGrab form-control"%>
              </div>            
             <div class="input-group-btn">
-              <button id="btn-search" class="btn btn-info" type="submit"><i class="fa fa-search fa-fw"></i></button>
+              <button id="btn-search" class="btn btn-info searchbtn" type="submit">Search</button>
             </div>
           </div>
         <%end%>
@@ -301,9 +303,9 @@
                     </div>
                 </div>
             </div>
-            <div class="container">
+            <div class="">
                 <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
+                    <div class="col-lg-12">
                         <div class="modal-body">
                             <!-- Project Details Go Here -->
                             <h2>Project Name</h2>
@@ -334,9 +336,9 @@
                     </div>
                 </div>
             </div>
-            <div class="container">
+            <div class="">
                 <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
+                    <div class="col-lg-12">
                         <div class="modal-body">
                             <h2>Project Heading</h2>
                             <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
@@ -360,9 +362,9 @@
                     </div>
                 </div>
             </div>
-            <div class="container">
+            <div class="">
                 <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
+                    <div class="col-lg-12">
                         <div class="modal-body">
                             <!-- Project Details Go Here -->
                             <h2>Project Name</h2>
@@ -387,9 +389,9 @@
                     </div>
                 </div>
             </div>
-            <div class="container">
+            <div class="">
                 <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
+                    <div class="col-lg-12">
                         <div class="modal-body">
                             <!-- Project Details Go Here -->
                             <h2>Project Name</h2>
@@ -414,9 +416,9 @@
                     </div>
                 </div>
             </div>
-            <div class="container">
+            <div class="">
                 <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
+                    <div class="col-lg-12">
                         <div class="modal-body">
                             <!-- Project Details Go Here -->
                             <h2>Project Name</h2>
@@ -441,9 +443,9 @@
                     </div>
                 </div>
             </div>
-            <div class="container">
+            <div class="">
                 <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
+                    <div class="col-lg-12">
                         <div class="modal-body">
                             <!-- Project Details Go Here -->
                             <h2>Project Name</h2>
@@ -461,5 +463,21 @@
 
 </body>
 </html>
+
+<script>
+    
+$(function() {
+// Highlight the top nav as scrolling occurs
+  $('body').scrollspy({
+      target: '.navbar-fixed-top'
+  })
+
+  // Closes the Responsive Menu on Menu Item Click
+  $('.navbar-collapse ul li a').click(function() {
+      $('.navbar-toggle:visible').click();
+  });
+
+});
+</script>
 
    

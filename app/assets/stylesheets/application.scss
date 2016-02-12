@@ -17,7 +17,7 @@
 @import "bootstrap";
 @import "font-awesome";
 
-body { padding-top: 60px; }
+body { }
 
 #cnt1 {            
      background-color:rgba(215, 212, 212, 0.88);
@@ -110,4 +110,143 @@ span.stars, span.stars span {
 }
  span.stars span {
     background-position: 0 0;
+}
+.navbar-default{background:none;border:0}
+header .intro-text .intro-lead-in {
+    font-size: 70px;
+    font-style: normal;
+    line-height: 70px;
+    margin-bottom: 70px;
+}
+.navbar-default .nav li a {
+    color: #fff;
+}
+.navbar-default .nav li a:hover, .navbar-default .nav li a:focus {
+    color: #fed136;
+    outline: 0 none;
+}
+
+.btn-info:active:hover, .btn-info:active:focus, .btn-info.focus:active, .btn-info.active:hover, .btn-info.active:focus, .btn-info.active.focus, .open > .btn-info.dropdown-toggle:hover, .open > .btn-info.dropdown-toggle:focus, .open > .btn-info.dropdown-toggle.focus {
+    background-color: #fed136;
+    border-color: #fed136;
+    color: #fff;
+}
+
+
+.mainlinks{margin:0 auto;display:block;width:200px;text-align:center;height:40px;}
+.mainlinks a{display:inline-block;font-size:16px;color:#fff;border-bottom:2px solid transparent;text-transform: uppercase;}
+.mainlinks a:hover,.mainlinks a.active{border-bottom:2px solid #fed136;text-decoration:none}
+.mainlinks a:first-child{margin-right:15px;}
+.inputgivaway{padding:10px;line-height:50px;width:500px!important; height:50px;border:0;border-top-left-radius:4px!important; border-bottom-left-radius:4px!important;}
+.inputGrab{padding:10px;line-height:50px;width:300px!important; height:50px;border:0;}
+.btn-info.searchbtn{height:50px;padding-left:30px;padding-right:30px;background-color: #fed136;border-color:#fed136;}
+.btn-info{background-color: #fed136;border-color:#fed136;}
+header .intro-text {
+    padding-bottom: 250px;
+    padding-top: 200px;
+}
+.btn-info:hover {
+    background-color: #fae64b;
+    border-color: #fae64b;
+    color: #fff;
+}
+ 
+.dropdown-menu {
+    background-color: #222;
+    border-radius: 0px;
+    top: 85%;border:0;padding: 0;
+    }
+.dropdown-menu > li > a{
+   padding:10px 20px;
+}
+.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
+    background-color:transparent;
+}
+
+.dropdown-menu li{border-top: 1px solid rgba(0, 0, 0, 0.15);}
+.dropdown-menu li:first-child{border-bottom: 0px solid rgba(0, 0, 0, 0.15);}
+.mobileinput .input-group-addon {
+    display: table-cell;
+    float: left;
+    height: 50px;
+    padding-top: 12px;
+    vertical-align: middle;
+    width: 10%;
+}
+.fa.fa-map-marker {font-size:24px;}
+.mobileinput{width:auto;float:left;}
+.items-collection .btn-group {
+    min-height: 85px;
+    width: 100%;
+}
+.items-collection label.btn-default {
+    border-radius: 4px;
+}
+.modal {
+    height: 600px;
+    margin: auto;
+    width: 800px;
+    z-index: 9999;box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);
+}
+.portfolio-modal .modal-content {padding: 20px 0;}
+.items-collection {
+    margin: 10px 0 0;
+    max-height: 300px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+@media only screen and (min-width:768px) and (max-width:1024px) {
+    header .intro-text .intro-lead-in {font-size: 50px;line-height: 50px;}
+    .inputGrab {width: 200px!important;}
+
+
+}
+
+@media only screen and (min-width:300px) and (max-width:767px) {
+    
+header .intro-text .intro-lead-in {
+    font-size: 26px;
+    line-height: 26px;
+    margin-bottom: 40px;
+}
+.mobileinput{width:100%;float:left;}
+.mobileinput .input-group-addon {
+    display: table-cell;
+    float: left;
+    height: 40px;
+    padding-top: 7px;
+    vertical-align: middle;
+    width: 14%;
+}
+#give_away .form-group, #take .form-group  {
+    width: 100%;float: left;
+}
+
+.mobileinput .inputGrab { height: 40px; line-height: 40px;float:left;width:100%!important;border-radius:0px!important;border-top-right-radius:4px!important; border-bottom-right-radius:4px!important;}
+.inputgivaway,.inputGrab { height: 40px; line-height: 40px;float:left;width:100%!important;border-radius:4px!important;}
+#take .input-group-btn,#give_away .input-group-btn{width:100%;float:left;}
+.mobileinput .form-group{width:86%!important}
+#give_away .input-group-btn .btn-info,#take .input-group-btn .btn-info{border-radius:4px!important;width:100%}
+#give_away .input-group{width:100%}
+.navbar-nav{display:none}
+.navbar-default {
+    background-color: #222;
+    border-color: transparent;
+}
+
+header .intro-text {
+    padding-bottom: 150px;
+    padding-top: 100px;
+}
+.dropdown-menu {
+    float: none;
+    position: static;box-shadow: none;
+}
+
+.dropdown-menu > li > a {
+    padding: 10px 20px 10px 40px;
+}
+.dropdown-menu > li-first-child{border-bottom: 1px solid rgba(0, 0, 0, 0.15);}
+.navbar-nav li{border-top: 1px solid rgba(0, 0, 0, 0.15);}
+
 }

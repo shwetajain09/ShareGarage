@@ -6,3 +6,4 @@
 /solr/pids/*
 /public/*
 /tmp/cache/*
+/public/system/*

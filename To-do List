@@ -28,3 +28,24 @@ Html fixes:-
 8. Mobile responsive
 9. Autocomplete
 
+
+
+Surya
+landing page top header navigation
+iinside pages heade
+add locatio form
+autocomplete
+sign up login form
+
+
+
+Project start
+1. console
+2. cd Documents/ShareGarage
+3. rvm gemset use rails4
+4. rake sunspot:solr:reindex
+5. rake sunspot:solr:start
+6. rails s
+
+
+
