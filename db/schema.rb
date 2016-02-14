@@ -125,6 +125,8 @@ ActiveRecord::Schema.define(version: 20160210175049) do
     t.boolean  "is_redeemed",             default: false
     t.datetime "valid_til"
     t.integer  "owner",       limit: 4
+    t.integer  "receiver_id", limit: 4
+    t.integer  "book_id",     limit: 4
     t.float    "credit",      limit: 24
     t.datetime "created_at",                              null: false
     t.datetime "updated_at",                              null: false
@@ -147,14 +149,15 @@ ActiveRecord::Schema.define(version: 20160210175049) do
     t.string   "last_name",              limit: 255
     t.integer  "phone_no",               limit: 8
     t.string   "gender",                 limit: 1
-    t.datetime "created_at",                                      null: false
-    t.datetime "updated_at",                                      null: false
-    t.string   "email",                  limit: 255, default: "", null: false
-    t.string   "encrypted_password",     limit: 255, default: "", null: false
+    t.boolean  "show_phone",                         default: true
+    t.datetime "created_at",                                        null: false
+    t.datetime "updated_at",                                        null: false
+    t.string   "email",                  limit: 255, default: "",   null: false
+    t.string   "encrypted_password",     limit: 255, default: "",   null: false
     t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          limit: 4,   default: 0,  null: false
+    t.integer  "sign_in_count",          limit: 4,   default: 0,    null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip",     limit: 255
@@ -163,7 +166,7 @@ ActiveRecord::Schema.define(version: 20160210175049) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email",      limit: 255
-    t.integer  "failed_attempts",        limit: 4,   default: 0,  null: false
+    t.integer  "failed_attempts",        limit: 4,   default: 0,    null: false
     t.string   "unlock_token",           limit: 255
     t.datetime "locked_at"
     t.string   "avatar_file_name",       limit: 255

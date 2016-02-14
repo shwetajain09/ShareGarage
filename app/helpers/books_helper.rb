@@ -29,7 +29,9 @@ def get_location_value(book_id,location)
 end
 
 def get_contact_info(provider)
-	provider.phone_no.presence || provider.email
+	if provider.show_phone
+		provider.phone_no.presence
+	end
 end
 
 

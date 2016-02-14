@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <h1>Hello, <%= @requestee_name %></h1>
+    <p>
+      <%=@requester%>
+      I would like to take the book that you've shared on <%=link_to 'ShareGarage',"www.sharegarage.com"%>.<br/>
+      Please contact me back if you're interested
+     
+    </p>
+    <p>
+    The book details are given below:
+    <br>
+      Name: <%= @title %>.
+    </p>
+    <p>Google Id: <%=@google_id%></p>
+  </body>
+</html>

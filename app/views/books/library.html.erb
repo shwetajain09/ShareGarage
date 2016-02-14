@@ -1,11 +1,29 @@
 
-        <%if @books.size>0%>
+        <%if @books.count>0%>
             <div class="row">
-                <%@books.each do |book|%>
-                    <%= render partial: "books/book", :locals => {:book => book,:path => show_providers_book_path(book),:action_class =>"fa-hand-grab-o",:authors => book.authors.collect(&:name).join(','),:image_link => (book.respond_to? :avatar=) ? book.avatar : '/assets/no_book_cover.jpg',:average_rating => book.try(:google_provided_rating)} %>
+                <%if @grab%>
+                    <%@books.each do |book|%>
+                        <%path = show_providers_book_path(book)%>
+                        <%action_class = "fa-hand-grab-o"%>
+                        <%authors = book.authors.collect(&:name).join(',')%>
+                        <%avatar = book.avatar%>
+                        <%rating = book.try(:google_provided_rating)%>
+                        <%= render partial: "books/book", :locals => {:book => book,:path => path,:action_class =>action_class,:authors => authors,:image_link => avatar,:average_rating => rating} %>
+                    <%end%>
+                <%else%>
+                    <%@books.each do |book|%>
+                        <%path = request_book_users_path(:book_title=>book.title,:google_id => book.id)%>
+                        <%action_class = "fa-bookmark"%>
+                        <%authors = book.authors%>
+                        <%avatar = book.image_link(:zoom => 2, :curl => true).present? ? (book.image_link(:zoom => 2, :curl => true)) : ('/assets/no_book_cover.jpg')%>
+                        <%rating = book.average_rating%>
+                        <%= render partial: "books/book", :locals => {:book => book,:path => path,:action_class =>action_class,:authors => authors,:image_link => avatar,:average_rating => rating,:action=>:post} %>
+                    <%end%>
                 <%end%>
             </div>
-            <%= will_paginate @books , renderer: BootstrapPagination::Rails%>
+            <%if @grab%>
+                <%= will_paginate @books , renderer: BootstrapPagination::Rails%>
+            <%end%>
         <%else%>
             <h2>No books available</h2>
         <%end%>

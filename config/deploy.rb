@@ -13,6 +13,7 @@ set :deploy_via, :remote_cache
 set :git_enable_submodules, 1
 set :user, 'ubuntu'
 set :use_sudo, false
+set :bundle_env_variables, { 'NOKOGIRI_USE_SYSTEM_LIBRARIES' => 1 }
 namespace :deploy do
 task :symlink_directories do
 run "ln -nfs #{shared_path}/uploads #{release_path}/public/uploads"

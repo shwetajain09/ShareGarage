@@ -7,10 +7,10 @@ protected
     resource.update_without_password(params)
   end
    def sign_up_params
-    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation,:gender)
+    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation,:gender,:phone_no,:show_phone)
   end
 
   def account_update_params
-    params.require(:user).permit(:first_name, :last_name, :password, :password_confirmation,:avatar,:phone_no)
+    params.require(:user).permit(:first_name, :last_name, :password, :password_confirmation,:avatar,:phone_no,:gender,:phone_no,:show_phone)
   end
 end

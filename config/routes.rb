@@ -17,6 +17,9 @@ Rails.application.routes.draw do
     member do
       get :shelf
     end
+    collection do 
+      post :request_book
+    end
 
   end
 

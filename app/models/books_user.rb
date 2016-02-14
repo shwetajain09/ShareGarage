@@ -30,14 +30,14 @@ class BooksUser < ActiveRecord::Base
 		token = self.user.tokens.new(:redeem_code => short_code,:owner => self.user_id,:credit => AppConfiguration::TOKEN_GENERATION_CREDIT)
 		if token.save
 			self.user.profile.credit -= AppConfiguration::TOKEN_GENERATION_CREDIT
-			@debit_tran = self.user.debit_transactions.new(:receiver_id => AppConfiguration::TEAM_ID,:message => AppConfiguration::GENERATED_TOKEN,:credit => AppConfiguration::TOKEN_GENERATION_CREDIT,:token_id=>token.id)
+			@debit_tran = self.user.debit_transactions.new(:message => AppConfiguration::GENERATED_TOKEN,:credit => AppConfiguration::TOKEN_GENERATION_CREDIT,:token_id=>token.id)
 		end
 	end
 
 	def deduct_credit
 		self.user.profile.credit -= AppConfiguration::UNSHARE_CREDIT
 		self.user.profile.save
-		self.user.debit_transactions.create(:receiver_id => AppConfiguration::TEAM_ID,:message => AppConfiguration::UNSHARED_BOOK,:book_id => self.book.id,:credit => AppConfiguration::UNSHARE_CREDIT)
+		self.user.debit_transactions.create(:message => AppConfiguration::UNSHARED_BOOK,:book_id => self.book.id,:credit => AppConfiguration::UNSHARE_CREDIT)
 	end
 
 end

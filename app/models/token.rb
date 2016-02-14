@@ -16,5 +16,8 @@ class Token < ActiveRecord::Base
 		end
 	end
 
+	def check_validity
+		return !@token.is_redeemed && @token.valid_till >= Date.today
+	end
 
 end

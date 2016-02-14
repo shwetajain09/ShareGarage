@@ -9,7 +9,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="<%=root_url%>">Share Garage</a>
+      <a class="navbar-brand" href="<%=root_url%>"><%=image_tag '/assets/logos/favicon.gif'%>Share Garage</a>
     </div>
 
 <%if !current_page?(root_url)%>
@@ -41,7 +41,7 @@
               <%=select_tag "location_query", options_for_select(Location.all.map { |e| e.name }),:class=>"form-control"%>
              </div>
              <div class="form-group">
-              <%=text_field_tag :book_query,nil,:placeholder => "Enter book title,author,isbn",:class=> "form-control"%>
+              <%=text_field_tag :book_query,nil,:placeholder => "Enter book title,author",:class=> "form-control"%>
              </div>            
             <div class="input-group-btn">
               <button id="btn-search" class="btn btn-info" type="submit"><i class="fa fa-search fa-fw"></i></button>

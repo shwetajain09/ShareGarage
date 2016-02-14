@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
   has_many :debit_transactions, :class_name => 'Transaction',:foreign_key => :giver_id
   has_one :profile
   validates_presence_of :gender
+  validates_presence_of :phone_no, :if => :show_phone?
   after_create :generate_profile
 
   def set_picture_respect_to_gender
@@ -40,8 +41,8 @@ class User < ActiveRecord::Base
   end
 
   def full_name   
-    (first_name.to_s+last_name.to_s).presence || email
-  end
+    (first_name.capitalize.to_s+" "+last_name.capitalize.to_s).presence || email
+  end 
 
 
 end

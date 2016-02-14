@@ -17,14 +17,14 @@
                             </div>
 
                             <div class="form-group">
-                                <%= f.email_field :email, autofocus: true,:class=>"form-control input-sm", :placeholder=>"Email Address" %>
+                                <%= f.email_field :email, autofocus: true,:class=>"form-control input-sm required", :placeholder=>"Email Address" %>
                             </div>
 
                             <div class="row">
                                 <div class="col-xs-6 col-sm-6 col-md-6">
                                     <div class="form-group">
                                         
-                                        <%= f.password_field :password, autocomplete: "off",:class=>"form-control input-sm", :placeholder=>"Password" %>
+                                        <%= f.password_field :password, autocomplete: "off",:class=>"form-control input-sm required", :placeholder=>"Password" %>
                                         <% if @minimum_password_length %>
                                             <em>(<%= @minimum_password_length %> characters minimum)</em>
                                         <% end %>
@@ -33,16 +33,34 @@
                                 <div class="col-xs-6 col-sm-6 col-md-6">
                                     <div class="form-group">
                                         
-                                        <%= f.password_field :password_confirmation, autocomplete: "off",:class=>"form-control input-sm", :placeholder=>"Confirm Password"%>
+                                        <%= f.password_field :password_confirmation, autocomplete: "off",:class=>"form-control input-sm required", :placeholder=>"Confirm Password"%>
                                     </div>
                                 </div>
                             </div>
-                             <div class="col-xs-6 col-sm-6 col-md-6">
+                            <div class="row">
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                        <div class="form-group required">
+                                            <label class="radio-inline"><input type="radio" name="user[gender]" value="M">Male</label>
+                                            <label class="radio-inline"><input type="radio" name="user[gender]" value="F">Female</label>
+                                            
+                                        </div>
+                                </div>
+                                
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                        <div class="form-group">
+                                            <%= f.text_field :phone_no, autofocus: true,:class=>"form-control input-sm", :placeholder=>"Mobile Number" %>
+                                            
+                                        </div>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6">
                                     <div class="form-group">
-                                        <label class="radio-inline"><input type="radio" name="user[gender]" value="M">Male</label>
-                                        <label class="radio-inline"><input type="radio" name="user[gender]" value="F">Female</label>
-                                        
+                                      <%= f.check_box :show_phone %>
+                                      <%= f.label :show_phone %>
                                     </div>
+                                </div>
+
                             </div>
                             <%= f.submit "Sign up" ,:class=>"btn btn-info btn-block"%>
                         <% end %>

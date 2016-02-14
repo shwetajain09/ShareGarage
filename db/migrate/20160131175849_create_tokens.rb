@@ -5,6 +5,8 @@ class CreateTokens < ActiveRecord::Migration
     	t.boolean :is_redeemed , :default => false
     	t.datetime :valid_til
     	t.integer :owner
+      t.integer :receiver_id
+      t.integer :book_id
     	t.float :credit
       t.timestamps null: false
     end

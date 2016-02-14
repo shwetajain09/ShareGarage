@@ -1,5 +1,6 @@
                 <div class="col-md-4 col-sm-6 portfolio-item">
-                    <%= link_to path ,:remote => true, :class => "portfolio-link" do %>
+                    <%local_action = (local_assigns.has_key? :action) ? action : :get%>
+                    <%= link_to path ,:remote => true, :class => "portfolio-link" ,:method => local_action do %>
                       
                       <div class="portfolio-hover">
                             <div class="portfolio-hover-content">
@@ -22,7 +23,7 @@
                         </p>
                         <p class="text-muted" title="<%=book.try(:isbn)%>">
                             <%if local_assigns.has_key? :show_actions%> 
-                                <%= link_to delete_shared_book_path(book), :method => :delete,:data => { :confirm => 'Do you really want to unshare it?' } do %>
+                                <%= link_to delete_shared_book_path(book), :method => :delete,:data => { :confirm => 'Do you really want to unshare it? This will deduct your 2 BookBits (BB)' } do %>
                                   <i class="fa fa-chain-broken fa-2x"></i>
                                 <% end %>       
                             <%end%>

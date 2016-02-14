@@ -14,13 +14,17 @@ class BooksController < ApplicationController
 	end
 
 	def library
-
-		@search = Book.available.search do
+		@grab = true
+		@search = Book.available.where.not(provider: current_user).search do
 			fulltext params[:location_query],:fields=>:pick_locations
 		    fulltext params[:book_query]
 		    #paginate :page =>  params[:page], :per_page => 5
 		  end
   		@books = @search.results
+  		if @books.empty?
+  			@grab = false
+  			@books = GoogleBooks.search("#{params[:book_query]}", {:count => 10})
+  		end
 	end
 
 	def search
@@ -70,9 +74,8 @@ class BooksController < ApplicationController
 	end
 
 	def show_providers
-		@providers = @book.providers
+		@providers = @book.providers.where.not(id: current_user.id)
 	end
-
 
 
 

@@ -11,7 +11,7 @@
 
   <%= csrf_meta_tags %>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<%=favicon_link_tag '/assets/logos/favicon.gif'%>
 </head>
 
 <body id="page-top" class="index">
@@ -20,11 +20,13 @@
        <header>
         <div class="container">
             <div class="intro-text">
-        <div class="intro-lead-in"  id="GrabTXT">Spread Some Love!</div>
-        <div class="intro-lead-in"  id="GiveTXT" style="display:none">Share and take what </div>
+            <div class="intro-lead-in"  >Free Online Book Garage</div>
+                <div class="intro-lead-in"  >The 'First Of Its Kind' Book Sharing Platform</div>
+        <!-- <div class="intro-lead-in"  id="GrabTXT" style="display:none"> Take Them For A 'Read'</div>
+        <div class="intro-lead-in"  id="GiveTXT" style="display:none">Park Your Books Here</div> -->
        <div class="mainlinks">
-           <a href="javascript:void(0);" class="active" onclick="toggleDiv(give_away,take);">Grab One</a>
-           <a href="javascript:void(0);" onclick="toggleDiv(take,give_away);">Give Away</a>
+           <a href="javascript:void(0);" class="active" onclick="toggleDiv(give_away,take);">Take Away</a>
+           <a href="javascript:void(0);" onclick="toggleDiv(take,give_away);">Park Here</a>
         </div>
 
         <%=form_tag search_books_path, method: :get, :class=>"form-inline", :role=>"search",:id=>"give_away" ,:style => 'display:none' do %>
@@ -57,57 +59,21 @@
             </div>
         </div>
     </header>
-    <!-- Services Section -->
-  <!--   <section id="services">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2 class="section-heading">I am here for</h2>
-                    <h3 class="section-subheading text-muted">Get the best of my diddly books.</h3>
-                </div>
-            </div>
-            <div class="row text-center">
-                <div class="col-md-4">
-                    <span class="fa-stack fa-4x">
-                        <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                        <i class="fa fa-shopping-cart fa-stack-1x fa-inverse"></i>
-                    </span>
-                    <h4 class="service-heading">Got Books</h4>
-                    <p class="text-muted">I have some books that I've read and they are just accumulating dust now. Poor me!</p>
-                </div>
-                <div class="col-md-4">
-                    <span class="fa-stack fa-4x">
-                        <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                        <i class="fa fa-laptop fa-stack-1x fa-inverse"></i>
-                    </span>
-                    <h4 class="service-heading">Share Them</h4>
-                    <p class="text-muted">Your only chance to make the most of your read books by giving them to someone who is desperately looking for it.</p>
-                </div>
-                <div class="col-md-4">
-                    <span class="fa-stack fa-4x">
-                        <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                        <i class="fa fa-lock fa-stack-1x fa-inverse"></i>
-                    </span>
-                    <h4 class="service-heading">Get The Book You Want</h4>
-                    <p class="text-muted">Not only the contenment of your loved book new hands but also get a book you most wished for in lieu of that.</p>
-                </div>
-            </div>
-        </div>
-    </section> -->
+   
 
     <!-- Portfolio Grid Section -->
     <section id="portfolio" class="bg-light-gray">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2 class="section-heading">Popular</h2>
+                    <h2 class="section-heading">Choose From Our Garage</h2>
                     <h3 class="section-subheading text-muted">Here is the plethora of books you can choose from.</h3>
                 </div>
             </div>
             <div class="row">
                 <%@popular_books.each do |book|%> 
                     <div class="col-md-4 col-sm-6 portfolio-item">
-                        <a href="#portfolioModal6" class="portfolio-link" data-toggle="modal">
+                        <a href="#portfolioModal_<%=book.id%>" class="portfolio-link" data-toggle="modal">
                             <div class="portfolio-hover">
                                 <div class="portfolio-hover-content">
                                     <i class="fa fa-info-circle fa-3x"></i>
@@ -131,8 +97,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2 class="section-heading">How It Works</h2>
-                    <h3 class="section-subheading text-muted">It simple and lovable.</h3>
+                    <h2 class="section-heading">So! How Do You Think It Works?</h2>
+                    <h3 class="section-subheading text-muted">It simple and social.</h3>
                 </div>
             </div>
             <div class="row">
@@ -144,11 +110,11 @@
                             </div>
                             <div class="timeline-panel">
                                 <div class="timeline-heading">
-                                    <h4>Upload your read book</h4>
-                                    <h4 class="subheading">Earn credits</h4>
+                                    <h4>Park Your Books Here</h4>
+                                    <!-- <h4 class="subheading">Earn credits</h4> -->
                                 </div>
                                 <div class="timeline-body">
-                                    <p class="text-muted">On upload you will get credits which you can use to grab any book from the library and your book can be taken by someone else!</p>
+                                    <p class="text-muted">Don't Let Your Books Bite The Dust, <br>Let Them Kiss Someone's Hand</p>
                                 </div>
                             </div>
                         </li>
@@ -158,12 +124,12 @@
                             </div>
                             <div class="timeline-panel">
                                 <div class="timeline-heading">
-                                    <h4>Search Library</h4>
-                                    <h4 class="subheading">You can search the book you want and also available books near you!</h4>
+                                    <h4>Earn BookCoin (BC)</h4>
+                                    <h4 class="subheading"></h4>
                                 </div>
                                 <div class="timeline-body">
-                                    <p class="text-muted">You can search the book you want and also available books near you!</p>
-                                </div>
+                                    <p class="text-muted">1. Sharing your book with others. <br>2. Parking your books in the Garage- 1 BC on every 5 books <br>3. Invite friends</p>
+                                </div> 
                             </div>
                         </li>
                         <li>
@@ -172,11 +138,11 @@
                             </div>
                             <div class="timeline-panel">
                                 <div class="timeline-heading">
-                                    <h4>Grab a book</h4>
-                                    <h4 class="subheading">Call the offerer to collect the book at you convenience</h4>
+                                    <h4>Browse The Garage</h4>
+                                    <h4 class="subheading"></h4>
                                 </div>
                                 <div class="timeline-body">
-                                    <p class="text-muted">Call the offerer to collect the book at you convenience!</p>
+                                    <p class="text-muted">Choose from our rapidly growing crowdsourced library.</p>
                                 </div>
                             </div>
                         </li>
@@ -186,11 +152,11 @@
                             </div>
                             <div class="timeline-panel">
                                 <div class="timeline-heading">
-                                    <h4>Share gratitude for your purchase</h4>
-                                    <h4 class="subheading">Give your credits to offerer for their book</h4>
+                                    <h4>Socialise</h4>
+                                    <h4 class="subheading"></h4>
                                 </div>
                                 <div class="timeline-body">
-                                    <p class="text-muted">Give your credits to offerer for their book!</p>
+                                    <p class="text-muted"> 1. Meet the book owner <br> 2. Exchange your BC against the book <br>3. Become the book owner</p>
                                 </div>
                             </div>
                         </li>
@@ -207,7 +173,48 @@
         </div>
     </section>
 
-   
+    
+
+     <!-- Services Section -->
+    <section id="services">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">What makes us unique?</h2>
+                    <h3 class="section-subheading text-muted"></h3>
+                </div>
+            </div>
+            <div class="row text-center">
+                <div class="col-md-4">
+                    <span class="fa-stack fa-4x">
+                        <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                        <i class="fa fa-inr fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <h4 class="service-heading">Totally Free! No hidden cost</h4>
+                    <p class="text-muted">I have some books that I've read and <br>they are just accumulating dust now. Poor me!</p>
+                </div>
+                <div class="col-md-4">
+                    <span class="fa-stack fa-4x">
+                        <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                        <i class="fa fa-book fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <h4 class="service-heading">Wide Range of books</h4>
+                    <p class="text-muted">Your only chance to make the most of <br>your read books by giving them to <br>someone who is desperately looking for it.</p>
+                </div>
+                <div class="col-md-4">
+                    <span class="fa-stack fa-4x">
+                        <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                        <i class="fa fa-retweet fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <h4 class="service-heading">Social Book network </h4>
+                    <p class="text-muted">You get to socialise with people having <br>similar interest</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
     
     <!-- Contact Section -->
     <section id="contact">
@@ -295,7 +302,7 @@
     <!-- Use the modals below to showcase details about your portfolio projects! -->
 
     <!-- Portfolio Modal 1 -->
-    <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="portfolio-modal modal fade" id="portfolioModal_1" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-content">
             <div class="close-modal" data-dismiss="modal">
                 <div class="lr">
