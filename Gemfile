@@ -35,6 +35,7 @@ gem "twitter-bootstrap-rails"
 gem 'bootstrap-sass', '~> 3.3.6'
 gem "font-awesome-rails"
 gem 'friendly_id', '~> 5.1.0'
+gem 'aws-sdk', '~> 1.6'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use ActiveModel has_secure_password

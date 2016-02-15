@@ -19,6 +19,7 @@ class User < ActiveRecord::Base
   has_many :credit_token, :class_name => 'Token',:foreign_key => :receiver_id
   has_many :debit_token, :class_name => 'Token',:foreign_key => :owner
   has_one :profile
+  has_many :book_requests
   validates_presence_of :gender
   validates_presence_of :phone_no, :if => :show_phone?
   after_create :generate_profile

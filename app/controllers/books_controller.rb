@@ -9,7 +9,7 @@ class BooksController < ApplicationController
 	end
 
 	def index
-		@popular_books = Book.available.tagged_with("Popular")
+		@popular_books = Book.available.tagged_with("Popular").last(6)
 		render :layout => false
 	end
 

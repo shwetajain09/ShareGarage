@@ -4,6 +4,9 @@ class Token < ActiveRecord::Base
 	belongs_to :receiver, :class_name => 'User', :foreign_key => :receiver_id
 	belongs_to :book, :class_name => 'Book', :foreign_key => :book_id
 	scope :unused, ->{where "is_redeemed is false"}
+	scope :used, ->{where "is_redeemed is true"}
+	scope :locked, ->{where "is_redeemed is false and receiver_id is not null and book_id is not null"}
+	scope :unlocked_unused, -> {where "is_redeemed is false and receiver_id is null and book_id is null"}
 
 
 	def redeem_token(redeemer)		

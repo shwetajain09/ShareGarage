@@ -16,9 +16,13 @@ Rails.application.routes.draw do
     resources :transactions
     member do
       get :shelf
+      get :show_requested_books
+      get :show_meeting_form
+      post :submit_meeting_review
     end
     collection do 
       post :request_book
+      
     end
 
   end

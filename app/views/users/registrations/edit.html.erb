@@ -1,38 +1,98 @@
 
-<%= form_for(resource, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
-
-  <div class="field">
-    <%= f.label :phone_no %><br />
-    <%= f.text_field :phone_no, autofocus: true %>
-  </div>
-
-  <div class="field">
-    <%= f.label :first_name %><br />
-    <%= f.text_field :first_name, autofocus: true %>
-  </div>
-  <div class="field">
-    <%= f.label :last_name %><br />
-    <%= f.text_field :last_name, autofocus: true %>
-  </div>
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
 
 
+    <div class="col-md-12" id="panel1">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    Edit Profile</h3>
+            </div>
+            <%= form_for(resource, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+            <div class="panel-body two-col">
+                <div class="row">
+                   <%= devise_error_messages! %>
+                    <div class="col-md-6">
+                        <div class="well well-sm">
+                            <%= f.text_field :first_name, autofocus: true %>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="well well-sm">
+                            <%= f.text_field :last_name, autofocus: true %>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="well well-sm margin-bottom-none">
+                            <%= f.password_field :password, autocomplete: "off" ,:placeholder => "Password"%>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="well well-sm margin-bottom-none">
+                            <%= f.password_field :password_confirmation, autocomplete: "off",:placeholder => "Password Confirmation" %>
+                        </div>
+                    </div>
+                </div>
+                <hr />
+                 <div class="row">
+                    
+                    <div class="col-md-6">
+                        <div class="well well-sm margin-bottom-none inline">
+                            Show My Number<%= f.check_box :show_phone, autofocus: true %>
+                            <%= f.text_field :phone_no, autofocus: true ,:placeholder => "Phone Number"%>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="well well-sm margin-bottom-none">
+                            <%= f.file_field :avatar %>
   
-  <%= f.file_field :avatar %>
-  
+                        </div>
+                    </div>
+                </div>
+                
 
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
+            </div>
+            <div class="panel-footer">
+                <div class="row">
+                    
+                    <div class="col-md-2">
+                        <%= link_to "Back", :back,:class=>"btn btn-primary btn-sm btn-block",:type=>"button" %>
+                    </div>
+                    <div class="col-md-2">
+                       <%= f.submit "Submit",:class=>"btn btn-success btn-sm btn-block"%>
+                      
+                    </div>
+                </div>
+            </div>
+            <%end%>
+        </div>
+    </div>
 
-<%= link_to "Back", :back %>
+<style>
+#cnt1 {
+    background-color: rgba(215, 212, 212, 0.88);
+    margin-bottom: 70px;
+}
+
+#panel1 {
+    padding:20px;
+}
+
+.panel-body:not(.two-col) {
+    padding: 0px;
+}
+
+.panel-body .radio, .panel-body .checkbox {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.panel-body .list-group {
+    margin-bottom: 0;
+}
+
+.margin-bottom-none {
+    margin-bottom: 0;
+}
+</style>

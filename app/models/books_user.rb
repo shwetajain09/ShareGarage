@@ -9,14 +9,14 @@ class BooksUser < ActiveRecord::Base
 
 
 	def add_credit
-		self.user.profile.credit += AppConfiguration::UPLOAD_CREDIT
-		@temp_credit = self.user.profile.credit
-		if validate_token_generation
-			generate_token
-		end	
-		self.user.profile.save	
-		self.user.credit_transactions.new(:giver_id => AppConfiguration::TEAM_ID,:message => AppConfiguration::UPLOAD_BOOK,:book_id => self.book.id,:credit => AppConfiguration::UPLOAD_CREDIT)
-		@debit_tran.save if @debit_tran.present?
+		# self.user.profile.credit += AppConfiguration::UPLOAD_CREDIT
+		# @temp_credit = self.user.profile.credit
+		# if validate_token_generation
+		# 	generate_token
+		# end	
+		# self.user.profile.save	
+		# self.user.credit_transactions.new(:giver_id => AppConfiguration::TEAM_ID,:message => AppConfiguration::UPLOAD_BOOK,:book_id => self.book.id,:credit => AppConfiguration::UPLOAD_CREDIT)
+		# @debit_tran.save if @debit_tran.present?
 	end
 
 	def validate_token_generation

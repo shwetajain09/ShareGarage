@@ -7,3 +7,6 @@
 /public/*
 /tmp/cache/*
 /public/system/*
+/log/development/*
+/public/system/books/*
+/tmp/cache/*

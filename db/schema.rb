@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160215102334) do
+ActiveRecord::Schema.define(version: 20160215181237) do
 
   create_table "authors", force: :cascade do |t|
     t.string   "name",         limit: 255
@@ -29,6 +29,13 @@ ActiveRecord::Schema.define(version: 20160215102334) do
 
   add_index "authors_books", ["author_id", "book_id"], name: "index_authors_books_on_author_id_and_book_id", using: :btree
   add_index "authors_books", ["book_id", "author_id"], name: "index_authors_books_on_book_id_and_author_id", using: :btree
+
+  create_table "book_requests", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4
+    t.integer  "book_id",    limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
 
   create_table "books", force: :cascade do |t|
     t.string   "title",                  limit: 255
@@ -103,6 +110,17 @@ ActiveRecord::Schema.define(version: 20160215102334) do
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
     t.integer  "parent_id",  limit: 4
+  end
+
+  create_table "meeting_reviews", force: :cascade do |t|
+    t.integer  "reviewer_id",  limit: 4
+    t.integer  "reviewee_id",  limit: 4
+    t.integer  "book_id",      limit: 4
+    t.date     "meeting_date"
+    t.float    "rating",       limit: 24
+    t.text     "review",       limit: 65535
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   create_table "profiles", force: :cascade do |t|
