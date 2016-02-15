@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <h1>Hello, <%= @user.full_name %></h1>
+    <p>
+    	You've just locked a BookCoin to get "<%=Book.find_by_id(@token.book_id).title%>" from the owner "<%=@token.receiver.full_name%>". Please meet the book owner at a convenient and friendly place and exchange the below code to get the book.
+    	<div class="coupon"><%=@token.redeem_code%></div>
+      
+      <br>
+      * This coupon is only valid for th enext 7 days and only applicable for "<%=Book.find_by_id(@token.book_id).title%>" from the owner "<%=@token.receiver.full_name%>".
+      <br>
+      
+      For any further queries, please send us an email at team@sharegarage.com.
+   
+    </p>
+   
+  </body>
+</html>
+
+
+<style type="text/css">
+	        .coupon {
+   width: 250px;
+   padding: 10px;
+   text-align: center;
+   border: 3px dashed #ccc; }
+</style>

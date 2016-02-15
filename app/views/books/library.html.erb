@@ -1,6 +1,6 @@
-
-        <%if @books.count>0%>
-            <div class="row">
+        <div class="row">
+            <%if @books.count>0%>
+            
                 <%if @grab%>
                     <%@books.each do |book|%>
                         <%path = show_providers_book_path(book)%>
@@ -20,14 +20,14 @@
                         <%= render partial: "books/book", :locals => {:book => book,:path => path,:action_class =>action_class,:authors => authors,:image_link => avatar,:average_rating => rating,:action=>:post} %>
                     <%end%>
                 <%end%>
-            </div>
+            
             <%if @grab%>
                 <%= will_paginate @books , renderer: BootstrapPagination::Rails%>
             <%end%>
         <%else%>
             <h2>No books available</h2>
         <%end%>
-
+    </div>
 <script type="text/javascript">
   $(function() {
     $('span.stars').stars();

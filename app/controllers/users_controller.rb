@@ -36,7 +36,7 @@ end
     protected
 
     def configure_permitted_parameters
-        devise_parameter_sanitizer.for(:create) { |u| u.permit(:avatar) }
+        devise_parameter_sanitizer.for(:create) { |u| u.permit(:avatar,:slug) }
         # devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:name, :email, :password, :current_password, :is_female, :date_of_birth, :avatar) }
     end
 

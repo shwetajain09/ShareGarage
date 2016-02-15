@@ -24,4 +24,9 @@ class UserMailer < ActionMailer::Base
     mail(:to => @requestee, :subject => "Book Request")
   end
 
+  def send_token_details(user,token)
+    @user = user
+    @token = token
+    mail(:to => @user.email, :subject => "BookCoin details")
+  end
 end

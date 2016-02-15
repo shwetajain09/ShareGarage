@@ -250,3 +250,61 @@ header .intro-text {
 .navbar-nav li{border-top: 1px solid rgba(0, 0, 0, 0.15);}
 
 }
+
+
+    .fa {
+        margin-right: 5px;
+    }
+
+    .rating .fa {
+        font-size: 22px;
+    }
+
+    .rating-num {
+        margin-top: 0px;
+        font-size: 60px;
+    }
+
+    .progress {
+        margin-bottom: 5px;
+    }
+
+    .progress-bar {
+        text-align: left;
+    }
+
+    .rating-desc .col-md-3 {
+        padding-right: 0px;
+    }
+
+    .sr-only {
+        margin-left: 5px;
+        overflow: visible;
+        clip: auto;
+    }
+
+
+
+    .loadingmodal {
+    height: 600px;
+    margin: auto;
+    width: 800px;
+    z-index: 9999;box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);
+    background: url('/assets/loading.png') 
+                50% 50% 
+                no-repeat;
+}
+
+/* When the body has the loading class, we turn
+   the scrollbar off with overflow:hidden */
+body.loading {
+    overflow: hidden;   
+}
+
+/* Anytime the body has the loading class, our
+   modal element will be visible */
+body.loading .loadingmodal {
+    display: block;
+}
+
+

@@ -1,12 +1,22 @@
 To-do List
-1. search from google books to add new books to the library
-2. search from the library to grab shared books
-3. search books by location
+1. Book show page
+2. User profile and edit page html
+3. Sign up error redirects to html request
 4. search near-by books
 5. search by category
-6. Share a book by adding location
-7. See offeror's details and their locations
-8. Add category to a book
+6. Add loader on every ajax request
+7. Show BB, BC, rating and reviews on user's profile
+8. Add tag to a book
+9. Add user's review 
+10. Quick links on header
+11. Show verified user's mark
+12. Add note on grab model
+13. Donate and drop box link
+14. Requested books listing page
+14. Admin user rating
+15. Add user friendly id
+
+
 
 Flow:
 1. on click of share a pop up will appear asking for location 
@@ -48,7 +58,7 @@ Project start
 6. rails s
 
 
-Issues/Added task found on 13th feFwd:b -shweta
+Issues/Added task found on 13th feb -shweta
 1. The modal popup disappering quickly on home page
 2. The modal pop up inside pages 'add location' stopped working
 3. Scroll to top arrow on landing page

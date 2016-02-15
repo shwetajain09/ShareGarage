@@ -1,6 +1,6 @@
                 <div class="col-md-4 col-sm-6 portfolio-item">
                     <%local_action = (local_assigns.has_key? :action) ? action : :get%>
-                    <%= link_to path ,:remote => true, :class => "portfolio-link" ,:method => local_action do %>
+                    <%= link_to path ,:remote => true, :class => "portfolio-link" ,:method => local_action  ,:onclick=>"$('body').addClass('loading');" do %>
                       
                       <div class="portfolio-hover">
                             <div class="portfolio-hover-content">
