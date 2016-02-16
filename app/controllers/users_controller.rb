@@ -16,7 +16,7 @@ def update
 end
 
 def shelf
-	@books = current_user.books.paginate :page =>  params[:page], :per_page => 3
+	@books = current_user.books.paginate :page =>  params[:page], :per_page => 9
 end
 
 def request_book	
@@ -47,7 +47,7 @@ def show
 	@user = User.find(params[:id])
 end
 def show_requested_books
-	@books = current_user.book_requests.collect(&:book).paginate :page =>  params[:page], :per_page => 3
+	@books = current_user.book_requests.collect(&:book).paginate :page =>  params[:page], :per_page => 9
 end
 
 def add_book_and_request(book)

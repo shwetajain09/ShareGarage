@@ -35,13 +35,13 @@ Rails.application.configure do
   # Checks for improperly declared sprockets dependencies.
   # Raises helpful error messages.
   config.assets.raise_runtime_errors = true
-  Paperclip.options[:command_path] = "/usr/local/bin/"
-#   Paperclip.options[:command_path] = "/usr/local/bin/"
-#   config.paperclip_defaults = {
-#   :storage => :s3,
-#   :s3_host_name => 'REMOVE_THIS_LINE_IF_UNNECESSARY',
-#   :bucket => 'S3_BUCKET_NAME'
-# }
+  #Paperclip.options[:command_path] = "/usr/local/bin/"
+  #Paperclip.options[:command_path] = "/usr/local/bin/"
+  config.paperclip_defaults = {
+  :storage => :s3,
+  :s3_host_name => 's3-us-west-2.amazonaws.com',
+  :bucket => 'sg-staging-assets'
+}
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 

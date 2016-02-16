@@ -1,7 +1,7 @@
 modal = $('#app_modal');
 modal.on('show.bs.modal', function (event) {
 	modal.find('.modal-title').text('Great Move!');
-	modal.find('.modal-body').html("You've locked the token with <%=@token.receiver.full_name%> for <%=@book%>. This will be valid till <%=@token.valid_til.strftime('%d-%b-%y')%>");
+	modal.find('.modal-body').html("You've locked the token with <%=@token.receiver.full_name%> for <%=@book.try(:title)%>. This will be valid till <%=@token.valid_til.strftime('%d-%b-%y')%>");
 	modal.find('.modal-footer').html('<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>');
 			
 })

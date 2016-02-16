@@ -11,7 +11,12 @@ class Book < ActiveRecord::Base
 	extend FriendlyId
   	friendly_id :title, use: [:slugged, :finders]
 
-	has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
+	#has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
+	has_attached_file :avatar, :styles => {medium: "300x300>", thumb: "100x100>"},
+:path => "/shared_assets/photos/books/:id/:style/:basename.:extension",
+:url => "/shared_assets/photos/books/:id/:style/:basename.:extension",
+:storage => :s3,
+:s3_credentials => "#{Rails.root.to_path}/config/aws.yml"
     validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
 
 	validates_presence_of :google_id
@@ -35,3 +40,12 @@ class Book < ActiveRecord::Base
 		text :isbn
 	end
 end
+
+
+
+
+
+
+  # def s3_credentials
+  #   {:bucket => "sg-staging-assets", :access_key_id => "AKIAIOESJ4BRQ2AXULWA", :secret_access_key => "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",:s3_host_name => 's3-us-west-2.amazonaws.com'}
+  # end

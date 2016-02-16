@@ -23,7 +23,7 @@
                         </p>
                         <p class="text-muted" title="<%=book.try(:isbn)%>">
                             <%if local_assigns.has_key? :show_actions%> 
-                                <%= link_to delete_shared_book_path(book), :method => :delete,:data => { :confirm => 'Do you really want to unshare it? This will deduct your 2 BookBits (BB)' } do %>
+                                <%= link_to delete_shared_book_path(book), :method => :delete,:data => { :confirm => 'Do you really want to unshare it? his will lessen your chances of getting books you want' } do %>
                                   <i class="fa fa-chain-broken fa-2x"></i>
                                 <% end %>       
                             <%end%>

@@ -19,14 +19,16 @@
     <%= render 'layouts/modal'%>
        <header>
         <div class="container">
+
             <div class="intro-text">
+            <%= flash_messages %>
             <div class="intro-lead-in"  >Free Online Book Garage</div>
                 <div class="intro-lead-in"  >The 'First Of Its Kind' Book Sharing Platform</div>
         <!-- <div class="intro-lead-in"  id="GrabTXT" style="display:none"> Take Them For A 'Read'</div>
         <div class="intro-lead-in"  id="GiveTXT" style="display:none">Park Your Books Here</div> -->
        <div class="mainlinks">
-           <a href="javascript:void(0);" class="active" onclick="toggleDiv(give_away,take);">Take Away</a>
-           <a href="javascript:void(0);" onclick="toggleDiv(take,give_away);">Park Here</a>
+           <a href="javascript:void(0);" class="active" onclick="toggleDiv([give_away],take);">Take Away</a>
+           <a href="javascript:void(0);" onclick="toggleDiv([take],give_away);">Park Here</a>
         </div>
 
         <%=form_tag search_books_path, method: :get, :class=>"form-inline", :role=>"search",:id=>"give_away" ,:style => 'display:none' do %>
@@ -144,7 +146,7 @@
                                 Browse the
                             </div>
                             <div class="icontext">
-                                garage
+                                Garage
                             </div>
                         </div>
                         <div class="item text-center">
@@ -187,7 +189,7 @@
                                 Browse the
                             </div>
                             <div class="icontext">
-                                garage
+                                Garage
                             </div>
                         </div>
                         <div class="item text-center">
@@ -195,7 +197,7 @@
                                 <span class="fa fa-spinner bigicon"></span>
                             </div>
                             <div class="icontext">
-                                get
+                                Get
                             </div>
                             <div class="icontext">
                                 Socialise
@@ -229,7 +231,7 @@
                                 Browse the
                             </div>
                             <div class="icontext">
-                                garage
+                                Garage
                             </div>
                         </div>
                         <div class="item text-center">
@@ -279,7 +281,7 @@
                                 <span class="fa fa-spinner bigicon"></span>
                             </div>
                             <div class="icontext">
-                                get
+                                Get
                             </div>
                             <div class="icontext">
                                 Socialise
@@ -316,7 +318,7 @@
                                  Browse the
                             </div>
                             <div class="icontext">
-                                garage
+                                Garage
                             </div>
                         </div>
                     </div>
@@ -335,7 +337,7 @@
 
 
 
-            <div class="row">
+            <!-- <div class="row">
                 <div class="col-lg-12">
                     <ul class="timeline">
                         <li>
@@ -345,7 +347,7 @@
                             <div class="timeline-panel">
                                 <div class="timeline-heading">
                                     <h4>Park Your Books Here</h4>
-                                    <!-- <h4 class="subheading">Earn credits</h4> -->
+                                    <h4 class="subheading">Earn credits</h4>
                                 </div>
                                 <div class="timeline-body">
                                     <p class="text-muted">Don't Let Your Books Bite The Dust, <br>Let Them Kiss Someone's Hand</p>
@@ -403,7 +405,7 @@
                         </li>
                     </ul>
                 </div>
-            </div>
+            </div> -->
         </div>
     </section>
 

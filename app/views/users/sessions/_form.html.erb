@@ -24,8 +24,14 @@
                               <% end -%>
                             <%= f.submit "Log In" ,:class=>"btn btn-info btn-block"%>
                         <% end %>
-
-                <%= render "users/shared/links" %>
+                         <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+                          <%= link_to "Forgot your password?", show_modal_home_path('forgot password'),:remote => true ,:class=>"pull-right"%><br />
+                        <% end -%>
+                        <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+                          <p class="text-center">Not registered yet? <%= link_to 'Sign Up', show_modal_home_path('sign up'),:remote => true%></p>
+                        <% end -%>
+                       
+                <%#= render "users/shared/links" %>
                     </div>
                 </div>
             </div>

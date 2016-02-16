@@ -31,7 +31,12 @@ Rails.application.configure do
   # ActionMailer::Base.deliveries array.
   config.action_mailer.delivery_method = :test
    config.assets.raise_runtime_errors = true
-  Paperclip.options[:command_path] = "/usr/local/bin/"
+  #Paperclip.options[:command_path] = "/usr/local/bin/"
+    config.paperclip_defaults = {
+  :storage => :s3,
+  :s3_host_name => 's3-us-west-2.amazonaws.com',
+  :bucket => 'sg-staging-assets'
+}
   # Randomize the order test cases are executed.
   config.active_support.test_order = :random
 

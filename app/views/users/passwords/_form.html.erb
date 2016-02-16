@@ -1,0 +1,20 @@
+        <div class="row ">
+            <div class="col-xs-12 ">
+                <div class="panel panel-default">
+
+                    <div class="panel-body">
+                        <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+                            <%= devise_error_messages! %>
+                          
+                            <div class="form-group">
+                                <%= f.email_field :email, autofocus: true,:class=>"form-control input-sm", :placeholder=>"Email Address" %>
+                            </div>
+
+                            <%= f.submit "Send me reset password instructions",:class=>"btn btn-info btn-block" %>
+                        <% end %>
+
+                <%#= render "users/shared/links" %>
+                    </div>
+                </div>
+            </div>
+        </div>

@@ -21,9 +21,11 @@ var toggleDiv;
 var showModal;
 var attributes_for_modal;
 
-toggleDiv = function (element_to_hide,element_to_show){
-
-	element_to_hide.setAttribute('style','display:none');
+toggleDiv = function (options=[],element_to_show){
+  $.each(options, function( index, value ) {
+    value.setAttribute('style','display:none');
+    });
+	
 	element_to_show.setAttribute('style','display:block');
   
 

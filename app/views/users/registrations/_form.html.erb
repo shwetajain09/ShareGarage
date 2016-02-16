@@ -64,8 +64,11 @@
                             </div>
                             <%= f.submit "Sign up" ,:class=>"btn btn-info btn-block"%>
                         <% end %>
-
-                <%= render "users/shared/links" %>
+                        <br>
+                        <%- if controller_name != 'sessions' %>
+                          <p class="text-center">Already a member? <%=link_to 'Login',show_modal_home_path('login'),:remote => true%></p>
+                        <% end -%>
+                <%#= render "users/shared/links" %>
                     </div>
                 </div>
             </div>

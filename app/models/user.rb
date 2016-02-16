@@ -32,27 +32,36 @@ class User < ActiveRecord::Base
     end
 
   def set_picture_respect_to_gender
-    self.gender == 'F' ? '/assets/:style/girl.jpeg' : '/assets/:style/boy.jpeg'
+    self.gender == 'F' ? '/assets/girl.jpeg' : '/assets/boy.jpeg'
   end
 
-  has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, :default_url => :set_picture_respect_to_gender
+  #has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }
+  has_attached_file :avatar, :styles => {medium: "300x300>", thumb: "100x100>"}, :default_style => :thumb, :default_url => :set_picture_respect_to_gender,
+  :path => "/shared_assets/photos/users/:id/:style/:basename.:extension",
+  :url => "/shared_assets/photos/users/:id/:style/:basename.:extension",
+  :storage => :s3,
+  :s3_credentials => "#{Rails.root.to_path}/config/aws.yml"
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
     
   def generate_profile
     loc = Location.find_by_name(AppConfiguration::DEFAULT_LOCATION)
     self.create_profile(:location_id => loc.id,:rating => AppConfiguration::DEFAULT_RATING)
+    Token.generate_token(self)
   end
+
+  
+
 
   def after_confirmation
     super
-    add_credit
+    #add_credit
   end
 
-  def add_credit
-    self.profile.credit += AppConfiguration::SIGN_UP_CREDIT
-    self.profile.save
-    self.credit_transactions.create(:giver_id => TEAM_ID,:message => AppConfiguration::SIGN_UP_CREDIT_MESSAGE,:credit => AppConfiguration::SIGN_UP_CREDIT)
-  end
+  # def add_credit
+  #   self.profile.credit += AppConfiguration::SIGN_UP_CREDIT
+  #   self.profile.save
+  #   self.credit_transactions.create(:giver_id => TEAM_ID,:message => AppConfiguration::SIGN_UP_CREDIT_MESSAGE,:credit => AppConfiguration::SIGN_UP_CREDIT)
+  # end
 
   def full_name   
     (first_name.capitalize.to_s+" "+last_name.capitalize.to_s).presence || email

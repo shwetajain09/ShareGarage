@@ -32,6 +32,10 @@ Rails.application.routes.draw do
   resource :home do
       get :show_modal
       post :submit_form
+      get :about_us ,as: 'about_us'
+      get :privacy_policy, as: 'privacy_policy'
+      get :terms_of_service, as: 'terms_of_service'
+      # get '/about', to: 'static_pages#about', as: 'about'
     end
 
   resources :books do

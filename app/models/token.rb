@@ -10,15 +10,20 @@ class Token < ActiveRecord::Base
 
 
 	def redeem_token(redeemer)		
-		redeemer.profile.credit += self.credit
-		redeemer.profile.save
-		redeemer.credit_transactions.create(:giver_id => self.owner,:message => AppConfiguration::TOKEN_REDEMPTION,:credit => self.credit,:token_id=>self.id)
+		# redeemer.profile.credit += self.credit
+		# redeemer.profile.save
+		# redeemer.credit_transactions.create(:giver_id => self.owner,:message => AppConfiguration::TOKEN_REDEMPTION,:credit => self.credit,:token_id=>self.id)
 		self.is_redeemed = true
 		self.save
-		if self.giver.present?
-			self.giver.profile.credit -= self.credit
-			self.giver.profile.save
-			self.giver.debit_transactions.create(:receiver_id => redeemer.id,:message => AppConfiguration::TOKEN_REDEMPTION,:credit => self.credit,:token_id=>self.id)
+		Token.generate_token(redeemer)
+		if self.receiver_id.present? && self.book_id.present?
+			book_user = BooksUser.find_by_book_id_and_user_id(self.book_id,self.receiver_id)
+			book_user.locations.destroy_all
+			book_user.is_provided = false
+			book_user.save
+			# self.giver.profile.credit -= self.credit
+			# self.giver.profile.save
+			# self.giver.debit_transactions.create(:receiver_id => redeemer.id,:message => AppConfiguration::TOKEN_REDEMPTION,:credit => self.credit,:token_id=>self.id)
 		end
 	end
 
@@ -26,4 +31,11 @@ class Token < ActiveRecord::Base
 		return !self.is_redeemed && self.valid_til >= Date.today
 	end
 
+	def self.generate_token(user)
+	    raw_string = SecureRandom.random_number( 2**80 ).to_s( 20 ).reverse
+	    long_code = raw_string.tr( '0123456789abcdefghij', '234679QWERTYUPADFGHX' )
+	    short_code = long_code[0..3] + '-' + long_code[4..7] + '-' + long_code[8..11]
+	    token = user.tokens.new(:redeem_code => short_code,:credit => AppConfiguration::TOKEN_GENERATION_CREDIT)
+	    token.save
+	end
 end

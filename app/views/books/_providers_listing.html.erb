@@ -12,7 +12,7 @@
         <%= link_to provider.full_name,user_path(provider) %></td>
         <td><%= @book.pick_locations.collect(&:name).join(',') %></td>
          <td>
-        <%if current_user.tokens_count > 0%>
+        <%if current_user.tokens.unlocked_unused.count > 0%>
          
             <%if provider.show_phone?%>
               <%= link_to provider.phone_no,'#',
@@ -21,13 +21,14 @@
               <%= link_to "Request a book",request_book_users_path(:user_id => provider,:book_id=>@book.id),
                          :class => 'btn btn-default btn-xs',:title=>'Make a great deal' ,:method => :post,:remote => true,:data => { :confirm => "Great! Confirm to send a request to #{provider.full_name} and socialise to make a great deal." }%>
             <%end%>
-            <%= image_tag '/assets/bc.jpg',:size => '35x35' %>x<%=provider.tokens_count%>
             <%= link_to user_token_path(provider.id,current_user.tokens.first.id,:book_id => @book.id ), :remote => true,:method => :put,:remote => true,:data => { :confirm => "This will lock your BookCoin(BC) with '#{provider.full_name}' for '#{@book.title}'. This BC will be valid for the next 7 days. You will receive an email with the BookCoin details shortly." } do %>
               <i class="fa fa-lock fa-2x"></i>
             <%end%> 
             <%#=link_to 'Generate token',user_tokens_path(Token.first), :method => :post%>
         <%else%>
-          Earn BookCoin to get the book.
+          <%= link_to 'Earn BookCoin','#',
+                         :class => 'btn btn-default btn-xs',:title=>'Earn BookCoin to get the book' %>
+          
         <%end%>
 
 
