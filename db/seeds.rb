@@ -7,7 +7,10 @@ Language.destroy_all
 languages = Language.create([{ title: 'English' ,:locale => "en"}, { title: 'Hindi' ,:locale => "hn"}])
 Location.destroy_all
 delhi_parent = Location.create(name: 'All Delhi/Ncr')
-
+pune_parent = Location.create(name: 'Pune')
+hyderabad_parent = Location.create(name: 'Hyderabad')
+banglore_parent = Location.create(name: 'banglore')
+mumbai_parent = Location.create(name: 'mumbai')
 #North Delhi
 Location.create([{name: 'Delhi University', parent_id: delhi_parent.id},{ name: 'Kashmere Gate', parent_id: delhi_parent.id},{name: 'Kamla Nagar', parent_id: delhi_parent.id},{name: 'Kohat Enclave', parent_id: delhi_parent.id},{name: 'Adarsh Nagar', parent_id: delhi_parent.id},{name: 'Rohini', parent_id: delhi_parent.id}])
 # West Dellhi
@@ -34,3 +37,7 @@ Location.create([{name: 'Khan Market', parent_id: delhi_parent.id},{ name: 'Mool
 Location.create([{name: 'Dhaula Kuan', parent_id: delhi_parent.id},{ name: 'Mundka', parent_id: delhi_parent.id},{name: 'Udhyog Nagar', parent_id: delhi_parent.id},{name: 'Paschim Vihar', parent_id: delhi_parent.id}])
 
 Location.create([{name: 'Gaziabad', parent_id: delhi_parent.id},{ name: 'Kundi', parent_id: delhi_parent.id},{name: 'Chhattarpur', parent_id: delhi_parent.id},{name: 'Lajpat Nagar', parent_id: delhi_parent.id}])
+
+
+
+Location.create([{name: 'Pimpri', parent_id: pune_parent.id},{ name: 'Chinchwad', parent_id: pune_parent.id},{name: 'Khadki', parent_id: pune_parent.id},{name: 'Daund', parent_id: pune_parent.id},{name: 'Bavdhan', parent_id: pune_parent.id},{name: 'Warje', parent_id: pune_parent.id}])

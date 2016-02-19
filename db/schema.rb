@@ -50,9 +50,9 @@ ActiveRecord::Schema.define(version: 20160218201042) do
     t.integer  "language_id",            limit: 4
     t.integer  "count",                  limit: 4
     t.float    "google_provided_rating", limit: 24
+    t.string   "google_id",              limit: 255
     t.datetime "created_at",                           null: false
     t.datetime "updated_at",                           null: false
-    t.string   "google_id",              limit: 255
     t.string   "avatar_file_name",       limit: 255
     t.string   "avatar_content_type",    limit: 255
     t.integer  "avatar_file_size",       limit: 4
@@ -124,20 +124,9 @@ ActiveRecord::Schema.define(version: 20160218201042) do
 
   create_table "locations", force: :cascade do |t|
     t.string   "name",       limit: 255
+    t.integer  "parent_id",  limit: 4
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
-    t.integer  "parent_id",  limit: 4
-  end
-
-  create_table "meeting_reviews", force: :cascade do |t|
-    t.integer  "reviewer_id",  limit: 4
-    t.integer  "reviewee_id",  limit: 4
-    t.integer  "book_id",      limit: 4
-    t.date     "meeting_date"
-    t.float    "rating",       limit: 24
-    t.text     "review",       limit: 65535
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
   end
 
   create_table "profiles", force: :cascade do |t|
@@ -199,6 +188,7 @@ ActiveRecord::Schema.define(version: 20160218201042) do
     t.integer  "phone_no",               limit: 8
     t.string   "gender",                 limit: 1
     t.boolean  "show_phone",                         default: true
+    t.boolean  "got_reward",                         default: false
     t.datetime "created_at",                                         null: false
     t.datetime "updated_at",                                         null: false
     t.string   "email",                  limit: 255, default: "",    null: false
@@ -224,7 +214,6 @@ ActiveRecord::Schema.define(version: 20160218201042) do
     t.datetime "avatar_updated_at"
     t.integer  "tokens_count",           limit: 4,   default: 0
     t.string   "slug",                   limit: 255
-    t.boolean  "got_reward",                         default: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

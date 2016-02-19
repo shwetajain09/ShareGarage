@@ -13,6 +13,7 @@ class CreateBooks < ActiveRecord::Migration
     	t.references :language
     	t.integer :count
       t.float :google_provided_rating
+      t.string :google_id
       t.timestamps null: false
     end
     add_index :books, :title

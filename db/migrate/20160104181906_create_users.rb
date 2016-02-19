@@ -6,6 +6,7 @@ class CreateUsers < ActiveRecord::Migration
     	t.integer :phone_no, :limit => 8
     	t.string :gender, :limit => 1
     	t.boolean :show_phone, :default => true
+      t.boolean :got_reward, :default => false
       t.timestamps null: false
     end
   end
