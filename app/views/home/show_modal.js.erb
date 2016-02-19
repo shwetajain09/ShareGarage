@@ -8,6 +8,8 @@ modal.on('show.bs.modal', function (event) {
  					modal.find('.modal-title').html("Sign Up");
   <% when 'forgot password' %> modal.find('.modal-body').html('<%= escape_javascript(render(:partial => "/users/passwords/form")) %>');
  					modal.find('.modal-title').html("Forgot Password");
+  <% when 'request' %> modal.find('.modal-body').html('<%= escape_javascript(render(:partial => "/books/request_form",:locals=>{:title => params[:book_title],:google_id => params[:google_id]})) %>');
+ 					modal.find('.modal-title').html("Book request");
   <% end %>  
   
 })

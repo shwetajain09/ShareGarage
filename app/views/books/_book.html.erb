@@ -1,51 +1,38 @@
-                <div class="col-md-4 col-sm-6 portfolio-item">
-                    <%local_action = (local_assigns.has_key? :action) ? action : :get%>
-                    <%= link_to path ,:remote => true, :class => "portfolio-link" ,:method => local_action  ,:onclick=>"$('body').addClass('loading');" do %>
-                      
-                      <div class="portfolio-hover">
-                            <div class="portfolio-hover-content">
-                                <i class="fa <%=action_class%> fa-3x"></i>
-                            </div>
-                        </div>
-                        <%= image_tag image_link, alt: "#{book.title}",:class=>"img-responsive google_book_image"%>
-                  <% end %>
-                   
-                    <div class="portfolio-caption">
-                        <h4 title="<%=book.title%>"><%=book.title%>
 
-                        </h4>
-                        <p class="text-muted" title="<%=authors%>">
+    <div class="boxgrid slideright product-1">
+    <%= image_tag image_link, alt: "#{book.title}",:class=>"cover"%>
+    <div class="social-list" >
+        <ul>
+            <li>
+                <%= link_to path ,:remote => true ,:method => :get do %>
+                    <i class="fa <%=action_class%>"></i>
+                <% end %>
+                <!-- <a href="#" target="_blank"><i class="fa fa-hand-paper-o"></i></a> -->
+            </li>
+            <li><a href="#" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        </ul>
+    </div>
+    <div class="product-6">
+        <p><%=link_to book.title,book_path(book)%></p>
+        <h2><%=authors%></h2>
+        <h2><%=book.try(:isbn)%></h2>
+        <div class="star-icon">
+            <ul>
+                <li><img src="/assets/webz/star.png"></li>
+                <li><img src="/assets/webz/star.png"></li>
+                <li><img src="/assets/webz/star.png"></li>
+                <li><img src="/assets/webz/star.png"></li>
+                <li><img src="/assets/webz/star.png"></li>
+            </ul>
+        </div>
+    </div> 
+</div>
 
-                        <a href="" class="portfolio-link" data-toggle="modal">
-                             <i class="fa fa-info-circle fa-2x"></i>
-                             </a>
-                        <%=authors%>
-                        </p>
-                        <p class="text-muted" title="<%=book.try(:isbn)%>">
-                            <%if local_assigns.has_key? :show_actions%> 
-                                <%= link_to delete_shared_book_path(book), :method => :delete,:data => { :confirm => 'Do you really want to unshare it? his will lessen your chances of getting books you want' } do %>
-                                  <i class="fa fa-chain-broken fa-2x"></i>
-                                <% end %>       
-                            <%end%>
-                        <%=book.try(:isbn)%>
-                          <span class="stars"><%=average_rating.presence || 3%></span>
-                        </p>
-                       
-                    </div>
-                </div>
-                
-                <!-- <div class="col-md-4 col-sm-6 portfolio-item">
-                    <a href="#portfolioModal6" class="portfolio-link" data-toggle="modal">
-                        <div class="portfolio-hover">
-                            <div class="portfolio-hover-content">
-                                <i class="fa fa-plus fa-3x"></i>
-                            </div>
-                        </div>
-                        <img src="/assets/portfolio/dreams.png" class="img-responsive" alt="">
-                    </a>
-                    <div class="portfolio-caption">
-                        <h4>Dreams</h4>
-                        <p class="text-muted">A Dreamer</p>
-                    </div>
-                </div> -->
 
+<script type="text/javascript">
+    $(document).ready(function(){
+        
+        //Horizontal Sliding
+       
+    });
+</script>

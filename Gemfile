@@ -37,6 +37,8 @@ gem "font-awesome-rails"
 gem 'friendly_id', '~> 5.1.0'
 gem 'aws-sdk', '~> 1.6'
 gem 'aws-s3'
+gem 'acts_as_commentable_with_threading'
+gem 'acts_as_votable', '~> 0.10.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use ActiveModel has_secure_password

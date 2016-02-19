@@ -1,7 +1,7 @@
 class BooksController < ApplicationController
 	require 'googlebooks'
 
-	before_filter :authenticate_user!, :except => [:search,:library,:index,:show_share_modal,:show_providers]
+	before_filter :authenticate_user!, :except => [:search,:library,:index,:show_share_modal,:show_providers,:vote]
 	before_filter :load_book, :only => [:edit_shared,:delete_shared,:update_pick_location]
 
 	def load_book
@@ -13,22 +13,37 @@ class BooksController < ApplicationController
 		render :layout => false
 	end
 
+	def search_with_tag
+		@grab = true
+		
+		redirect_to library_books_path
+	end
+
 	def library
 		@grab = true
-		@search = Book.available.search do
+		if params[:tag].present?
+			@books = Book.available.tagged_with(params[:tag]).paginate :page =>  params[:page], :per_page => 9
+			@query = params[:tag]
+		else
+			@search = Book.available.search do
 			fulltext params[:location_query],:fields=>:pick_locations
 		    fulltext params[:book_query]
-		    paginate :page =>  params[:page], :per_page => 6
+		    paginate :page =>  params[:page], :per_page => 9
 		  end
-  		@books = @search.results
-  		if @books.empty?
-  			@grab = false
-  			@books = GoogleBooks.search("#{params[:book_query]}", {:count => 30})
-  		end
+	  		@books = @search.results
+	  		if @books.empty?
+	  			@grab = false
+	  			@books = GoogleBooks.search("#{params[:book_query]}", {:count => 30})
+	  		end
+	  		@query = params[:location_query] +"  " + params[:book_query] 
+		end
+		
+  		
 	end
 
 	def search
 		@books = GoogleBooks.search("#{params[:book_query]}", {:count => 30})
+		@query = params[:book_query]
 	end
 
 	def share
@@ -39,6 +54,7 @@ class BooksController < ApplicationController
 			book = GoogleBooks.search("id:#{params[:google_id]}").first
 			add_book_and_provider(book)
 		end		
+
 	end
 
 	
@@ -49,7 +65,12 @@ class BooksController < ApplicationController
 		book_user.locations << loc
 		book_user.locations << loc.collect(&:parent).uniq
 		if book_user.save
-			redirect_to shelf_user_path(current_user),:success => "Shared the book"
+			if current_user.got_reward
+				message = "Woooh! your book has been successfully uploaded. keep sharing."
+			else
+				message = "Woooh! you got 1 BookCoin on your first book upload. keep sharing."
+			end
+			redirect_to shelf_user_path(current_user),:notice => message
 		else
 			@errors = book_user.errors.full_messages.join(',')
 			redirect_to :back,:notice => "#{@errors}"
@@ -70,13 +91,26 @@ class BooksController < ApplicationController
 	end
 
 	def show
-		@book = Book.find_by_id(params[:id])
+		@book = Book.find(params[:id])
+		@comments = Comment.where(:commentable_id => @book.id,:commentable_type => 'book').paginate :page =>  params[:page], :per_page => 10
+		@likes = @book.get_likes.size
 	end
 
 	def show_providers
 		@book  = Book.find(params[:id])
 		@providers = @book.providers#.where.not(id: current_user.id)
 	end
+
+	def vote
+		@book  = Book.find(params[:id])
+		if params[:vote] == "true"
+			@book.liked_by current_user
+		else
+			@book.unliked_by current_user
+		end		
+		@likes = @book.get_likes.size
+	end
+
 
 
 
@@ -95,11 +129,11 @@ class BooksController < ApplicationController
 
 	def add_book_and_provider(book)
 		@book = Book.new(:google_id => book.id)
-		@book.attributes = {:title => book.title,:google_provided_rating => book.average_rating,:subtitle => book.title,:link=> book.info_link,:publisher => book.publisher,:published_date => book.published_date,:page_count => book.page_count,:count => 1,:json_details=>book.to_json,:isbn => book.isbn.presence || book.other_identifier}
+		@book.attributes = {:title => book.title,:google_provided_rating => book.average_rating,:description => book.description,:subtitle => book.title,:link=> book.info_link,:publisher => book.publisher,:published_date => book.published_date,:page_count => book.page_count,:count => 1,:json_details=>book.to_json,:isbn => book.isbn.presence || book.other_identifier}
 		language = Language.find_or_initialize_by(:locale => book.language)
 		language.save!
 		@book.language = language
-		image_url = book.image_link(:zoom => 2, :curl => true)
+		image_url = book.image_link(:zoom => 2)
 		@book.avatar = URI.parse(image_url)
 		
 		if book.authors.kind_of?(Array)

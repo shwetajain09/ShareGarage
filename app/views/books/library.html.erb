@@ -1,23 +1,24 @@
-        <div class="row">
+
             <%if @books.count>0%>
-            
+                    <h6>Search results for "<%=@query%>"</h6>
+                    
                 <%if @grab%>
                     <%@books.each do |book|%>
                         <%path = show_providers_book_path(book.id)%>
                         <%action_class = "fa-hand-grab-o"%>
                         <%authors = book.authors.collect(&:name).join(',')%>
-                        <%avatar = book.avatar%>
+                        <%avatar = book.avatar.url(:medium)%>
                         <%rating = book.try(:google_provided_rating)%>
                         <%= render partial: "books/book", :locals => {:book => book,:path => path,:action_class =>action_class,:authors => authors,:image_link => avatar,:average_rating => rating} %>
                     <%end%>
                 <%else%>
                     <%@books.each do |book|%>
-                        <%path = request_book_users_path(:book_title=>book.title,:google_id => book.id)%>
+                        <%path = show_modal_home_path('request',:book_title=>book.title,:google_id => book.id)%>
                         <%action_class = "fa-bookmark"%>
                         <%authors = book.authors%>
-                        <%avatar = book.image_link(:zoom => 2, :curl => true).present? ? (book.image_link(:zoom => 2, :curl => true)) : ('/assets/no_book_cover.jpg')%>
+                        <%avatar = book.image_link(:zoom => 2).present? ? (book.image_link(:zoom => 2)) : ('/assets/no_book_cover.jpg')%>
                         <%rating = book.average_rating%>
-                        <%= render partial: "books/book", :locals => {:book => book,:path => path,:action_class =>action_class,:authors => authors,:image_link => avatar,:average_rating => rating,:action=>:post} %>
+                        <%= render partial: "books/book", :locals => {:book => book,:path => path,:action_class =>action_class,:authors => authors,:image_link => avatar,:average_rating => rating} %>
                     <%end%>
                 <%end%>
              <%if @grab%>
@@ -27,11 +28,12 @@
         <%else%>
             <h2>No books available</h2>
         <%end%>
-        
-    </div>
+
 <script type="text/javascript">
   $(function() {
     $('span.stars').stars();
 });
 
 </script>
+
+

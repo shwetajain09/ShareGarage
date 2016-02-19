@@ -1,9 +1,10 @@
         <%if @books.count>0%>
-            <div class="row">
+
+                    <h6>Search results for "<%=@query%>"</h6>
                 <%@books.each do |book|%>
-                    <%= render partial: "books/book", :locals => {:book => book,:path => show_share_modal_book_path((book.respond_to? :google_id=) ? book.google_id : book.id),:action_class =>"fa-share",:authors =>  book.authors ,:image_link => book.image_link(:zoom => 2, :curl => true).present? ? (book.image_link(:zoom => 2, :curl => true)) : ('/assets/no_book_cover.jpg'),:average_rating=>book.average_rating} %>
+                    <%= render partial: "books/book", :locals => {:book => book,:path => show_share_modal_book_path((book.respond_to? :google_id=) ? book.google_id : book.id),:action_class =>"fa-share",:authors =>  book.authors ,:image_link => book.image_link(:zoom => 2).present? ? (book.image_link(:zoom => 2)) : ('/assets/no_book_cover.jpg'),:average_rating=>book.average_rating} %>
                 <%end%>
-            </div>
+            
         <%else%>
             <h2>No books available</h2>
         <%end%>

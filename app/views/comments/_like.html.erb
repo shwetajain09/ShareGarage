@@ -1,0 +1,37 @@
+
+<%if current_user.voted_for? comment%>
+  <%if (current_user.voted_up_for? comment) %>
+    <%=likes%>
+      <i class="fa fa-thumbs-up"></i>
+   <%=dislikes%>
+  	<%= link_to vote_comment_path(comment.id,:vote=> :false),
+                                 :title=>'disagree' ,:method => :post,:remote => true,:onclick => "$('.loading').show();" do%>
+                                 <i class="fa fa-thumbs-down"></i>
+                                 <%end%>
+
+
+  <%else%>
+
+     <%=likes%>
+    <%= link_to vote_comment_path(comment.id,:vote=> :true),
+                                :title=>'Agree' ,:method => :post,:remote => true,:onclick => "$('.loading').show();" do %>
+                                 <i class="fa fa-thumbs-up"></i>
+                                 <%end%>
+
+                                 <%=dislikes%> 
+                                 <i class="fa fa-thumbs-down"></i>
+  <%end%>    
+<%else%>
+  <%=likes%>
+    <%= link_to vote_comment_path(comment.id,:vote=> :true),
+                                :title=>'Agree' ,:method => :post,:remote => true,:onclick => "$('.loading').show();" do %>
+                                 <i class="fa fa-thumbs-up"></i>
+                                 <%end%>
+
+   <%=dislikes%>
+    <%= link_to vote_comment_path(comment.id,:vote=> :false),
+                                 :title=>'disagree' ,:method => :post,:remote => true,:onclick => "$('.loading').show();" do%>
+                                 <i class="fa fa-thumbs-down"></i>
+                                 <%end%>                         
+
+<%end%>                         

@@ -1,37 +1,43 @@
 <%- model_class = Book -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+  <h1><%= @book.title %></h1>
+  <h3 class="pull-right"><%= link_to t('.back', :default => t("helpers.links.back")),
+              request.referer, :class => 'btn btn-default'  %>
+<%if @book.is_available%>
+  <%= link_to 'Grab',
+              show_providers_book_path(@book.id), :class => 'btn btn-primary',:remote => true%>
+<%end%>
+<%= link_to 'Share',
+              show_share_modal_book_path(@book.id), :class => 'btn btn-primary' ,:remote => true%></h3>
 </div>
 
 <dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:title) %>:</strong></dt>
-  <dd><%= @book.title %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:subtitle) %>:</strong></dt>
-  <dd><%= @book.subtitle %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:link) %>:</strong></dt>
-  <dd><%= @book.link %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
-  <dd><%= @book.description %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:json_details) %>:</strong></dt>
-  <dd><%= @book.json_details %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:publisher) %>:</strong></dt>
-  <dd><%= @book.publisher %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:published_date) %>:</strong></dt>
-  <dd><%= @book.published_date %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:isbn) %>:</strong></dt>
-  <dd><%= @book.isbn %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:language_id) %>:</strong></dt>
-  <dd><%= @book.language_id %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:count) %>:</strong></dt>
-  <dd><%= @book.count %></dd>
-</dl>
+  <dt><%= image_tag @book.avatar.url(:medium), alt: "#{@book.title}",:class=>"img-responsive google_book_image"%>
+  <br>
+  <span class="stars"><%=@book.google_provided_rating%></span>
+  </dt>
+  <dd><%= @book.subtitle %>
+    <br><%= link_to @book.link,@book.link,:target=>'_blank' %>
+    <br><%= @book.description %>
+    <br><%= @book.publisher %> | <%= @book.published_date %>
+    <br><%= @book.isbn %> | <%= @book.language.title %>
+    <br><%= @book.tag_list %> 
+  </dd>
+ 
 
-<%= link_to t('.back', :default => t("helpers.links.back")),
-              books_path, :class => 'btn btn-default'  %>
-<%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_book_path(@book), :class => 'btn btn-default' %>
-<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-              book_path(@book),
-              :method => 'delete',
-              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-              :class => 'btn btn-danger' %>
+</dl>
+<div id="like_div_<%=@book.id%>">
+  <%=render :partial => 'like',:locals => {:book=>@book,:likes => @likes}%>
+</div>
+<br>
+<%= render :partial => 'comments/form', :locals => {:commentable => @book} %>
+<br>
+<%= render :partial => 'comments/comments',:locals => {:comments => @comments}%>
+
+
+<script type="text/javascript">
+  $(function() {
+    $('span.stars').stars();
+});
+
+</script>

@@ -1,0 +1,14 @@
+<%=form_tag request_book_users_path(:google_id => google_id),:remote => true do %>
+<div class="row">
+	This will iniate a request for the book "<%=title%>". Are you sure?
+  <br/>
+</div>
+    <div class="modal-footer">
+    <div class="loading" style="display:none;">
+                    <%= image_tag '/assets/loading.gif'%>
+                    </div>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <%=submit_tag 'Yes Please!',:class=>"btn btn-primary",:onclick => "$('.loading').show();"%>
+    </div>
+
+<%end%>

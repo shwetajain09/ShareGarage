@@ -25,14 +25,15 @@ class TokensController < ApplicationController
 
 	def update
 		@token = Token.find_by_id(params[:id])
-		@token.update_attributes(:receiver_id => params[:user_id],:book_id => params[:book_id],:valid_til => Date.today+7.days)
+		code = @token.generate_token
+		@token.update_attributes(:redeem_code=> code,:receiver_id => params[:user_id],:book_id => params[:book_id],:valid_til => Date.today+7.days)
 		@book = Book.find_by_id(@token.book_id)
 		UserMailer.send_token_details(current_user,@token).deliver
 	end
 
 	def redeem_token
 		@token = Token.find_by_redeem_code(params[:token])
-		if @token.check_validity
+		if @token.check_validity(:receiver_id => current_user.id)
 			@token.redeem_token(current_user)
 			message = "Redeemed Successfully"
 		else

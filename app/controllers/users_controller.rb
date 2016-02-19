@@ -24,8 +24,8 @@ def request_book
 		if params[:book_id].present? && params[:user_id].present?
 			@requestee = User.find(params[:user_id])
 			@book  = Book.find(params[:book_id])
-			title = @book.title
-			options = {:provider => @requestee}
+			@title = @book.title
+			options = {:provider => @requestee,:google_id => @google_id}
 		else
 			@book = Book.find_by_google_id(params[:google_id])
 			if @book.present?
@@ -33,8 +33,7 @@ def request_book
 			else
 				book = GoogleBooks.search("id:#{params[:google_id]}").first
 				add_book_and_request(book)
-			end		
-			
+			end					
 			options = {:google_id => @google_id}		
 			
 		end
@@ -52,11 +51,11 @@ end
 
 def add_book_and_request(book)
 	@book = Book.new(:google_id => book.id)
-	@book.attributes = {:title => book.title,:google_provided_rating => book.average_rating,:subtitle => book.title,:link=> book.info_link,:publisher => book.publisher,:published_date => book.published_date,:page_count => book.page_count,:count => 1,:json_details=>book.to_json,:isbn => book.isbn.presence || book.other_identifier}
+	@book.attributes = {:title => book.title,:description => book.description,:google_provided_rating => book.average_rating,:subtitle => book.title,:link=> book.info_link,:publisher => book.publisher,:published_date => book.published_date,:page_count => book.page_count,:count => 1,:json_details=>book.to_json,:isbn => book.isbn.presence || book.other_identifier}
 	language = Language.find_or_initialize_by(:locale => book.language)
 	language.save!
 	@book.language = language
-	image_url = book.image_link(:zoom => 2, :curl => true)
+	image_url = book.image_link(:zoom => 2)
 	@book.avatar = URI.parse(image_url)
 	
 	if book.authors.kind_of?(Array)

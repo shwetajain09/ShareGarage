@@ -17,15 +17,12 @@ module TransactionsHelper
 	end
 
 	def get_user_specific_details(transaction)
-		if transaction.receiver == current_user
-			response = {:user => transaction.giver, :action => '',:class => 'fa-plus-circle'}
-		else
-			response =  {:user => transaction.receiver,:action => '',:class => 'fa-minus-circle'}
-		end
-		if transaction.is_redeemed?
-			response[:redeem] = 'Already redeemed'
-		else
-			response[:redeem] = 'Available'
+		if transaction.available_unlocked
+			response = {:redeem => 'Available',:class => 'alert-info',:message => 'Use this BookCoin to get a book of your choice'}
+		elsif transaction.locked
+			response = {:redeem => 'Locked',:class => 'alert-danger' ,:message => "You've locked this BookCoin to get book #{link_to transaction.book.title,book_path(transaction.book_id)} from the book owner #{link_to transaction.receiver.full_name,user_path(transaction.receiver)}",:action=>true}
+		elsif transaction.redeemed
+			response = {:redeem => 'Already redeemed',:class => 'alert-success',:message => "You've used this BookCoin and got #{link_to transaction.book.title,book_path(transaction.book_id)} from #{link_to transaction.receiver.full_name,user_path(transaction.receiver)}"}
 		end
 		return response
 	end

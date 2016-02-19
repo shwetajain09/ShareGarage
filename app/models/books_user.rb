@@ -5,8 +5,16 @@ class BooksUser < ActiveRecord::Base
 	validates_uniqueness_of :user_id, scope: :book_id
 	validates_presence_of :locations, :if => :is_provided?
 
-	#after_create :add_credit	
+	after_create :add_book_coin, :if => :adding_first_time	
 
+	def adding_first_time
+		!self.user.got_reward?
+	end
+
+	def add_book_coin
+		Token.generate_book_coin(self.user)
+		self.user.update_attributes(:got_reward => true)
+	end
 
 	def add_credit
 		# self.user.profile.credit += AppConfiguration::UPLOAD_CREDIT

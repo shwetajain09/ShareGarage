@@ -34,7 +34,11 @@ Rails.application.configure do
   # Asset digests allow you to set far-future HTTP expiration dates on all assets,
   # yet still be able to expire them through the digest params.
   config.assets.digest = true
-
+      config.paperclip_defaults = {
+  :storage => :s3,
+  :s3_host_name => 's3-us-west-2.amazonaws.com',
+  :bucket => 'sg-production-assets'
+}
   # `config.assets.precompile` and `config.assets.version` have moved to config/initializers/assets.rb
 
   # Specifies the header that your server uses for sending files.
@@ -76,4 +80,20 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+  # Print deprecation notices to the stderr.
+  config.active_support.deprecation = :stderr
+  config.action_mailer.default_url_options = { host: 'sharegarage.com', port: 80 }
+config.action_mailer.raise_delivery_errors = true
+config.action_mailer.perform_deliveries = true 
+  config.action_mailer.delivery_method = :smtp
+
+config.action_mailer.smtp_settings = {
+  :enable_starttls_auto => true,
+  :address => "smtp.gmail.com",
+  :port => 587,
+  :domain => "gmail.com",
+  :authentication => :login,
+  :user_name => "team@sharegarage.com",
+  :password => "Pink#floyd!"
+}
 end

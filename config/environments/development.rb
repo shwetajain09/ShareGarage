@@ -53,7 +53,7 @@ config.action_mailer.smtp_settings = {
   :port => 587,
   :domain => "gmail.com",
   :authentication => :login,
-  :user_name => "linkitdude@gmail.com",
-  :password => "shweta@7764"
+  :user_name => "team@sharegarage.com",
+  :password => "Pink#floyd!"
 }
 end

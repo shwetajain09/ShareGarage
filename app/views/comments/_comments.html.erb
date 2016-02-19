@@ -1,0 +1,25 @@
+<%comments.each do |comment|%>
+	<div class="well">
+<dl class="dl-horizontal">
+  <dt>
+  	<%=link_to image_tag(comment.user.avatar.url(:medium)),user_path(comment.user)%>
+  	<br><span class="stars"><%=comment.user.profile.rating%></span>
+    <div id="like_div_<%=comment.id%>">
+      <%=render :partial => 'comments/like',:locals => {:comment=>comment,:likes => comment.get_upvotes.size,:dislikes => comment.get_downvotes.size}%>
+    </div>
+  </dt>
+  <dd><b><%=link_to comment.user.full_name,user_path(comment.user)%> </b> <span class="pull-right">Posted on: <%=comment.created_at.strftime('%d-%b-%y') %> </span>
+    <br><i class="fa fa-quote-left"></i><%=comment.body%> <i class="fa fa-quote-right"></i>
+  </dd>
+
+
+</dl>
+		
+		
+		
+		</div>
+<%end%>
+<%= will_paginate comments , renderer: BootstrapPagination::Rails%>
+
+
+

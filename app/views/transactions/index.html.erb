@@ -1,35 +1,27 @@
   <div class="row">
   <h2 class="pull-right"> <%= image_tag '/assets/bc.jpg',:size => '35x35' %>x<%=@my_token%></h2>
-  <div class="mainlinks">
+<!--   <div class="mainlinks">
      <a href="javascript:void(0);" class="active" onclick="toggleDiv([used,locked],unused);">Unused BookCoin</a>
      <a href="javascript:void(0);" onclick="toggleDiv([used,unused],locked);">Locked BookCoin</a>
      <a href="javascript:void(0);" onclick="toggleDiv([unused,locked],used);">Used BookCoin</a>
-  </div>
+  </div> -->
 
-<div id="unused">
-        <%if @unused.size > 0%>
+
+<%if @transactions.size > 0%>
           <div class="row">
-              <table class="table table-striped">
-                <thead>
-                  <tr>
-                    <th>Date</th>                    
-                    
-                    <th>Status</th>
-                    
-                  </tr>
-                </thead>
+              <table class="table">
+               
                 <tbody>
-                  <% @unused.each do |transaction| %>
+                  <% @transactions.each do |transaction| %>
                   <%response = get_user_specific_details(transaction)%>
-                    <tr>
+                    <tr class="alert-success <%=response[:class]%>">
                       <td><%= transaction.created_at.strftime('%d-%b-%y') %></td>
-            
-                      <td>   
-                        <i class="fa <%=response[:class]%>"></i>                     
-                        <%=response[:redeem]%>
-                        <%=response[:action]%>
+                      <td><%=response[:redeem]%></td>
+                      <td>                             
+                        <%=response[:message].html_safe%>
+                        <%# =link_to 'Unlock',unlock_book_coin_path()%>
                       </td>
-                      <td>
+                      
                         
                      
                     </tr>
@@ -38,93 +30,8 @@
               </table>
           </div>
         <%else%>
-            <h2>No unused made yet!</h2>
+            <h2>No transaction made yet!</h2>
         <%end%>
-</div>
-<div id="used" style = 'display:none'>
-        <%if @used.size > 0%>
-          <div class="row">
-              <table class="table table-striped">
-                <thead>
-                  <tr>
-                    <th>Date</th>                    
-                    <th>Book</th>
-                    <th>User</th>
-                    <th>Status</th>
 
-                  </tr>
-                </thead>
-                <tbody>
-                  <% @used.each do |transaction| %>
-                  <%response = get_user_specific_details(transaction)%>
-                    <tr>
-                      <td><%= transaction.created_at.strftime('%d-%b-%y') %></td>
-                      <td><%= image_tag transaction.book.avatar.url(:thumb) %>
-                      <%= transaction.book.title%></td>
-                      <td>
-                        <%=link_to user_path(response[:user]) do %>
-                          <%= image_tag response[:user].avatar.url(:thumb) %><%=response[:user].full_name%>
-                        <%end%>
-                      </td>
-                      <td>   
-                        <i class="fa <%=response[:class]%>"></i>                     
-                        <%=response[:redeem]%>
-                        <%=response[:action]%>
-                      </td>
-                      <td>
-                        
-                     
-                    </tr>
-                  <% end %>
-                </tbody>
-              </table>
-          </div>
-        <%else%>
-            <h2>No used made yet!</h2>
-        <%end%>
-</div>
-
-<div id="locked"  style = 'display:none' >
-        <%if @locked.size > 0%>
-          <div class="row">
-              <table class="table table-striped">
-                <thead>
-                  <tr>
-                    <th>Date</th>                    
-                    <th>Book</th>
-                    <th>User</th>
-                    <th>Status</th>
-
-                  </tr>
-                </thead>
-                <tbody>
-                  <% @locked.each do |transaction| %>
-                  <%response = get_user_specific_details(transaction)%>
-                    <tr>
-                      <td><%= transaction.created_at.strftime('%d-%b-%y') %></td>
-                      <td><%= image_tag transaction.book.avatar.url(:thumb) %>
-                      <%= transaction.book.title%></td>
-                      <td>
-                        <%=link_to user_path(response[:user]) do %>
-                          <%= image_tag response[:user].avatar.url(:thumb) %><%=response[:user].full_name%>
-                        <%end%>
-                      </td>
-                      <td>   
-                        <i class="fa <%=response[:class]%>"></i>                     
-                        <%=response[:redeem]%>
-                        <%=response[:action]%>
-                      </td>
-                      <td>
-                        
-                     
-                    </tr>
-                  <% end %>
-                </tbody>
-              </table>
-          </div>
-        <%else%>
-            <h2>No locked made yet!</h2>
-        <%end%>
-</div>
 
   

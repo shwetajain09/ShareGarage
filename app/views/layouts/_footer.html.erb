@@ -1,30 +1,75 @@
-<footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <span class="copyright">Copyright &copy; www.sharegarage.com 2016</span>
+    <div class="newsletter-bg">
+    	<div class="wrapper">
+            <div class="alert alert-success" id="donate_div" style="display:none;">
+                
+            </div>
+        	<div class="newsletter-heading">
+            	<h2>Want to donate!</h2>
+                <p>Donate your used book, <span>and make the most of it!</span></p>
+            </div>
+            <div class="search-content">
+            <%=form_tag donate_request_home_path(),:remote => true,:method => :post do%>
+            	<input type="text" name="email" placeholder="Enter your email, we'll get back to you">
+                <div class="newsletter-right-bg">
+                	<input type="submit" value="Donate">
                 </div>
-                <div class="col-md-4">
-                    <ul class="list-inline social-buttons">
-                        <li><a href="#"><i class="fa fa-twitter"></i></a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-facebook"></i></a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-linkedin"></i></a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-md-4">
-                 
-                    <ul class="list-inline quicklinks">
-                    <li><a href="<%=about_us_home_path%>">About Us</a>
-                        </li>
-                        <li><a href="<%=privacy_policy_home_path%>">Privacy Policy</a>
-                        </li>
-                        <li><a href="<%=terms_of_service_home_path%>">Terms of Use</a>
-                        </li>
+            <%end%>
+            </div>
+        </div>
+    </div>
+    <div id="footer">
+    	<div class="wrapper">
+        	<div class="footer-location">
+            	<h2>LOCATION</h2>
+                <div class="footer-line"></div>
+                <div class="footer-line-yellow"></div>
+                <div class="address-menu">
+                	<ul>
+                    	<li><i class="fa fa-map-marker"></i>
+                        	<p>Sec-16,<br> Noida-201301</p></li>
+                        <li><i class="fa fa-phone"></i>
+                        	<p>+91-9205512899</p></li>
+                        <li><i class="fa fa-envelope"></i>
+                        	<p>team@sharegarage.com</p></li>
                     </ul>
                 </div>
             </div>
+            <div class="footer-location">
+            	<h2>OPENING TIME</h2>
+                <div class="footer-line-1"></div>
+                <div class="footer-line-yellow-1"></div>
+                <div class="address-menu">
+                	<ul>
+                    	<li><p><a href="<%=about_us_home_path%>">About Us</a></p></li>
+                        <li><p><a href="<%=privacy_policy_home_path%>">Privacy Policy</a></p></li>
+                        <li><p><a href="<%=terms_of_service_home_path%>">Terms and Conditions</a></li>
+                     
+                    </ul>
+                </div>
+                
+            </div>
+            <div class="connect-us-cont">
+            	<h2>CONNECT WITH US</h2>
+                <div class="footer-line-2"></div>
+                <div class="footer-line-yellow-2"></div>
+                <div class="icons">
+                    <div class="facebook"><a href="#"></a></div>
+                    <div class="google"><a href="#"></a></div>
+                    <div class="twitter"><a href="#"></a></div>
+                </div>
+               
+                <!--<div class="connect-us">
+                	<ul>
+                    	<li><a href="#"><img src="/assets/webz/facebook_icon.png"></a><p>FACEBOOK</p></li>
+                        <li><a href="#"><img src="/assets/webz/google_icon.png"></a><p>GOOGLE</p></li>
+                        <li><a href="#"><img src="/assets/webz/twitter_icon.png"></a><p>TWITTER</p></li>
+                    </ul>
+                </div>-->
+                
+            </div>
         </div>
-    </footer>
+    </div>
+    <div class="footer-bottom">
+    	<p>© Copyright 2016 ShareGarage. All right reserved.Graphic Design By <a href="http://webzpapa.com/" target="_blank">
+        WebzPapa.</a></p>
+    </div>

@@ -1,4 +1,4 @@
-        <div class="row">
+
             <%if @books.count>0%>
             
               
@@ -6,7 +6,7 @@
                         <%path = book_path(book)%>
                         <%action_class = "fa-hand-grab-o"%>
                         <%authors = book.authors.collect(&:name).join(',')%>
-                        <%avatar = book.avatar%>
+                        <%avatar = book.avatar.url(:medium)%>
                         <%rating = book.try(:google_provided_rating)%>
                         <%= render partial: "books/book", :locals => {:book => book,:path => path,:action_class =>action_class,:authors => authors,:image_link => avatar,:average_rating => rating} %>
                   
@@ -16,7 +16,6 @@
         <%else%>
             <h2>No books available</h2>
         <%end%>
-    </div>
 <script type="text/javascript">
   $(function() {
     $('span.stars').stars();

@@ -1,24 +1,24 @@
 To-do List
-1. Book show page
-2. User profile and edit page html
-3. Sign up error redirects to html request
+1. User profile and edit page html
+2. SEO
+3. Sign up with google and fb
 4. search near-by books
 5. search by category
 6. Add loader on every ajax request
 7. Show BB, BC, rating and reviews on user's profile
 8. Add tag to a book
 9. Add user's review 
-10. Quick links on header
+10
 11. Show verified user's mark
 12. Add note on grab model
 13. Donate and drop box link
-14. Requested books listing page
+14. 
 14. Admin user rating
-15. Add user friendly id
+15. 
 16. RDS and S3 bucket
 17. Solr on production
-18. Search result query
-19. Alert on request a book
+18. 
+19. 
 
 
 

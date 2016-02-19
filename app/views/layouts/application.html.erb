@@ -3,11 +3,9 @@
 <head>
   <title>Share Garage</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+
   
 
   <%= csrf_meta_tags %>
@@ -15,18 +13,20 @@
 <%=favicon_link_tag '/assets/logos/favicon.png'%>
 </head>
 
-<body id="page-top" class="index">
-
-	<%= render 'layouts/header' %>
-  <%= render 'layouts/modal'%>
-  <header></header>
-  <section id="portfolio" class="bg-light-gray">
-    <div class="container" >
+<body >
+<div class="container">
+  <%= render 'layouts/header' %>
+  
+  <div class="products">
+    <div class="wrapper">
+      <%= render 'layouts/modal'%>
       <%= flash_messages %>
       <%= yield %>
-      </div>
-  </section>
-<div class="loadingmodal hide"><!-- Place at bottom of page --></div>
-<%=render :partial => '/layouts/footer'%>
+    </div>
+  </div>
+  <%=render :partial => '/layouts/footer'%>
+</div>
+
+
 </body>
 </html>

@@ -8,9 +8,12 @@ class Book < ActiveRecord::Base
 	has_many :pick_locations, ->{where "books_users.is_provided = true"}, through: :books_users, source: :locations,dependent: :destroy
 	has_many :transactions
 	has_many :book_requests
+	  has_many :comments, as: :commentable 
+	  
 	extend FriendlyId
   	friendly_id :title, use: [:slugged, :finders]
-
+  	  acts_as_commentable
+  	  acts_as_votable
 	#has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
 	has_attached_file :avatar, :styles => {medium: "300x300>", thumb: "100x100>"},
 :path => "/shared_assets/photos/books/:id/:style/:basename.:extension",
@@ -38,6 +41,9 @@ class Book < ActiveRecord::Base
 			pick_locations.map { |e| e.name }
 		end
 		text :isbn
+	end
+	def is_available
+		self.books_users.where(:is_provided => true).present?
 	end
 end
 

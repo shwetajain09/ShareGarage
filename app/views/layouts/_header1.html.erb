@@ -1,0 +1,85 @@
+
+<nav class="navbar navbar-default navbar-fixed-top mobilenav ">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+    <a class="navbar-brand" href="<%=root_url%>"><%=image_tag '/assets/logos/logo.gif',:size=>"200x100"%></a>
+      
+      
+    </div>
+
+<%if !current_page?(root_url)%>
+  <div class="col-md-1 css-select-moz">
+    <select class="css-select" style="font-family: 'FontAwesome', Helvetica;">
+    <option onclick="toggleDiv([give_away],take);"> Grab &#xf0d7;</option>
+    <option onclick="toggleDiv([take],give_away);"> Share &#xf0d7;</option>
+  </select>
+</div>
+  <div class="">
+
+   <%=form_tag search_books_path, method: :get, :class=>"form-inline", :role=>"search",:id=>"give_away" ,:style => 'display:none' do %>
+          <div class="input-group">
+             
+             <div class="form-group">
+              <%=text_field_tag :book_query,nil,:placeholder => "Enter book title,author,isbn",:class=> "inputgivaway col-lg-4 form-control"%>
+             </div>            
+            <div class="input-group-btn">
+              <button id="btn-search" class="btn btn-info searchbtn" type="submit">Search</button>
+            </div>
+          </div>
+        <%end%>
+
+        <%=form_tag library_books_path, method: :get, :class=>"form-inline", :role=>"search",:id=>"take" do %>
+          <div class="input-group">
+            <div class="mobileinput"> <span class="input-group-addon"><i class="fa fa-map-marker "></i></span>
+             <div class="form-group pull-left">
+              <%=select_tag "location_query", options_for_select(Location.all.map { |e| e.name }),:class=>"inputGrab form-control"%>
+             </div>
+             </div>
+             <div class="form-group pull-left">
+              <%=text_field_tag :book_query,nil,:placeholder => "Enter book title,author,isbn",:class=> "inputGrab form-control"%>
+             </div>            
+            <div class="input-group-btn">
+              <button id="btn-search" class="btn btn-info searchbtn" type="submit">Search</button>
+            </div>
+          </div>
+        <%end%>
+  </div>
+<%end%>
+         
+      <ul class="nav navbar-nav navbar-right">
+                  <ul class="list-inline quicklinks">
+
+                        <li><a href="#"><i class="fa fa-mobile "></i>1234567890</a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-envelope-o"></i>team@sharegarage.com</a>
+                        </li>
+                        <li><i class="fa fa-question-circle "></i></li>
+                    </ul>
+
+        <%if user_signed_in?%>
+          <li class="dropdown pull-right">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i><%=current_user.full_name%><span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="<%=user_path(current_user)%>">My Profile</a></li>
+              <li><a href="<%=user_transactions_path(current_user)%>">Account</a></li>
+              <li><%= link_to 'Book Shelf',shelf_user_path(current_user)%></li>
+              <li><%= link_to 'My book requests',show_requested_books_user_path(current_user)%></li>
+              <li><%= link_to 'Redeem Token',show_token_form_user_tokens_path(current_user),:remote => true%></li>
+              <li><%= link_to 'Log out',destroy_user_session_path, method: :delete%></li>
+            </ul>
+          </li>
+        <%else%>
+          <li><%=link_to 'Login',show_modal_home_path('login'),:remote => true%></li>
+          <li><%= link_to 'Sign Up', show_modal_home_path('sign up'),:remote => true%></li>
+        <%end%>
+        
+      </ul>
+      <ul  class="list-inline quicklinks">
+        <li><%= link_to 'Popular',library_books_path(:tag => 'popular')%></li>
+        <li><%= link_to 'Indian Author',library_books_path(:tag => 'Indian author')%></li>
+        <li><%= link_to 'International Author',library_books_path(:tag => 'international author')%></li>
+  </div><!-- /.container-fluid -->
+</nav>
+
+

@@ -1,0 +1,8 @@
+<%=likes%> <i class="fa fa-heart-o"></i>
+<%if (current_user.voted_up_for? book) == true%>
+	<%= link_to "Unlike",vote_book_path(book.id,:vote=> :false),
+                               :class => 'btn btn-default btn-xs',:title=>'Like it' ,:method => :post,:remote => true,:onclick => "$('.loading').show();" %>
+<%else%>
+  <%= link_to "Like",vote_book_path(book.id,:vote=> :true),
+                               :class => 'btn btn-default btn-xs',:title=>'Like it' ,:method => :post,:remote => true,:onclick => "$('.loading').show();" %>
+<%end%>                             

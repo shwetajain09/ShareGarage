@@ -146,4 +146,10 @@ $(document).ready(function () {
         $(".carousel").height($("#tile1").width());
         $(".item").height($("#tile1").width());
     });
+     $('.boxgrid.slideright').hover(function(){
+            $(".cover", this).stop().animate({left:'325px'},{queue:false,duration:300});
+        }, function() {
+            $(".cover", this).stop().animate({left:'0px'},{queue:false,duration:300});
+        });
 });
+

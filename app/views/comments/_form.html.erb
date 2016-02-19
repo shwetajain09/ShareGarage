@@ -1,0 +1,12 @@
+<div>
+<%= form_for(:comment, :url => comments_path(:commentable_type=>commentable.class.to_s.underscore, :commentable_id=>commentable.id),:class=>"form-inline") do |f| %>
+	<div class="input-group">
+	  <div class="form-group ">
+	  	<%= f.text_area :body ,:placeholder => "Tell us how this book worth it for you",:class=> "form-control" %> 
+	  </div>
+	  <div class="input-group-btn">
+	  	<%= f.submit_tag "Save",:class=>"btn btn-info searchbtn" ,:style=>"height:67px"%>
+	  </div>
+	</div>
+  <%end%>
+</div>

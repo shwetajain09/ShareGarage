@@ -30,11 +30,15 @@
     </div>
     <br/>
     <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <%=submit_tag :share,:class=>"btn btn-primary"%>
+        
+        <div class="loading" style="display:none;">
+                    <%= image_tag '/assets/loading.gif'%>
+                    </div>
+        <%=submit_tag :share,:class=>"btn btn-primary",:onclick => "$('.loading').show();"%>
     </div>
     
 <%end%>
+<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 
 
 <script>

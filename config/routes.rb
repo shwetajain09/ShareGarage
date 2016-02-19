@@ -2,6 +2,12 @@ Rails.application.routes.draw do
   post '/rate' => 'rater#create', :as => 'rate'
   devise_for :users,:controllers => {:registrations => "users/registrations",:sessions => "users/sessions",:confirmations => "users/confirmations",
     :passwords => "users/passwords",:unlocks => "users/unlocks"}
+  resources :comments do
+    member do
+      post :vote
+    end
+  end
+
   resources :users do
     resources :tokens do
       member do
@@ -27,7 +33,7 @@ Rails.application.routes.draw do
 
   end
 
-
+  
 
   resource :home do
       get :show_modal
@@ -35,6 +41,8 @@ Rails.application.routes.draw do
       get :about_us ,as: 'about_us'
       get :privacy_policy, as: 'privacy_policy'
       get :terms_of_service, as: 'terms_of_service'
+      get :faq, as: 'faq'
+      post :donate_request
       # get '/about', to: 'static_pages#about', as: 'about'
     end
 
@@ -43,12 +51,15 @@ Rails.application.routes.draw do
       get :library, :as => 'library'
       post :share
       get :search
+
     end
     member do
       get :edit_shared
       delete :delete_shared
       get :show_providers
       get :show_share_modal
+      post :vote
+  
     end
 
   end

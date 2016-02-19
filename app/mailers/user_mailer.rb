@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  default :from => "linkitdude@gmail.com"
+  default :from => "team@sharegarage.com"
 
    def send_user_contacting_message(params)
     @user = params[:name]
@@ -7,6 +7,11 @@ class UserMailer < ActionMailer::Base
     @email = params[:email]
     @message = params[:message]
     mail(:to => "team@sharegarage.com", :subject => "Some one is contacting us!")
+  end
+
+  def donate_request(params)
+    @email = params[:email]
+    mail(:to => "team@sharegarage.com", :subject => "Some one want to donate!")
   end
 
   def request_book(requester,book_title,options={})

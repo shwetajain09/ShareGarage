@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
 
   devise :database_authenticatable, :registerable,:lockable,
          :recoverable, :rememberable, :trackable, :validatable#,:confirmable
-  
+  acts_as_voter
 
 	has_many :books_users
 	has_many :books ,through: :books_users, source: :book
@@ -46,7 +46,7 @@ class User < ActiveRecord::Base
   def generate_profile
     loc = Location.find_by_name(AppConfiguration::DEFAULT_LOCATION)
     self.create_profile(:location_id => loc.id,:rating => AppConfiguration::DEFAULT_RATING)
-    Token.generate_token(self)
+    #Token.generate_book_coin(self)
   end
 
   
