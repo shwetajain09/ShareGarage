@@ -10,3 +10,5 @@
 /log/development/*
 /public/system/books/*
 /tmp/cache/*
+/config/database.yml
+/log/*
