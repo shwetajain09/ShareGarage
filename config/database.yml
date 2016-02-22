@@ -30,7 +30,11 @@ development:
 # Do not set this db to the same as development or production.
 staging:
   <<: *default
-  database: Sharegarage_test
+  database: staging-db
+  host: staging-db.cxbhzllpptb6.us-west-2.rds.amazonaws.com
+  port: 3306
+  username: ShareGarage02
+  password: Pink_Floyd!
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is

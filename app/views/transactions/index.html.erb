@@ -1,4 +1,4 @@
-  <div class="row">
+
   <h2 class="pull-right"> <%= image_tag '/assets/bc.jpg',:size => '35x35' %>x<%=@my_token%></h2>
 <!--   <div class="mainlinks">
      <a href="javascript:void(0);" class="active" onclick="toggleDiv([used,locked],unused);">Unused BookCoin</a>
@@ -8,7 +8,6 @@
 
 
 <%if @transactions.size > 0%>
-          <div class="row">
               <table class="table">
                
                 <tbody>
@@ -28,7 +27,6 @@
                   <% end %>
                 </tbody>
               </table>
-          </div>
         <%else%>
             <h2>No transaction made yet!</h2>
         <%end%>

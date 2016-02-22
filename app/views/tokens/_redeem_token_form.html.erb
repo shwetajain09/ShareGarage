@@ -1,4 +1,15 @@
 <%=form_tag redeem_token_user_tokens_path(current_user.id) do %>
-	<%=text_field_tag :token%>
-	<%=submit_tag :redeem%>
+	<%=text_field_tag :token,nil,:placeholder => 'Enter the code',:class=> "col-lg-6"%>
+	<br/>
+
+	<br/>
+	  <div class="modal-footer">
+        
+        <div class="loading" style="display:none;">
+                    <%= image_tag '/assets/loading.gif'%>
+                    </div>
+        <%=submit_tag :redeem,:class=>"btn btn-primary",:onclick => "$('.loading').show();"%>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    </div>
+
 <%end%>

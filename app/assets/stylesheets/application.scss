@@ -17,3 +17,23 @@
 @import "bootstrap";
 @import "font-awesome";
 
+
+span.stars, span.stars span {
+    display: block;
+    background: url(/assets/star-on.png) 0 -16px repeat-x;
+    width: 80px;
+    height: 16px;
+}
+ span.stars span {
+    background-position: 0 0;
+}
+
+.add-location{
+	overflow: auto;
+	height: 400px;
+}
+
+.location-cell{
+  white-space: nowrap;
+  overflow:hidden;
+}

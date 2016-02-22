@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   before_action :load
 
   def load
-  	@locations = Location.all
+  	@locations = Location.all.order('name ASC')
   end
 
 def after_sign_in_path_for(resource)

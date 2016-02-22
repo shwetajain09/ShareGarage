@@ -10,7 +10,6 @@ class BooksController < ApplicationController
 
 	def index
 		@popular_books = Book.available.tagged_with("Popular").last(6)
-		render :layout => false
 	end
 
 	def search_with_tag
@@ -26,10 +25,10 @@ class BooksController < ApplicationController
 			@query = params[:tag]
 		else
 			@search = Book.available.search do
-			fulltext params[:location_query],:fields=>:pick_locations
-		    fulltext params[:book_query]
-		    paginate :page =>  params[:page], :per_page => 9
-		  end
+				fulltext params[:location_query],:fields=>:pick_locations
+			    fulltext params[:book_query]
+			    paginate :page =>  params[:page], :per_page => 9
+			  end
 	  		@books = @search.results
 	  		if @books.empty?
 	  			@grab = false
@@ -65,7 +64,7 @@ class BooksController < ApplicationController
 		book_user.locations << loc
 		book_user.locations << loc.collect(&:parent).uniq
 		if book_user.save
-			if current_user.got_reward
+			if current_user.got_reward?
 				message = "Woooh! your book has been successfully uploaded. keep sharing."
 			else
 				message = "Woooh! you got 1 BookCoin on your first book upload. keep sharing."
@@ -91,9 +90,16 @@ class BooksController < ApplicationController
 	end
 
 	def show
-		@book = Book.find(params[:id])
-		@comments = Comment.where(:commentable_id => @book.id,:commentable_type => 'book').paginate :page =>  params[:page], :per_page => 10
-		@likes = @book.get_likes.size
+		begin
+			@book = Book.find(params[:id])
+			@comments = Comment.where(:commentable_id => @book.id,:commentable_type => 'book').paginate :page =>  params[:page], :per_page => 10
+			@likes = @book.get_likes.size
+		rescue
+			@book = GoogleBooks.search("id:#{params[:id]}").first
+			
+		end
+
+		
 	end
 
 	def show_providers

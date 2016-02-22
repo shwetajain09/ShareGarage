@@ -1,0 +1,20 @@
+<dl class="dl-horizontal">
+  <dt><%= image_tag book.image_link(:zoom=>2), alt: "#{book.title}",:class=>"img-responsive google_book_image"%>
+  <br>
+  <span class="stars"><%=book.average_rating%></span>
+  </dt>
+  <dd><%= book.description %>
+    <br><b><%= book.publisher %> </b>| <i><%= book.published_date %></i>
+    <br><b><%= book.isbn %> | <%= book.language %></b>
+    <br><%= book.categories %> 
+  </dd>
+ 
+
+</dl>
+
+<script type="text/javascript">
+  $(function() {
+    $('span.stars').stars();
+});
+
+</script>

@@ -1,38 +1,40 @@
-
-    <div class="boxgrid slideright product-1">
+<div class="boxgrid slideright product-1">
     <%= image_tag image_link, alt: "#{book.title}",:class=>"cover"%>
     <div class="social-list" >
         <ul>
+            <li>
+
+                <%= link_to book_path(book.id) ,:remote => true ,:method => :get do %>
+                    <i class="fa fa-search-plus" alt="Quick View"></i>
+                <% end %>
+            </li>
             <li>
                 <%= link_to path ,:remote => true ,:method => :get do %>
                     <i class="fa <%=action_class%>"></i>
                 <% end %>
                 <!-- <a href="#" target="_blank"><i class="fa fa-hand-paper-o"></i></a> -->
             </li>
-            <li><a href="#" target="_blank"><i class="fa fa-twitter"></i></a></li>
         </ul>
     </div>
     <div class="product-6">
-        <p><%=link_to book.title,book_path(book)%></p>
-        <h2><%=authors%></h2>
-        <h2><%=book.try(:isbn)%></h2>
+        <p title = "<%=book.title%>"><%=link_to book.title.slice(0..35),book_path(book)%></p>
+        <h2 title = "<%=authors%>"><%=authors.slice(0..35)%></h2>
+        <h2 title = "<%=book.try(:isbn)%>"><%=book.try(:isbn).slice(0..35)%></h2>
         <div class="star-icon">
-            <ul>
-                <li><img src="/assets/webz/star.png"></li>
-                <li><img src="/assets/webz/star.png"></li>
-                <li><img src="/assets/webz/star.png"></li>
-                <li><img src="/assets/webz/star.png"></li>
-                <li><img src="/assets/webz/star.png"></li>
-            </ul>
+      
+                  
+                        <span class="stars"><%= average_rating%>
+                        </span>
+                  
         </div>
+    
     </div> 
 </div>
 
 
 <script type="text/javascript">
-    $(document).ready(function(){
-        
-        //Horizontal Sliding
-       
-    });
+  $(function() {
+    $('span.stars').stars();
+});
+
 </script>

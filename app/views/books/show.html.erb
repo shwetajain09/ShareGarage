@@ -11,21 +11,7 @@
               show_share_modal_book_path(@book.id), :class => 'btn btn-primary' ,:remote => true%></h3>
 </div>
 
-<dl class="dl-horizontal">
-  <dt><%= image_tag @book.avatar.url(:medium), alt: "#{@book.title}",:class=>"img-responsive google_book_image"%>
-  <br>
-  <span class="stars"><%=@book.google_provided_rating%></span>
-  </dt>
-  <dd><%= @book.subtitle %>
-    <br><%= link_to @book.link,@book.link,:target=>'_blank' %>
-    <br><%= @book.description %>
-    <br><%= @book.publisher %> | <%= @book.published_date %>
-    <br><%= @book.isbn %> | <%= @book.language.title %>
-    <br><%= @book.tag_list %> 
-  </dd>
- 
-
-</dl>
+<%=render :partial => 'detail',:locals => {:book=>@book}%>
 <div id="like_div_<%=@book.id%>">
   <%=render :partial => 'like',:locals => {:book=>@book,:likes => @likes}%>
 </div>
@@ -34,10 +20,3 @@
 <br>
 <%= render :partial => 'comments/comments',:locals => {:comments => @comments}%>
 
-
-<script type="text/javascript">
-  $(function() {
-    $('span.stars').stars();
-});
-
-</script>

@@ -33,7 +33,7 @@ class TokensController < ApplicationController
 
 	def redeem_token
 		@token = Token.find_by_redeem_code(params[:token])
-		if @token.check_validity(:receiver_id => current_user.id)
+		if @token.present? && @token.check_validity(:receiver_id => current_user.id)
 			@token.redeem_token(current_user)
 			message = "Redeemed Successfully"
 		else

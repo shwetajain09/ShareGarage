@@ -8,8 +8,8 @@
             	<div class="login-signup">
                 	<ul>
                         <%if user_signed_in?%>
-                              <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i><%=current_user.full_name%><span class="caret"></span></a>
+                              <li class="dropdown"  style="border:none;">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i> <%=current_user.full_name%> <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
                                   <li><a href="<%=user_path(current_user)%>">My Profile</a></li>
                                   <li><a href="<%=user_transactions_path(current_user)%>">Account</a></li>
@@ -32,7 +32,7 @@
                 
             </div>
             <div id="logo"><%= link_to root_url do %>
-              <img src="/assets/webz/logo.png" alt="Logo">
+              <img src="/assets/webz/logo.gif" alt="Logo">
             <%end%>
             </div>
             
@@ -40,7 +40,7 @@
             	<div class="grab-share">
                     <ul>
                         <li><a class="active" style="color:#FFE135;" href="javascript:void(0);" onclick="toggleDiv([give_away],take);">GRAB</a></li>
-                        <li style="border:none;"><a href="javascript:void(0);" onclick="toggleDiv([take],give_away);">SHARE</a></li>
+                        <li style="border:none;"><a class="active" style="color:#FFE135;" href="javascript:void(0);" onclick="toggleDiv([take],give_away);">SHARE</a></li>
                     </ul>
             	</div>
 
@@ -49,7 +49,7 @@
 
 <%=form_tag search_books_path, method: :get, :class=>"form-inline", :role=>"search",:id=>"give_away" ,:style => 'display:none' do %>
         
-              <%=text_field_tag :book_query,nil,:placeholder => "Enter book title,author,isbn",:class=> "search-here"%>
+              <%=text_field_tag :book_query,nil,:placeholder => "Enter book title,author,isbn",:class=> "search-here-share"%>
                      
             <div class="search-bg">
               <button class="" type="submit"><img src="/assets/webz/search_icon.png" alt="#"></button>
@@ -63,7 +63,7 @@
         
             
              
-              <%=select_tag "location_query", options_for_select(Location.all.map { |e| e.name }),:class=>"select-option"%>
+              <%=select_tag "location_query", options_for_select(Location.all.order('name ASC').map { |e| e.name },:selected => "All Delhi/Ncr"),:class=>"select-option"%>
          
              
               <%=text_field_tag :book_query,nil,:placeholder => "Enter book title,author,isbn",:class=> "search-here"%>

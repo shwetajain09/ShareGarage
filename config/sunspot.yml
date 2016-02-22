@@ -17,8 +17,8 @@ development:
 
 staging:
   solr:
-    hostname: solrserver
-    port: 8080
-    path: '/solr-example'
+    hostname: localhost
+    port: 8981
+    #path: '/solr-example'
     log_level: WARNING
-    pid_dir: '/var/run'
+    #pid_dir: '/var/run'
