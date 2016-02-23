@@ -3,7 +3,7 @@
   <h1><%= @book.title %></h1>
   <h3 class="pull-right"><%= link_to t('.back', :default => t("helpers.links.back")),
               request.referer, :class => 'btn btn-default'  %>
-<%if @book.is_available%>
+<%if (@book.respond_to? :is_available) ? @book.is_available : false%>
   <%= link_to 'Grab',
               show_providers_book_path(@book.id), :class => 'btn btn-primary',:remote => true%>
 <%end%>
@@ -11,12 +11,18 @@
               show_share_modal_book_path(@book.id), :class => 'btn btn-primary' ,:remote => true%></h3>
 </div>
 
-<%=render :partial => 'detail',:locals => {:book=>@book}%>
-<div id="like_div_<%=@book.id%>">
-  <%=render :partial => 'like',:locals => {:book=>@book,:likes => @likes}%>
-</div>
-<br>
-<%= render :partial => 'comments/form', :locals => {:commentable => @book} %>
-<br>
-<%= render :partial => 'comments/comments',:locals => {:comments => @comments}%>
+<%=render :partial => 'detail',:locals => {:book => @book ,:authors =>  (@book.authors.respond_to? :collect) ? @book.authors.collect(&:name).join(',') : @book.authors,:image_link => (@book.respond_to? :avatar) ? @book.avatar.url(:medium) : @book.image_link(:zoom => 2),
+	:average_rating=>(@book.respond_to? :google_provided_rating) ? @book.google_provided_rating : @book.average_rating,:categories => (@book.respond_to? :tag_list) ? @book.tag_list : @book.categories}%>
+<% if @book.respond_to? :avatar%>
+	<%if current_user.present?%>
+		<div id="like_div_<%=@book.id%>">
+		  <%=render :partial => 'like',:locals => {:book=>@book,:likes => @likes}%>
+		</div>
+
+	<br>
+	<%= render :partial => 'comments/form', :locals => {:commentable => @book} %>
+	<%end%>
+	<br>
+	<%= render :partial => 'comments/comments',:locals => {:comments => @comments}%>
+<%end%>
 

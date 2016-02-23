@@ -4,8 +4,10 @@
   <dt>
   	<%=link_to image_tag(comment.user.avatar.url(:medium)),user_path(comment.user)%>
   	<br><span class="stars"><%=comment.user.profile.rating%></span>
-    <div id="like_div_<%=comment.id%>">
-      <%=render :partial => 'comments/like',:locals => {:comment=>comment,:likes => comment.get_upvotes.size,:dislikes => comment.get_downvotes.size}%>
+    <div id="comment_like_div_<%=comment.id%>">
+      <%if current_user.present? %>
+        <%=render :partial => 'comments/like',:locals => {:comment=>comment,:likes => comment.get_upvotes.size,:dislikes => comment.get_downvotes.size}%>
+      <%end%>
     </div>
   </dt>
   <dd><b><%=link_to comment.user.full_name,user_path(comment.user)%> </b> <span class="pull-right">Posted on: <%=comment.created_at.strftime('%d-%b-%y') %> </span>

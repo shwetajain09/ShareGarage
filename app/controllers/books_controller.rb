@@ -1,7 +1,7 @@
 class BooksController < ApplicationController
 	require 'googlebooks'
 
-	before_filter :authenticate_user!, :except => [:search,:library,:index,:show_share_modal,:show_providers,:vote]
+	before_filter :authenticate_user!, :except => [:search,:library,:index,:show_share_modal,:show_providers,:vote,:show]
 	before_filter :load_book, :only => [:edit_shared,:delete_shared,:update_pick_location]
 
 	def load_book
@@ -92,11 +92,10 @@ class BooksController < ApplicationController
 	def show
 		begin
 			@book = Book.find(params[:id])
-			@comments = Comment.where(:commentable_id => @book.id,:commentable_type => 'book').paginate :page =>  params[:page], :per_page => 10
+			@comments = Comment.where(:commentable_id => @book.id,:commentable_type => 'book').order('id DESC').paginate :page =>  params[:page], :per_page => 10
 			@likes = @book.get_likes.size
 		rescue
 			@book = GoogleBooks.search("id:#{params[:id]}").first
-			
 		end
 
 		

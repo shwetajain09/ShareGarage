@@ -12,3 +12,4 @@
 /tmp/cache/*
 /config/database.yml
 /log/*
+/tmp/cache/sprockets/*

@@ -27,6 +27,7 @@ gem "paperclip", "~> 4.3"
 gem 'will_paginate-bootstrap'
 gem 'googlebooks', '~> 0.0.9'
 gem 'acts-as-taggable-on', '~> 3.4'
+gem 'jquery-turbolinks'
 
 gem 'sunspot_rails'
 gem 'sunspot_solr'

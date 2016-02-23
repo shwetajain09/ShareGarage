@@ -1,14 +1,15 @@
 <dl class="dl-horizontal">
-  <dt><%= image_tag book.avatar.url(:medium), alt: "#{book.title}",:class=>"img-responsive google_book_image"%>
+  <dt><%= image_tag image_link, alt: "#{book.title}",:class=>"img-responsive google_book_image"%>
   <br>
-  <span class="stars"><%=book.google_provided_rating%></span>
+  <span class="stars"><%=average_rating%></span>
   </dt>
-  <dd><%= book.subtitle %>
-    <br><%= link_to book.link,book.link,:target=>'_blank' %>
+  <dd>
+    <%#= link_to book.link,book.link,:target=>'_blank' %>
     <br><%= book.description %>
-    <br><%= book.publisher %> | <%= book.published_date %>
-    <br><%= book.isbn %> | <%= book.language.title %>
-    <br><%= book.tag_list %> 
+    <br><%= authors %>
+    <br><b><%= book.publisher %></b> | <i><%= book.published_date %></i>
+    <br><b><%= book.isbn %> </b>
+    <br><%= categories %> 
   </dd>
  
 

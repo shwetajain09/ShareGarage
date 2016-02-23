@@ -1,1 +1,1 @@
-$('#like_div_<%=@comment.id%>').html("<%=escape_javascript(render(:partial => 'comments/like',:locals => {:comment=>@comment,:likes => @comment.get_upvotes.size,:dislikes => @comment.get_downvotes.size}))%>");
+$('#comment_like_div_<%=@comment.id%>').html("<%=escape_javascript(render(:partial => 'comments/like',:locals => {:comment=>@comment,:likes => @comment.get_upvotes.size,:dislikes => @comment.get_downvotes.size}))%>");
