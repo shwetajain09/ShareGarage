@@ -48,9 +48,9 @@ end
 def show_requested_books
 	user = User.find_by_id(params[:user_id])
 	if user.present?
-		@books = current_user.book_requests.collect(&:book).paginate :page =>  params[:page], :per_page => 9
+		@books = current_user.book_requests.collect(&:book).sort_by(&:created_at).reverse!.paginate :page =>  params[:page], :per_page => 9
 	else
-		@books = BookRequest.all.collect(&:book).paginate :page =>  params[:page], :per_page => 9
+		@books = BookRequest.all.collect(&:book).sort_by(&:created_at).reverse!.paginate :page =>  params[:page], :per_page => 9
 	end
 end
 
