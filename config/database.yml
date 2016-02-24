@@ -54,9 +54,10 @@ staging:
 #
 #   production:
 #     url: <%= ENV['DATABASE_URL'] %>
-#
 production:
   <<: *default
   database: Sharegarage_production
-  username: <%= ENV['LID_DATABASE_USERNAME'] %>
-  password: <%= ENV['LID_DATABASE_PASSWORD'] %>
+  username: ShareGarage02
+  password: Pink_Floyd!
+  host: production-db.cxbhzllpptb6.us-west-2.rds.amazonaws.com
+  port: 3306
