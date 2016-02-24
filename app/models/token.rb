@@ -43,6 +43,10 @@ class Token < ActiveRecord::Base
 		
 	end
 
+	# def check_unlock_status(user)
+		
+	# end
+
 	def self.generate_book_coin(user)
 		token = user.tokens.new(:credit => AppConfiguration::TOKEN_GENERATION_CREDIT)
 	    token.save

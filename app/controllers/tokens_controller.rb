@@ -41,4 +41,16 @@ class TokensController < ApplicationController
 		end
 		redirect_to user_transactions_path(current_user),:notice => message
 	end	
+
+	# def unloack_token
+	# 	@token = Token.find_by_redeem_code(params[:token])
+	# 	if @token.present? && @token.check_validity(:receiver_id => current_user.id)
+	# 		@token.redeem_token(current_user)
+	# 		message = "Redeemed Successfully"
+	# 	else
+	# 		message = "Invalid token!"
+	# 	end
+	# 	redirect_to user_transactions_path(current_user),:notice => message
+	# end
+
 end

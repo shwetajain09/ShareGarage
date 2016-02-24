@@ -22,12 +22,9 @@ var toggleDiv;
 var showModal;
 var attributes_for_modal;
 
-toggleDiv = function (options=[],element_to_show){
-  $.each(options, function( index, value ) {
-    value.setAttribute('style','display:none');
-    });
-	
-	element_to_show.setAttribute('style','display:block');
+toggleDiv = function (element_to_hide,element_to_show){
+    element_to_hide.setAttribute('style','display:none'); 
+  element_to_show.setAttribute('style','display:block');
   
 
 }
@@ -89,7 +86,7 @@ $('.mainlinks a').on('click',function(){
   //alert();
     $(this).addClass('active').siblings().removeClass('active');
 
-    if($("#GrabTXT").is(":visible") ==true ){
+    if($("#GrabTXT").is(":visible") == true ){
    /// alert();
     $('#GrabTXT').hide();
     $('#GiveTXT').show();
