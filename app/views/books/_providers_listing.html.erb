@@ -5,11 +5,11 @@
       <tr>
       <td>
         <%= image_tag provider.avatar.url(:thumb) %>
+        <br/>
+        <%= link_to provider.full_name,user_path(provider) %>
         <span class="stars"><%= provider.profile.rating%></span>
       </td>
-        <td>
-
-        <%= link_to provider.full_name,user_path(provider) %></td>
+     
         <td><%= provider.books_users.find_by_book_id(@book.id).locations.collect(&:name).join(',') %></td>
          <td>
          <%if current_user == provider%>
@@ -19,17 +19,16 @@
                
                   <%if provider.show_phone?%>
                     <%= link_to provider.phone_no,'#',
-                               :class => 'btn btn-default btn-xs',:title=>'Make a great deal' %>
+                               :class => 'btn btn-default btn-xs',:title=>'Call book owner to make a great deal!;',:disabled => true %>
                  
                   <%end%>
-                   <%= link_to "Request a book",request_book_users_path(:user_id => provider,:book_id=>@book.id),
-                               :class => 'btn btn-default btn-xs',:title=>'Make a great deal' ,:method => :post,:remote => true,:data => { :confirm => "Great! Confirm to send a request to #{provider.full_name} and socialise to make a great deal." },:onclick => "$('.loading').show();" %>
-                  <%= link_to user_token_path(provider.id,current_user.tokens.unlocked_unused.first.id,:book_id => @book.id ), :remote => true,:method => :put,:remote => true,:data => { :confirm => "This will lock your BookCoin(BC) with '#{provider.full_name}' for '#{@book.title}'. This BC will be valid for the next 7 days. You will receive an email with the BookCoin details shortly." },:onclick => "$('.loading').show();" do %>
-                    <i class="fa fa-lock fa-2x"></i>
+                   <%= link_to "Ask via email",request_book_users_path(:user_id => provider,:book_id=>@book.id),
+                               :class => 'btn btn-default btn-xs',:title=>'An email will be sent to the book owner' ,:method => :post,:remote => true,:data => { :confirm => "Great! Confirm to send a request to #{provider.full_name} and socialise to make a great deal." }%>
+
+                  <%= link_to user_token_path(provider.id,current_user.tokens.unlocked_unused.first.id,:book_id => @book.id ), :remote => true,:method => :put,:remote => true,:data => { :confirm => "This will lock your BookCoin(BC) with '#{provider.full_name}' for '#{@book.title}'. This BC will be valid for the next 7 days. You will receive an email with the BookCoin details shortly." } do %>
+                    <button class = 'btn btn-primary btn-xs'><i class="fa fa-lock fa-1x"> Share my BookCoin</i></button>
                   <%end%> 
-                   <div class="loading" style="display:none;">
-                    <%= image_tag '/assets/loading.gif'%>
-                    </div>
+                
                   <%#=link_to 'Generate token',user_tokens_path(Token.first), :method => :post%>
               <%else%>
                 Earn BookCoin to get the book
@@ -43,6 +42,9 @@
   </tbody>
 </table>
 <span><i>*Get Socialise by meeting the book owner at a conveneint and friendly place. Make sure you exchange your BookCoin and give owner's review</i> </span>
+   <div class="loading" style="display:none;">
+                    <%= image_tag '/assets/loading.gif'%>
+                    </div>
 <script type="text/javascript">
   $(function() {
     $('span.stars').stars();

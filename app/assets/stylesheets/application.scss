@@ -45,7 +45,7 @@ ul.user-dropdown li{
 	border:none;
 }
 .cover{
-  height: 71.4%;
+  height: 71.5%;
     width: 100%;
 }
 .search-here {
@@ -67,4 +67,30 @@ ul.user-dropdown li{
     font-size: 12px;
     margin: 0 10px 0 0;
     padding: 0;
+}
+.fa-stack-1x{
+  top: 23px;
+}
+.intro-lead-in{
+  font-size: 54px;
+  color: black;
+}
+
+.insta a {
+  background:url(/assets/webz/insta.png) no-repeat;
+  margin:0 15px 0 0;
+  float:left;
+  width:37px;
+  height:36px;
+}
+
+.insta a:hover {
+  background:url(/assets/webz/insta.png) no-repeat;
+  margin:0 15px 0 0;
+  float:left;
+  width:37px;
+  height:36px;
+}
+.dl-horizontal .comment-image{
+  text-align:left;
 }

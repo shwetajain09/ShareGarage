@@ -16,14 +16,20 @@
 <body >
 <div class="container-web">
   <%= render 'layouts/header' %>
-  
-  <div class="products">
+  <%if current_page?(root_url)%>
+    <%= render 'layouts/modal'%>
+    <%= flash_messages %>
+    <%= yield %>
+  <%else%>
+    <div class="products">
     <div class="wrapper">
       <%= render 'layouts/modal'%>
       <%= flash_messages %>
       <%= yield %>
     </div>
   </div>
+<%end%>
+  
   <%=render :partial => '/layouts/footer'%>
 </div>
 

@@ -19,7 +19,7 @@
         </ul>
     </div>
     <div class="product-6">
-        <p title = "<%=book.title%>"><%=link_to book.title.slice(0..35),book_path(book)%></p>
+        <p title = "<%=book.title%>"><%=link_to book.title.slice(0..35),book_path(book.id)%></p>
         <h2 title = "<%=authors%>"><%=authors.slice(0..35)%></h2>
         <h2 title = "<%=book.try(:isbn)%>"><%=book.try(:isbn)%></h2>
         <div class="star-icon">

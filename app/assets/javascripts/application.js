@@ -166,3 +166,11 @@ $(function() {
   });
 
 });
+
+$('.link-ajax').bind('ajax:beforeSend', function() {
+  $('.loading').show();
+});
+
+$('.link-ajax').bind('ajax:complete', function() {
+  $('.loading').hide();
+});
