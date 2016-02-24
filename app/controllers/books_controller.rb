@@ -18,6 +18,7 @@ class BooksController < ApplicationController
 		redirect_to library_books_path
 	end
 
+
 	def library
 		@grab = true
 		if params[:tag].present?

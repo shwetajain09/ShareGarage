@@ -8,16 +8,18 @@
                     <i class="fa fa-search-plus" alt="Quick View"></i>
                 <% end %>
             </li>
-            <li>
-                <%= link_to path ,:remote => true ,:method => :get do %>
-                    <i class="fa <%=action_class%>"></i>
-                <% end %>
-                <!-- <a href="#" target="_blank"><i class="fa fa-hand-paper-o"></i></a> -->
-            </li>
+            <%if local_assigns.has_key? :path%>
+                <li>
+                    <%= link_to path ,:remote => true ,:method => :get do %>
+                        <i class="fa <%=action_class%>"></i>
+                    <% end %>
+                    <!-- <a href="#" target="_blank"><i class="fa fa-hand-paper-o"></i></a> -->
+                </li>
+            <%end%>
         </ul>
     </div>
     <div class="product-6">
-        <p title = "<%=book.title%>"><%=link_to book.title.slice(0..35),book_path(book.id)%></p>
+        <p title = "<%=book.title%>"><%=link_to book.title.slice(0..35),book_path(book)%></p>
         <h2 title = "<%=authors%>"><%=authors.slice(0..35)%></h2>
         <h2 title = "<%=book.try(:isbn)%>"><%=book.try(:isbn)%></h2>
         <div class="star-icon">

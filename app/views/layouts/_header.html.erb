@@ -2,7 +2,7 @@
     	<div class="wrapper">
         	<div class="header-left">
                 <h2><i class="fa fa-phone"></i>+91-9205512899</h2>
-                <h3><i class="fa fa-envelope"></i>team@sharegarage.com</h3>
+                <h2><i class="fa fa-envelope"></i>team@sharegarage.com</h3>
             </div>
             <div class="header-right">
             	<div class="login-signup">
@@ -10,11 +10,11 @@
                         <%if user_signed_in?%>
                               <li class="dropdown"  style="border:none;">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i> <%=current_user.full_name%> <span class="caret"></span></a>
-                                <ul class="dropdown-menu">
+                                <ul class="dropdown-menu user-dropdown">
                                   <li><a href="<%=user_path(current_user)%>">My Profile</a></li>
                                   <li><a href="<%=user_transactions_path(current_user)%>">Account</a></li>
                                   <li><%= link_to 'Book Shelf',shelf_user_path(current_user)%></li>
-                                  <li><%= link_to 'My book requests',show_requested_books_user_path(current_user)%></li>
+                                  <li><%= link_to 'My book requests',show_requested_books_users_path(current_user.id)%></li>
                                   <li><%= link_to 'Redeem Token',show_token_form_user_tokens_path(current_user),:remote => true%></li>
                                   <li><%= link_to 'Log out',destroy_user_session_path, method: :delete%></li>
                                 </ul>
@@ -33,7 +33,7 @@
             </div>
             <div id="logo"><%= link_to root_url do %>
 
-              <img src="/assets/webz/logo.gif" alt="Logo">
+              <!-- <img src="/assets/webz/logo.gif" alt="Logo"> -->
               <img src="/assets/logos/logo.png" alt="Logo">
             <%end%>
             </div>
@@ -53,9 +53,7 @@
         
               <%=text_field_tag :book_query,nil,:placeholder => "Enter book title,author,isbn",:class=> "search-here-share"%>
                      
-            <div class="search-bg">
-              <button class="" type="submit"><img src="/assets/webz/search_icon.png" alt="#"></button>
-            </div>
+              <button class="search-bg" type="submit"><img src="/assets/webz/search_icon.png" alt="#"></button>
 <%end%>
 
 <%=form_tag library_books_path, method: :get, :class=>"form-inline", :role=>"search",:id=>"take" do %>
@@ -69,9 +67,7 @@
          
              
               <%=text_field_tag :book_query,nil,:placeholder => "Enter book title,author,isbn",:class=> "search-here"%>
-            <div class="search-bg">
-              <button class="" type="submit"><img src="/assets/webz/search_icon.png" alt="#"></button>
-            </div>
+              <button class="search-bg" type="submit"><img src="/assets/webz/search_icon.png" alt="#"></button>
 
         <%end%>
 
@@ -88,9 +84,9 @@
                 <div class="menu">
                 	<ul>
                         <li><%= link_to 'Popular',library_books_path(:tag => 'popular')%></li>
-                        <li><%= link_to 'Indian Author',library_books_path(:tag => 'Indian author')%></li>
-                        <li><%= link_to 'International Author',library_books_path(:tag => 'international author')%></li>
-                    	
+                        <li><%= link_to 'Top Indian Author',library_books_path(:tag => 'Indian author')%></li>
+                        <li><%= link_to 'Top Foreign Author',library_books_path(:tag => 'international author')%></li>
+                    	   <li><%= link_to 'Book Request',show_requested_books_users_path()%></li>
                     </ul>
                 </div>
             </div>        
