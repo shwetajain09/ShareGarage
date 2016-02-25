@@ -6,7 +6,7 @@ class CommentsController < ApplicationController
 	  @comment.user = current_user
 	  respond_to do |format|
 	    if @comment.save
-	      format.html { redirect_to @commentable }
+	      format.html { redirect_to @commentable , :notice => "Great! Your comment has been posted."}
 	    else
 	      format.html { render :action => 'new' }
 	    end
@@ -24,6 +24,13 @@ class CommentsController < ApplicationController
 		@likes = @comment.get_upvotes.size
 		@dislikes = @comment.get_downvotes.size
 	end
+
+	def destroy
+		comment = Comment.find_by_id(params[:id])
+		comment.destroy
+		redirect_to :back, :notice => "Your comment has been removed, you can write something else!"
+	end
+
 
 	protected
 	def load_commentable

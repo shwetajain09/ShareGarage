@@ -8,13 +8,28 @@
   	<br><span class="stars"><%=comment.user.profile.rating%></span>
    
   </dt>
-  <dd><i class="fa fa-quote-left"></i><%=comment.body%> <i class="fa fa-quote-right"></i> <span class="pull-right">Posted on: <%=comment.created_at.strftime('%d-%b-%y') %> </span>
+  <dd>
+    <%if comment.user == current_user%>
+      <span class="pull-right">
+      <%= link_to comment_path(comment),:method => :delete,:data => { :confirm => "Are you sure you want to delete this comment?" } do%>
+        <i class="fa fa-times fa-2x"></i>
+      <%end%>
+      </span>
+    <%end%>
+  <i class="fa fa-quote-left"></i><%=comment.body%> 
+  <i class="fa fa-quote-right"></i> 
+
     <br>
      <div id="comment_like_div_<%=comment.id%>">
       <%if current_user.present? %>
         <%=render :partial => 'comments/like',:locals => {:comment=>comment,:likes => comment.get_upvotes.size,:dislikes => comment.get_downvotes.size}%>
       <%end%>
     </div>
+     <span class="comment-date">
+  
+    <i>Posted on: <%=comment.created_at.strftime('%d-%b-%y') %> </i>
+
+  </span>
   </dd>
 
 
