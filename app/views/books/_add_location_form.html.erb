@@ -27,6 +27,9 @@
             <%if local_assigns.has_key? :google_id%>
                 <%= hidden_field_tag 'google_id',google_id%>
             <%end%> 
+             <%if local_assigns.has_key? :isbn%>
+                <%= hidden_field_tag 'isbn',isbn%>
+            <%end%> 
         </div>
     </div>
     <br/>

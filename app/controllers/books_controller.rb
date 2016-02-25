@@ -47,17 +47,25 @@ class BooksController < ApplicationController
 	end
 
 	def share
-		@book = Book.find_by_google_id(params[:google_id])
-		if @book.present?
-			add_book_provider(@book)
-		else
-			book = GoogleBooks.search("id:#{params[:google_id]}").first
-			add_book_and_provider(book)
-		end		
-
+		begin
+			@book = Book.find_by_google_id(params[:google_id])
+			if @book.present?
+				add_book_provider(@book)
+			else
+				if params[:isbn].present?
+					book = GoogleBooks.search("isbn:#{params[:isbn]}").first 
+				elsif book.nil? && params[:google_id].present?
+					book = GoogleBooks.search("id:#{params[:google_id]}").first
+				end
+				add_book_and_provider(book)
+			end	
+		rescue
+			redirect_to :back,:notice => "Oops! something went wrong, we are working really hard to get everything in place, please help us by providing that how did you landed here."
+		end
 	end
 
-	
+
+
 	def update_pick_location(book_user)
 		#params[:location_ids].merge(current_user.profile.try(:location_id))
 		book_user.locations.destroy_all
@@ -134,6 +142,7 @@ class BooksController < ApplicationController
 	end
 
 	def add_book_and_provider(book)
+		debugger
 		@book = Book.new(:google_id => book.id)
 		@book.attributes = {:title => book.title,:google_provided_rating => book.average_rating,:description => book.description,:subtitle => book.title,:link=> book.info_link,:publisher => book.publisher,:published_date => book.published_date,:page_count => book.page_count,:count => 1,:json_details=>book.to_json,:isbn => book.isbn.presence || book.other_identifier}
 		language = Language.find_or_initialize_by(:locale => book.language)
