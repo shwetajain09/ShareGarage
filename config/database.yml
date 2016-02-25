@@ -57,7 +57,5 @@ staging:
 production:
   <<: *default
   database: Sharegarage_production
-  username: ShareGarage02
-  password: Pink_Floyd!
-  host: production-db.cxbhzllpptb6.us-west-2.rds.amazonaws.com
-  port: 3306
+  username: root
+  password: shweta
