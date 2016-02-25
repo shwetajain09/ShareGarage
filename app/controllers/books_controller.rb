@@ -142,7 +142,6 @@ class BooksController < ApplicationController
 	end
 
 	def add_book_and_provider(book)
-		debugger
 		@book = Book.new(:google_id => book.id)
 		@book.attributes = {:title => book.title,:google_provided_rating => book.average_rating,:description => book.description,:subtitle => book.title,:link=> book.info_link,:publisher => book.publisher,:published_date => book.published_date,:page_count => book.page_count,:count => 1,:json_details=>book.to_json,:isbn => book.isbn.presence || book.other_identifier}
 		language = Language.find_or_initialize_by(:locale => book.language)
