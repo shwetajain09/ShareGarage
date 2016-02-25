@@ -71,7 +71,10 @@ class BooksController < ApplicationController
 		book_user.locations.destroy_all
 		loc = Location.include(&:parent).where('id in (?)',params[:location_ids]).uniq
 		book_user.locations << loc
-		book_user.locations << loc.collect(&:parent).uniq
+		parents = loc.collect(&:parent).compact.uniq
+		if !parents.empty?
+			book_user.locations << parents
+		end
 		if book_user.save
 			if current_user.got_reward?
 				message = "Woooh! your book has been successfully uploaded. keep sharing."
@@ -91,7 +94,7 @@ class BooksController < ApplicationController
 		book_user.locations.destroy_all
 		if book_user.save
 			book_user.deduct_credit
-			flash[:notice] = "Removed from sharing"
+			flash[:notice] = "This book is no longer available for users. But it will remain in your shelf, you can share it any time in future."
 		else
 			flash[:error] = "Not removed from shared bucket"
 		end

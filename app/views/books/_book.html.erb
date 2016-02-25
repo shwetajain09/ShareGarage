@@ -16,6 +16,16 @@
                     <!-- <a href="#" target="_blank"><i class="fa fa-hand-paper-o"></i></a> -->
                 </li>
             <%end%>
+            <%if local_assigns.has_key? :unlink%>
+                <li>
+                    <%= link_to delete_shared_book_path(book), :method => :delete,:data => { :confirm => 'Do you really want to unshare this book?' } do %>
+                        <i class="fa fa-chain-broken" title="Unshare it"></i>
+                    <% end %>
+
+                    <!-- <a href="#" target="_blank"><i class="fa fa-hand-paper-o"></i></a> -->
+                </li>
+            <%end%>
+
         </ul>
     </div>
     <div class="product-6">
