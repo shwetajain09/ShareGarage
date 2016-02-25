@@ -2,21 +2,22 @@
         <br>
         <div class="form-group">
             <div class="col-sm-12 col-md-12 col-lg-12">                
-                <i class="fa fa-search fa-2x pull-left searchicon"></i><input type="search" class="form-control" id="search" placeholder="Filter items...">
+                <i class="fa fa-search fa-2x pull-left searchicon"></i><input type="search" class="form-control location-search-box" id="search" placeholder="Filter items...">
             </div>
         </div>
     </div>    
+    <br/>
 <%=form_tag share_books_path,method: :post do %>
     <div class="row add-location">
         <div class="items-collection location-box">  
             <% @locations.each do |location| %>                        
                 <div class="items col-xs-6 col-sm-3 col-md-3 col-lg-3">
                     <div class="info-block block-info clearfix">
-                        <div  class="btn-group itemcontent"><!-- data-toggle="buttons" -->
-                            <label class="btn btn-default ">
+                        <div  class="btn-group itemcontent location-outer-block"><!-- data-toggle="buttons" -->
+                            <label class="btn btn-default location-outer-block">
                                 <div class="itemcontent">
                                     <input type="checkbox" name="location_ids[]" autocomplete="off" value=<%=location.id%> >
-                                    <h6 class="" title ="<%= h location.name -%>"><%= h location.name.slice(0..9)-%></h6>
+                                    <h6 class="location-cell" title ="<%= h location.name -%>"><%= h location.name-%></h6>
                                 </div>
                             </label>
                         </div>

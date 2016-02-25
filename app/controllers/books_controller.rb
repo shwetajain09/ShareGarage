@@ -140,7 +140,7 @@ class BooksController < ApplicationController
 		language.save!
 		@book.language = language
 		image_url = book.image_link(:zoom => 2)
-		@book.avatar = URI.parse(image_url)
+		@book.avatar = URI.parse(image_url) if image_url.present?
 		
 		if book.authors.kind_of?(Array)
 			book.authors.each do |author|

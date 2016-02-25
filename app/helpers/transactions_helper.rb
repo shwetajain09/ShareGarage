@@ -20,7 +20,7 @@ module TransactionsHelper
 		if transaction.available_unlocked
 			response = {:redeem => 'Available',:class => 'alert-info',:message => 'Use this BookCoin to get a book of your choice'}
 		elsif transaction.locked
-			response = {:redeem => 'Locked',:class => 'alert-danger' ,:message => "You've locked this BookCoin to get book #{link_to transaction.book.title,book_path(transaction.book_id)} from the book owner #{link_to transaction.receiver.full_name,user_path(transaction.receiver)}",:action=>true}
+			response = {:redeem => 'Locked',:class => 'alert-danger' ,:message => "You've locked this BookCoin to get book #{link_to transaction.book.title,book_path(transaction.book_id)} from the book owner #{link_to transaction.receiver.full_name,user_path(transaction.receiver)}",:show_unlock=>true}
 		elsif transaction.redeemed
 			response = {:redeem => 'Already redeemed',:class => 'alert-success',:message => "You've used this BookCoin and got #{link_to transaction.book.title,book_path(transaction.book_id)} from #{link_to transaction.receiver.full_name,user_path(transaction.receiver)}"}
 		end

@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   resources :users do
     resources :tokens do
       member do
-        
+        get :unlock_book_coin
       end
       collection do 
         get :show_token_form

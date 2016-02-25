@@ -14,10 +14,13 @@
                       <td><%=response[:redeem]%></td>
                       <td>                             
                         <%=response[:message].html_safe%>
-                        <%# =link_to 'Unlock',unlock_book_coin_path()%>
-                      </td>
-                      
                         
+                      </td>
+                      <%if response[:show_unlock]%>
+                        <td>
+                          <%= link_to 'Unlock',unlock_book_coin_user_token_path(current_user,transaction)%>
+                        </td>
+                      <%end%> 
                      
                     </tr>
                   <% end %>

@@ -16,7 +16,7 @@ def update
 end
 
 def shelf
-	@books = current_user.books.paginate :page =>  params[:page], :per_page => 9
+	@books = current_user.books.order('id DESC').paginate :page =>  params[:page], :per_page => 9
 end
 
 def request_book	

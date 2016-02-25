@@ -5,5 +5,5 @@ staging:
   access_key_id: 'AKIAIOESJ4BRQ2AXULWA'
   secret_access_key: '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'
 production:
-  access_key_id: AWS_ACCESS_KEY_ID
-  secret_access_key: AWS_SECRET_KEY_ID
+  access_key_id: 'AKIAIOESJ4BRQ2AXULWA'
+  secret_access_key: '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'

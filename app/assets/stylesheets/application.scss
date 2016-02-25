@@ -30,12 +30,20 @@ span.stars, span.stars span {
 
 .add-location{
 	overflow: auto;
-	height: 400px;
+	height: 270px;
 }
 
 .location-cell{
   white-space: nowrap;
   overflow:hidden;
+}
+
+.location-outer-block{
+  width:100%
+}
+
+.location-search-box{
+  width: 90%
 }
 
 .user-dropdown{
@@ -68,11 +76,9 @@ ul.user-dropdown li{
     margin: 0 10px 0 0;
     padding: 0;
 }
-.fa-stack-1x{
-  top: 23px;
-}
-.intro-lead-in{
-  font-size: 54px;
+
+.intro-text .intro-lead-in {
+  font-size: 60px;
   color: black;
 }
 

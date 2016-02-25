@@ -43,9 +43,15 @@ class Token < ActiveRecord::Base
 		
 	end
 
-	# def check_unlock_status(user)
-		
-	# end
+	def check_unlock_validity(user_id)
+		return (self.owner == user_id) && !self.is_redeemed
+	end
+
+	def unlock_token(user)
+		self.destroy
+		token = user.tokens.new(:credit => AppConfiguration::TOKEN_GENERATION_CREDIT)
+	    token.save
+	end
 
 	def self.generate_book_coin(user)
 		token = user.tokens.new(:credit => AppConfiguration::TOKEN_GENERATION_CREDIT)

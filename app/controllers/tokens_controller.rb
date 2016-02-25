@@ -42,15 +42,16 @@ class TokensController < ApplicationController
 		redirect_to user_transactions_path(current_user),:notice => message
 	end	
 
-	# def unloack_token
-	# 	@token = Token.find_by_redeem_code(params[:token])
-	# 	if @token.present? && @token.check_validity(:receiver_id => current_user.id)
-	# 		@token.redeem_token(current_user)
-	# 		message = "Redeemed Successfully"
-	# 	else
-	# 		message = "Invalid token!"
-	# 	end
-	# 	redirect_to user_transactions_path(current_user),:notice => message
-	# end
+	def unlock_book_coin
+		@token = Token.find_by_id(params[:id])
+		user = User.find(params[:user_id]) 
+		if @token.present? && user.present? && @token.check_unlock_validity(user.id)
+			@token.unlock_token(current_user)
+			message = "Unlocked Successfully"
+		else
+			message = "Invalid token!"
+		end
+		redirect_to user_transactions_path(current_user),:notice => message
+	end
 
 end
