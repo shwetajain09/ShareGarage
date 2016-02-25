@@ -36,9 +36,9 @@ class Token < ActiveRecord::Base
 
 	def check_validity(options = {})
 		if options[:receiver_id].present?
-			return self.receiver_id == options[:receiver_id] && !self.is_redeemed && self.valid_til >= Date.today
+			return self.receiver_id == options[:receiver_id] && !self.is_redeemed 
 		else
-			return !self.is_redeemed && self.valid_til >= Date.today
+			return !self.is_redeemed
 		end
 		
 	end

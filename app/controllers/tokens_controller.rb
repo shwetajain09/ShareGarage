@@ -26,7 +26,7 @@ class TokensController < ApplicationController
 	def update
 		@token = Token.find_by_id(params[:id])
 		code = @token.generate_token
-		@token.update_attributes(:redeem_code=> code,:receiver_id => params[:user_id],:book_id => params[:book_id],:valid_til => Date.today+7.days)
+		@token.update_attributes(:redeem_code=> code,:receiver_id => params[:user_id],:book_id => params[:book_id])
 		@book = Book.find_by_id(@token.book_id)
 		UserMailer.send_token_details(current_user,@token).deliver
 	end

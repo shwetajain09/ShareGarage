@@ -194,9 +194,11 @@ ol li {
             <p>Great News! A user is interested in a book that you've shared on <%=link_to 'ShareGarage',"www.sharegarage.com"%>.</p>
             <h1>Get In touch with <%=@requester%>.</h1>
             <p>It's the right time to give away your read book to the one who needed it the most.</p>
-            <h2>Don't let your book bite the dust let them kiss someone's hand.</h2>
+            
             <h2>The title of the book "<%= @title %>"</h2>
-            <h2>The google Id of the book "<%= @google_id %>"</h2>
+            <%if  @google_id.present? %>
+              <h2>The google Id of the book "<%= @google_id %>"</h2>
+            <%end%>
             <p>Go! Contact them asap before it gets too late.</p>
             <!-- button -->
             <table class="btn-primary" cellpadding="0" cellspacing="0" border="0">

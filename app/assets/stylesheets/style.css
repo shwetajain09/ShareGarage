@@ -116,7 +116,7 @@ p {
 .grab-share ul li{margin:0px 0 0 0; padding:0 0 0 0px; float:left; border-right:solid 1px #FFF;}
 .grab-share ul li a{margin:0px; padding:0 10px; font-size:20px; color:#fff;}
 .grab-share ul li a:hover{color:#ffe135; text-decoration:underline;}
-.active{text-decoration:underline; padding:1px 0; color:#ffe135;}
+
 
 .location{background:#d9d9d9; margin:3px 0 0 20px; padding:14px 10px 11px 10px; border-radius:5px 0px 0px 5px; float:left; clear:both;} 
 .select-option{float:left; padding:0 10px; margin:0px; width:300px; height:45px; margin:3px 0 0 0; border-radius:0; border: 1px solid rgb(255, 255, 255);}

@@ -9,7 +9,8 @@
                         <%authors = book.authors.collect(&:name).join(',')%>
                         <%avatar = book.avatar.url(:medium)%>
                         <%rating = book.try(:google_provided_rating)%>
-                        <%= render partial: "books/book", :locals => {:book => book,:path => path,:action_class =>action_class,:authors => authors,:image_link => avatar,:average_rating => rating} %>
+                        <%icon_title = "Grab it"%>
+                        <%= render partial: "books/book", :locals => {:book => book,:path => path,:action_class =>action_class,:authors => authors,:image_link => avatar,:average_rating => rating,:icon_title=>icon_title} %>
                     <%end%>
                 <%else%>
                     <%@books.each do |book|%>
@@ -18,7 +19,8 @@
                         <%authors = book.authors%>
                         <%avatar = book.image_link(:zoom => 2).present? ? (book.image_link(:zoom => 2)) : ('/assets/no_book_cover.jpg')%>
                         <%rating = book.average_rating%>
-                        <%= render partial: "books/book", :locals => {:book => book,:path => path,:action_class =>action_class,:authors => authors,:image_link => avatar,:average_rating => rating} %>
+                        <%icon_title = "Request it"%>
+                        <%= render partial: "books/book", :locals => {:book => book,:path => path,:action_class =>action_class,:authors => authors,:image_link => avatar,:average_rating => rating,:icon_title => icon_title} %>
                     <%end%>
                 <%end%>
              <%if @grab%>

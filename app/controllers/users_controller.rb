@@ -26,7 +26,9 @@ def request_book
 			@book  = Book.find(params[:book_id])
 			@title = @book.title
 			options = {:provider => @requestee,:google_id => @google_id}
+			@requested_to_user = true
 		else
+			@requested_to_user = false
 			@book = Book.find_by_google_id(params[:google_id])
 			if @book.present?
 				add_book_request(@book)

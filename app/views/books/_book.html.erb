@@ -5,13 +5,13 @@
             <li>
 
                 <%= link_to book_path(book.id) ,:remote => true ,:method => :get do %>
-                    <i class="fa fa-search-plus" alt="Quick View"></i>
+                    <i class="fa fa-search-plus" title="Quick View"></i>
                 <% end %>
             </li>
             <%if local_assigns.has_key? :path%>
                 <li>
                     <%= link_to path ,:remote => true ,:method => :get do %>
-                        <i class="fa <%=action_class%>"></i>
+                        <i class="fa <%=action_class%>" title="<%=icon_title%>"></i>
                     <% end %>
                     <!-- <a href="#" target="_blank"><i class="fa fa-hand-paper-o"></i></a> -->
                 </li>

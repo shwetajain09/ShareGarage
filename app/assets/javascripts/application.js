@@ -22,11 +22,11 @@ var toggleDiv;
 var showModal;
 var attributes_for_modal;
 
-toggleDiv = function (element_to_hide,element_to_show){
+toggleDiv = function (element_to_hide,element_to_show,clicked_elem){
     element_to_hide.setAttribute('style','display:none'); 
   element_to_show.setAttribute('style','display:block');
-  
-
+  clicked_elem.parent().siblings().find('a').removeClass('header-active');
+  clicked_elem.addClass('header-active');
 }
 
 showModal = function (type,isbn,path){
@@ -164,10 +164,3 @@ $(function() {
 
 });
 
-$('.link-ajax').bind('ajax:beforeSend', function() {
-  $('.loading').show();
-});
-
-$('.link-ajax').bind('ajax:complete', function() {
-  $('.loading').hide();
-});

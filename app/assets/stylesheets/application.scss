@@ -83,7 +83,7 @@ ul.user-dropdown li{
 }
 
 .insta a {
-  background:url(/assets/webz/insta.png) no-repeat;
+  background:url(/assets/webz/instaa_icon.png) no-repeat;
   margin:0 15px 0 0;
   float:left;
   width:37px;
@@ -91,7 +91,7 @@ ul.user-dropdown li{
 }
 
 .insta a:hover {
-  background:url(/assets/webz/insta.png) no-repeat;
+  background:url(/assets/webz/instaa_icon_hover.png) no-repeat;
   margin:0 15px 0 0;
   float:left;
   width:37px;
@@ -99,4 +99,13 @@ ul.user-dropdown li{
 }
 .dl-horizontal .comment-image{
   text-align:left;
+}
+
+
+.grab-share{
+  width: 50%;
+}
+
+.grab-share ul li a.header-active{
+   color:#ffe135;
 }

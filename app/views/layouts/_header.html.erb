@@ -41,8 +41,8 @@
             <div class="search-area">
             	<div class="grab-share">
                     <ul>
-                        <li><a class="active" style="color:#FFE135;" href="javascript:void(0);" onclick="toggleDiv(give_away,take);">GRAB</a></li>
-                        <li style="border:none;"><a class="active" style="color:#FFE135;" href="javascript:void(0);" onclick="toggleDiv(take,give_away);">SHARE</a></li>
+                        <li><a class="header-active" href="javascript:void(0);" onclick="toggleDiv(give_away,take,$(this));"><i class="fa fa-hand-rock-o"></i> GRAB</a></li>
+                        <li style="border:none;"><a href="javascript:void(0);" onclick="toggleDiv(take,give_away,$(this));"><i class="fa fa-hand-paper-o"></i> SHARE</a></li>
                     </ul>
             	</div>
 
@@ -86,7 +86,7 @@
                         <li><%= link_to 'Popular',library_books_path(:tag => 'popular')%></li>
                         <li><%= link_to 'Top Indian Author',library_books_path(:tag => 'Indian author')%></li>
                         <li><%= link_to 'Top Foreign Author',library_books_path(:tag => 'Foreign author')%></li>
-                    	   <li><%= link_to 'Book Request',show_requested_books_users_path()%></li>
+                    	   <li><%= link_to 'Requested books',show_requested_books_users_path()%></li>
                     </ul>
                 </div>
             </div>        

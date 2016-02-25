@@ -1,9 +1,15 @@
 $('body').removeClass("loading");
 var modal = $('#app_modal');
+<%if @requested_to_user %>
+		var message = 'Great! An email will be sent to the book owner and the owner will get back to you. If the owner did not respond back, you can write to us.'
+<%else%>
+		var message = 'Great you have just requested the book. Your requested book is listed <a href=<%=show_requested_books_users_path()%>>here</a> and please check your requested book again after a week. Meanwhile, you can grab some other book of your choice.'
+
+<%end%>
 modal.on('show.bs.modal', function (event) {
   <%if current_user.present?%>
 		modal.find('.modal-title').html("Book request");
-  		modal.find('.modal-body').html("Great you've just requested the book");		
+  		modal.find('.modal-body').html(message);
   		modal.find('.modal-footer').html('<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>');
   <%else%>
 		modal.find('.modal-body').html('<%= escape_javascript(render(:partial => "/users/sessions/form")) %>');

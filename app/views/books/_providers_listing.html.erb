@@ -17,18 +17,23 @@
          <%else%>
               <%if current_user.tokens.unlocked_unused.count > 0%>
                
+ <a id="popoverData" class="btn" href="#" data-content="Call the book owner or ask via email. If you've already contacted, click on 'Get BC Code' and share the received code with the book owner in exchange of book." rel="popover" data-placement="bottom" data-original-title="What's this?" data-trigger="hover"><i class="fa fa-question-circle"></i></a>
                   <%if provider.show_phone?%>
                     <%= link_to provider.phone_no,'#',
-                               :class => 'btn btn-default btn-xs',:title=>'Call book owner to make a great deal!;',:disabled => true %>
+                               :class => 'btn btn-default btn-xs',:title=>'Call book owner to make a great deal!;', :disabled => true %>
                  
                   <%end%>
                    <%= link_to "Ask via email",request_book_users_path(:user_id => provider,:book_id=>@book.id),
-                               :class => 'btn btn-default btn-xs',:title=>'An email will be sent to the book owner' ,:method => :post,:remote => true,:data => { :confirm => "Great! Confirm to send a request to #{provider.full_name} and socialise to make a great deal." }%>
+                               :class => 'btn btn-default btn-xs link-ajax',:title=>'An email will be sent to the book owner' ,:method => :post,:remote => true,:data => { :confirm => "Great! Confirm to send a request to #{provider.full_name} and socialise to make a great deal." }%>
 
-                  <%= link_to user_token_path(provider.id,current_user.tokens.unlocked_unused.first.id,:book_id => @book.id ), :remote => true,:method => :put,:remote => true,:data => { :confirm => "This will lock your BookCoin(BC) with '#{provider.full_name}' for '#{@book.title}'. This BC will be valid for the next 7 days. You will receive an email with the BookCoin details shortly." } do %>
-                    <button class = 'btn btn-primary btn-xs'><i class="fa fa-lock fa-1x"> Share my BookCoin</i></button>
+                  <%= link_to user_token_path(provider.id,current_user.tokens.unlocked_unused.first.id,:book_id => @book.id ), :remote => true,:method => :put,:class => "link-ajax",:data => { :confirm => "This will generate a BC Code for '#{provider.full_name}' of '#{@book.title}'. You will receive an email with the BC Code details shortly. Make sure you share it with the book owner in exchange of book." } do %>
+                    <button class = 'btn btn-primary btn-xs'><i class="fa fa-lock fa-1x"> Get BC Code</i></button>
+
                   <%end%> 
-                
+
+
+
+                      
                   <%#=link_to 'Generate token',user_tokens_path(Token.first), :method => :post%>
               <%else%>
                 Earn BookCoin to get the book
@@ -41,13 +46,22 @@
     <% end %>
   </tbody>
 </table>
-<span><i>*Get Socialise by meeting the book owner at a conveneint and friendly place. Make sure you exchange your BookCoin and give owner's review</i> </span>
+<span><i>*Get Socialise by meeting the book owner at a conveneint and friendly place and make sure you exchange your BookCoin Code.</i> </span>
    <div class="loading" style="display:none;">
                     <%= image_tag '/assets/loading.gif'%>
                     </div>
 <script type="text/javascript">
   $(function() {
+    $('#popoverData').popover();
+$('#popoverOption').popover({ trigger: "hover" });
     $('span.stars').stars();
+    $('.link-ajax').bind('ajax:beforeSend', function() {
+  $('.loading').show();
+});
+
+$('.link-ajax').bind('ajax:complete', function() {
+  $('.loading').hide();
+});
 });
 
 </script>
