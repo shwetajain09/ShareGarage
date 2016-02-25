@@ -18,7 +18,7 @@
               <%if current_user.tokens.unlocked_unused.count > 0%>
                
  <a id="popoverData" class="btn" href="#" data-content="Call the book owner or ask via email. If you've already contacted, click on 'Get BC Code' and share the received code with the book owner in exchange of book." rel="popover" data-placement="bottom" data-original-title="What's this?" data-trigger="hover"><i class="fa fa-question-circle"></i></a>
-                  <%if provider.show_phone?%>
+                  <%if provider.show_phone? && provider.phone_no.present?%>
                     <%= link_to provider.phone_no,'#',
                                :class => 'btn btn-default btn-xs',:title=>'Call book owner to make a great deal!;', :disabled => true %>
                  
@@ -36,7 +36,7 @@
                       
                   <%#=link_to 'Generate token',user_tokens_path(Token.first), :method => :post%>
               <%else%>
-                Earn BookCoin to get the book
+                Earn BookCoin(BC) to get the book
               <%end%>
           <%end%>
 
@@ -46,7 +46,7 @@
     <% end %>
   </tbody>
 </table>
-<span><i>*Get Socialise by meeting the book owner at a conveneint and friendly place and make sure you exchange your BookCoin Code.</i> </span>
+<span><i>*Get Socialise by meeting the book owner at a conveneint and friendly place and make sure you exchange your BookCoin(BC) Code.</i> </span>
    <div class="loading" style="display:none;">
                     <%= image_tag '/assets/loading.gif'%>
                     </div>
