@@ -34,5 +34,9 @@ def get_contact_info(provider)
 	end
 end
 
+def get_provided_status(book_id,user_id)
+	bu = BooksUser.find_by_book_id_and_user_id(book_id,user_id)
+	return bu.is_provided
+end
 
 end

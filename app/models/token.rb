@@ -19,15 +19,13 @@ class Token < ActiveRecord::Base
 		if self.receiver_id.present? && self.book_id.present? && owner.present?
 			book_user = BooksUser.find_by_book_id_and_user_id(self.book_id,self.receiver_id)
 			book_user.locations.destroy_all
-			book_user.is_provided = false
-			book_user.save
 			new_book_user = BooksUser.find_by_book_id_and_user_id(self.book_id,owner)
 			if new_book_user.present?
 				new_book_user.count += 1
 			else
 				new_book_user = BooksUser.create(:book_id => self.book_id,:user_id => owner,:is_provided => false)
 			end
-
+			book_user.destroy
 			# self.giver.profile.credit -= self.credit
 			# self.giver.profile.save
 			# self.giver.debit_transactions.create(:receiver_id => redeemer.id,:message => AppConfiguration::TOKEN_REDEMPTION,:credit => self.credit,:token_id=>self.id)

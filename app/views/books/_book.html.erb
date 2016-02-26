@@ -16,7 +16,7 @@
                     <!-- <a href="#" target="_blank"><i class="fa fa-hand-paper-o"></i></a> -->
                 </li>
             <%end%>
-            <%if local_assigns.has_key? :unlink%>
+            <%if (local_assigns.has_key? :is_provided) && is_provided%>
                 <li>
                     <%= link_to delete_shared_book_path(book), :method => :delete,:data => { :confirm => 'Do you really want to unshare this book?' } do %>
                         <i class="fa fa-chain-broken" title="Unshare it"></i>
@@ -29,12 +29,17 @@
         </ul>
     </div>
     <div class="product-6">
-        <p title = "<%=book.title%>"><%=link_to book.title.slice(0..35),book_path(book.id)%></p>
-        <h2 title = "<%=authors%>"><%=authors.slice(0..35)%></h2>
+        <p title = "<%=book.title%>"> <%if (local_assigns.has_key? :is_provided) && is_provided%>
+                    <i class="fa fa-share-square-o" title="Shared"></i>
+                    <%elsif (local_assigns.has_key? :is_provided)%>
+                    <i class="fa fa-exclamation-triangle" title="Not Shared"></i>
+                <%end%> <%=link_to book.title.slice(0..32),book_path(book.id)%></p>
+        <h2 title = "<%=authors%>"><%=authors.slice(0..30)%></h2>
         <h2 title = "<%=book.try(:isbn)%>"><%=book.try(:isbn)%></h2>
+         
         <div class="star-icon">
       
-                  
+               
                         <span class="stars"><%= average_rating%>
                         </span>
                   

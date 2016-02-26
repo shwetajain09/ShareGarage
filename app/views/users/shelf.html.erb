@@ -1,8 +1,8 @@
 <!-- Portfolio Grid Section -->
-<h6>My Book Shelf</h6>
+<h2>My Book Shelf</h2>
         <%if @books.count>0%>
                 <%@books.each do |book|%>
-                    <%= render partial: "books/book", :locals => {:book => book,:path => show_share_modal_book_path(book.google_id,:book_id=>book.id),:action_class =>"fa-share",:show_actions => true,:authors => book.authors.collect(&:name).join(','),:image_link => book.avatar.url(:medium),:average_rating => book.try(:google_provided_rating),:icon_title=>"Share it",:unlink => true} %>
+                    <%= render partial: "books/book", :locals => {:book => book,:path => show_share_modal_book_path(book.google_id,:book_id=>book.id),:action_class =>"fa-share",:show_actions => true,:authors => book.authors.collect(&:name).join(','),:image_link => book.avatar.url(:medium),:average_rating => book.try(:google_provided_rating),:icon_title=>"Share it",:unlink => true,:is_provided => get_provided_status(book.id,current_user.id)} %>
                 <%end%>
             </div>
             <%= will_paginate @books , renderer: BootstrapPagination::Rails%>
