@@ -1,7 +1,10 @@
-<table class="table table-striped">
+<div class="table-responsive add-location">
+<span><i>*Socialise by meeting the book owner at a conveneint and friendly place and make sure you exchange your BookCoin(BC) Code.</i> </span>
+<table class="table table-striped ">
 
   <tbody>
     <% @providers.each do |provider| %>
+
       <tr>
       <td>
         <%= image_tag provider.avatar.url(:thumb) %>
@@ -17,20 +20,17 @@
          <%else%>
               <%if current_user.tokens.unlocked_unused.count > 0%>
                
- <a id="popoverData" class="btn" href="#" data-content="Call the book owner or ask via email. If you've already contacted, click on 'Get BC Code' and share the received code with the book owner in exchange of book." rel="popover" data-placement="bottom" data-original-title="What's this?" data-trigger="hover"><i class="fa fa-question-circle"></i></a>
+ 
                   <%if provider.show_phone? && provider.phone_no.present?%>
                     <%= link_to provider.phone_no,'#',
                                :class => 'btn btn-default btn-xs',:title=>'Call book owner to make a great deal!;', :disabled => true %>
                  
                   <%end%>
-                   <%= link_to "Ask via email",request_book_users_path(:user_id => provider,:book_id=>@book.id),
-                               :class => 'btn btn-default btn-xs link-ajax',:title=>'An email will be sent to the book owner' ,:method => :post,:remote => true,:data => { :confirm => "Great! Confirm to send a request to #{provider.full_name} and socialise to make a great deal." }%>
-
-                  <%= link_to user_token_path(provider.id,current_user.tokens.unlocked_unused.first.id,:book_id => @book.id ), :remote => true,:method => :put,:class => "link-ajax",:data => { :confirm => "This will generate a BC Code for '#{provider.full_name}' of '#{@book.title}'. You will receive an email with the BC Code details shortly. Make sure you share it with the book owner in exchange of book." } do %>
-                    <button class = 'btn btn-primary btn-xs'><i class="fa fa-lock fa-1x"> Get BC Code</i></button>
-
-                  <%end%> 
-
+                   <%= link_to "Send email request",request_book_users_path(:user_id => provider,:book_id=>@book.id),
+                               :class => 'btn btn-success btn-xs link-ajax',:title=>'An email will be sent to the book owner' ,:method => :post,:remote => true,:data => { :confirm => "Great! Confirm to send an email request to #{provider.full_name} and socialise to make a great deal." }%>
+                               <br/><br/>
+                 
+                  
 
 
                       
@@ -43,17 +43,31 @@
   
         </td>
       </tr>
+      <%if current_user.tokens.unlocked_unused.count > 0%>
+      <tr>
+        <td colspan="4">
+          <a class="popoverData" class="btn" href="#" data-content="Call the book owner or ask via email. If you've already contacted, click on 'Lock my BC' and share the received code with the book owner in exchange of book." rel="popover" data-placement="bottom" data-original-title="What's this?" data-trigger="hover"><i class="fa fa-question-circle"></i></a>
+          <%= link_to user_token_path(provider.id,current_user.tokens.unlocked_unused.first.id,:book_id => @book.id ), :remote => true,:method => :put,:class => "link-ajax",:data => { :confirm => "This will lock your BookCoin with '#{provider.full_name}' for '#{@book.title}' and generate a BookCoin code which you will receive in your email account shortly. Make sure you share it with the book owner in exchange of book." } do %>
+                    <button class = 'btn btn-primary' style="width:80%"><i class="fa fa-lock "> Lock my BC with '<%=provider.full_name.slice(0..32)%>'</i></button>
+
+                  <%end%> 
+        </td>
+      </tr>
+      <%end%>
     <% end %>
   </tbody>
 </table>
-<span><i>*Get Socialise by meeting the book owner at a conveneint and friendly place and make sure you exchange your BookCoin(BC) Code.</i> </span>
+
    <div class="loading" style="display:none;">
                     <%= image_tag '/assets/loading.gif'%>
                     </div>
+</div>       
+
+
+
 <script type="text/javascript">
   $(function() {
-    $('#popoverData').popover();
-$('#popoverOption').popover({ trigger: "hover" });
+    $('.popoverData').popover();
     $('span.stars').stars();
     $('.link-ajax').bind('ajax:beforeSend', function() {
   $('.loading').show();

@@ -14,6 +14,7 @@ class BooksUser < ActiveRecord::Base
 	def add_book_coin
 		Token.generate_book_coin(self.user)
 		self.user.update_attributes(:got_reward => true)
+		self.user.reward_not_received = true
 	end
 
 	def add_credit

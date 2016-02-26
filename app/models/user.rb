@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,:lockable,
          :recoverable, :rememberable, :trackable, :validatable#,:confirmable
   acts_as_voter
-
+  attr_accessor :reward_not_received
 	has_many :books_users
 	has_many :books ,through: :books_users, source: :book
 	has_many :shared_books, ->{where "books_users.is_provided = true"}, through: :books_users, source: :book

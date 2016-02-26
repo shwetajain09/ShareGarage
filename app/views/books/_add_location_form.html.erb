@@ -8,6 +8,14 @@
     </div>    
     <br/>
 <%=form_tag share_books_path,method: :post do %>
+<div class="modal-footer">
+        
+        <div class="loading" style="display:none;">
+                    <%= image_tag '/assets/loading.gif'%>
+                    </div>
+        <%=submit_tag :share,:class=>"btn btn-primary",:onclick => "$('.loading').show();"%>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    </div>
     <div class="row add-location">
         <div class="items-collection">  
             <% @locations.each do |location| %>                        
@@ -33,14 +41,7 @@
         </div>
     </div>
     <br/>
-    <div class="modal-footer">
-        
-        <div class="loading" style="display:none;">
-                    <%= image_tag '/assets/loading.gif'%>
-                    </div>
-        <%=submit_tag :share,:class=>"btn btn-primary",:onclick => "$('.loading').show();"%>
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-    </div>
+    
     
 <%end%>
 

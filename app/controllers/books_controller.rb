@@ -76,10 +76,12 @@ class BooksController < ApplicationController
 			book_user.locations << parents
 		end
 		if book_user.save
-			if current_user.got_reward?
-				message = "Woooh! your book has been successfully uploaded. keep sharing."
+			if current_user.reward_not_received.present?
+				current_user.reward_not_received = false
+				current_user.save
+				message = "Woooh! you've got 1 BookCoin on your first book upload. keep sharing."
 			else
-				message = "Woooh! you got 1 BookCoin on your first book upload. keep sharing."
+				message = "Woooh! your book has been successfully uploaded. keep sharing."
 			end
 			redirect_to shelf_user_path(current_user),:notice => message
 		else
@@ -94,7 +96,7 @@ class BooksController < ApplicationController
 		book_user.locations.destroy_all
 		if book_user.save
 			book_user.deduct_credit
-			flash[:notice] = "This book is no longer available for users. But it will remain in your shelf, you can share it any time in future."
+			flash[:notice] = "This book will no longer be available to other users. But it will remain in your shelf, you can share it any time in future."
 		else
 			flash[:error] = "Not removed from shared bucket"
 		end
