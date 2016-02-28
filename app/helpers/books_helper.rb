@@ -17,13 +17,11 @@ def get_location_class(book_id,location)
 end
 
 def get_location_value(book_id,location)
-	book = current_user.shared_books.find_by_id(book_id)
-	if book.present?
-		book_locations = current_user.shared_books.find_by_id(book_id).pick_locations.collect(&:id)
+	book_user = BooksUser.find_by_book_id_and_user_id(book_id,current_user.id)
+	if book_user.present?
+		book_locations = book_user.locations.collect(&:id)
 		if book_locations.include?(location)
-			return true	
-		else
-			return false	
+			return checked = "checked"
 		end
 	end
 end

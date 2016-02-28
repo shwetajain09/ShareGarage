@@ -14,7 +14,7 @@
                                   <li><a href="<%=user_path(current_user)%>">My Profile</a></li>
                                   <li><a href="<%=user_transactions_path(current_user)%>">Account</a></li>
                                   <li><%= link_to 'Book Shelf',shelf_user_path(current_user)%></li>
-                                  <li><%= link_to 'My book requests',show_requested_books_users_path(current_user.id)%></li>
+                                  <li><%= link_to 'My book requests',show_requested_books_users_path('my-books')%></li>
                                   <li><%= link_to 'Redeem Bc Code',show_token_form_user_tokens_path(current_user),:remote => true%></li>
                                   <li><%= link_to 'Log out',destroy_user_session_path, method: :delete%></li>
                                 </ul>

@@ -9,11 +9,15 @@
             </div>
             <div class="search-content">
             <%=form_tag donate_request_home_path(),:remote => true,:method => :post do%>
-            	<input type="text" name="email" placeholder="Enter your email, we'll get back to you">
+            	<input type="text" name="email" placeholder="Enter your email, we'll get back to you" required >
+
                 <div class="newsletter-right-bg">
-                	<input type="submit" value="Donate">
+                	<input type="submit" value="Donate" onclick = "$('.loading-donate').show();">
                 </div>
             <%end%>
+            </div>
+            <div class="loading-donate" style="display:none;">
+                <%= image_tag '/assets/loading.gif'%>
             </div>
         </div>
     </div>
@@ -39,6 +43,7 @@
                 <div class="address-menu">
                 	<ul>
                     	<li><p><a href="<%=about_us_home_path%>">About Us</a></p></li>
+                        <li><a href="<%=faq_home_path%>">FAQ's</a></li>
                         <li><p><a href="<%=privacy_policy_home_path%>">Privacy Policy</a></p></li>
                         <li><p><a href="<%=terms_of_service_home_path%>">Terms and Conditions</a></li>
                      

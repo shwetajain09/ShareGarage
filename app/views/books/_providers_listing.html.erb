@@ -1,5 +1,6 @@
 <div class="table-responsive add-location">
-<span><i>*Socialise by meeting the book owner at a conveneint and friendly place and make sure you exchange your BookCoin(BC) Code.</i> </span>
+<span><i>*Get in touch with the book owner and arrange a BOOK MEETING at a conveneint and friendly place. Make sure you exchange your BookCoin(BC) Code.</i> </span>
+<br/>
 <table class="table table-striped ">
 
   <tbody>
@@ -27,7 +28,7 @@
                  
                   <%end%>
                    <%= link_to "Send email request",request_book_users_path(:user_id => provider,:book_id=>@book.id),
-                               :class => 'btn btn-success btn-xs link-ajax',:title=>'An email will be sent to the book owner' ,:method => :post,:remote => true,:data => { :confirm => "Great! Confirm to send an email request to #{provider.full_name} and socialise to make a great deal." }%>
+                               :class => 'btn btn-success btn-xs link-ajax',:title=>'An email will be sent to the book owner' ,:method => :post,:remote => true,:data => { :confirm => "Confirm to send an email request to #{provider.full_name} and get in touch with him/her to make a great deal." }%>
                                <br/><br/>
                  
                   
@@ -43,7 +44,7 @@
   
         </td>
       </tr>
-      <%if current_user.tokens.unlocked_unused.count > 0%>
+      <%if current_user != provider && current_user.tokens.unlocked_unused.count > 0%>
       <tr>
         <td colspan="4">
           <a class="popoverData" class="btn" href="#" data-content="Call the book owner or ask via email. If you've already contacted, click on 'Lock my BC' and share the received code with the book owner in exchange of book." rel="popover" data-placement="bottom" data-original-title="What's this?" data-trigger="hover"><i class="fa fa-question-circle"></i></a>

@@ -2,7 +2,7 @@
         <br>
         <div class="form-group">
             <div class="col-sm-12 col-md-12 col-lg-12">                
-                <i class="fa fa-search fa-2x pull-left searchicon"></i><input type="search" class="form-control location-search-box" id="search" placeholder="Filter items...">
+                <input type="search" class="form-control location-search-box" id="search" placeholder="Filter locations...">
             </div>
         </div>
     </div>    
@@ -24,7 +24,7 @@
                         <div  class="btn-group itemcontent location-outer-block"><!-- data-toggle="buttons" -->
                             <label class="btn btn-default location-outer-block">
                                 <div class="itemcontent">
-                                    <input type="checkbox" name="location_ids[]" autocomplete="off" value=<%=location.id%> >
+                                    <input type="checkbox" name="location_ids[]" autocomplete="off" value=<%=location.id%> <%=get_location_value(book_id,location.id)%>>
                                     <h6 class="location-cell" title ="<%= h location.name -%>"><%= h location.name-%></h6>
                                 </div>
                             </label>

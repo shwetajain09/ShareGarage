@@ -2,7 +2,7 @@
 <div class="page-header">
   <h1>
   <%if @user.tokens.unused.count > 0%> 
-      <i class="fa fa-check-square-o" title="Eligble to grab a book!"></i>
+      <i class="fa fa-check-square-o text-success" title="Eligble to grab a book!"></i>
     <%end%>
   <%=@user.full_name%></h1>
   <h3 class="pull-right"><%= link_to t('.back', :default => t("helpers.links.back")),

@@ -48,8 +48,8 @@ def show
 	@user = User.find(params[:id])
 end
 def show_requested_books
-	user = User.find_by_id(params[:format])
-	if user.present?
+	#user = User.find_by_id(params[:format])
+	if params[:format] == 'my-books'
 		@books = current_user.book_requests.collect(&:book).uniq.sort_by(&:created_at).reverse!.paginate :page =>  params[:page], :per_page => 9
 	else
 		@books = BookRequest.all.collect(&:book).uniq.sort_by(&:created_at).reverse!.paginate :page =>  params[:page], :per_page => 9

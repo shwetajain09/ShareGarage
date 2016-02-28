@@ -17,23 +17,22 @@
                             </div>
 
                             <div class="form-group">
-                                <%= f.email_field :email, autofocus: true,:class=>"form-control input-sm required", :placeholder=>"Email Address" %>
+                                <%= f.email_field :email, autofocus: true,:class=>"form-control input-sm required", :placeholder=>"Email Address *" %>
                             </div>
 
                             <div class="row">
                                 <div class="col-xs-6 col-sm-6 col-md-6">
                                     <div class="form-group">
                                         
-                                        <%= f.password_field :password, autocomplete: "off",:class=>"form-control input-sm required", :placeholder=>"Password" %>
-                                        <% if @minimum_password_length %>
-                                            <em>(<%= @minimum_password_length %> characters minimum)</em>
-                                        <% end %>
+                                        <%= f.password_field :password, autocomplete: "off",:class=>"form-control input-sm required", :placeholder=>"Password *" %>
+                                        <em>(8 characters minimum)</em>
+                                       
                                     </div>
                                 </div>
                                 <div class="col-xs-6 col-sm-6 col-md-6">
                                     <div class="form-group">
                                         
-                                        <%= f.password_field :password_confirmation, autocomplete: "off",:class=>"form-control input-sm required", :placeholder=>"Confirm Password"%>
+                                        <%= f.password_field :password_confirmation, autocomplete: "off",:class=>"form-control input-sm required", :placeholder=>"Confirm Password *"%>
                                     </div>
                                 </div>
                             </div>

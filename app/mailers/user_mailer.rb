@@ -15,8 +15,8 @@ class UserMailer < ActionMailer::Base
   end
 
   def request_book(requester,book_title,options={})
-  	@requester = requester.email
-
+  	@requester_email = requester.email
+    @requester = requester
     if options[:provider].present?
     	@requestee = options[:provider].email
     	@requestee_name = options[:provider].full_name

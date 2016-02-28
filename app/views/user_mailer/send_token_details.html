@@ -8,11 +8,7 @@
 /* -------------------------------------
     GLOBAL
 ------------------------------------- */
-  .coupon {
-   width: 250px;
-   padding: 10px;
-   text-align: center;
-   border: 3px dashed #ccc; }
+
 * {
   font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
   font-size: 100%;
@@ -40,6 +36,11 @@ body {
 a {
   color: #348eda;
 }
+div.coupon {
+   width: 250px;
+   padding: 10px;
+   text-align: center;
+   border: 3px dashed #ccc; }
 
 .btn-primary {
   Margin-bottom: 10px;
@@ -197,18 +198,20 @@ ol li {
           <td>
             <p>Hi <%= @user.full_name %>,</p>
             <p>Great Move!</p>
-            <h1>You've just locked a BookCoin to get "<%=Book.find_by_id(@token.book_id).title%>"<br/> from the owner "<%=@token.receiver.full_name%>". <br/>Please meet the book owner at a <br/>convenient and friendly place and <br/>exchange the below code to get the <br/>book.</h1>
-            <p>We hope you are glad and satisfied after talking to the book owner and you are happy to <br/>take user's book. <br/>Please share this Code with the book owner to enjoy the book.</p>
-            <h2>What next to do?</h2>
+            <br/>
+            <p>You've just locked a BookCoin to get <b>"<%=Book.find_by_id(@token.book_id).title%>"</b> from the owner <b>"<%=@token.receiver.full_name%>"</b>. <br/>We hope you're glad and satisfied after talking to the book owner and happy to take user's book.</p>
+            
+            <h2>What's next?</h2>
             <p>1. Meet the book owner at a convenient and friendly place.</p>
-            <p>2. Share the below code.</p>
-            <p>3. Enjoy the book for Free.</p>
-            <div class="coupon"><%=@token.redeem_code%></div>
+            <p>2. Share the code given below.</p>
+            <p>3. The book is all yours.</p>
+            <div class="coupon" style="border: 3px dashed #ccc;width: 250px;padding: 10px;text-align: center;"><b>(<%=@token.redeem_code%>)</b></div>
             <!-- button -->
             
             <!-- /button -->
-            <p>* This coupon is only valid for the next 7 days and only applicable for "<%=Book.find_by_id(@token.book_id).title%>" <br/>from the owner "<%=@token.receiver.full_name%>".</p>
-            <p>Feel free to send out an email to us at "team@sharegarage.com" for any question/concern.</p>
+            <p>* This coupon is only applicable for "<%=Book.find_by_id(@token.book_id).title%>" <br/>from the owner "<%=@token.receiver.full_name%>".</p>
+            <p>In case the owner does not respond within reasonable time or you want to cancel the request, you can unlock your bookcoin anytime. Go to account, click on unlock Bbookcoin and you're ready to go again.
+            <p>Feel free to shoot us an email at "team@sharegarage.com" in case of any question or concern.</p>
             <p>Thanks, have a lovely day.</p>
             <p><a href="https://www.twitter.com/share_garage?s=08">Follow @share_garage on Twitter</a></p>
             <p><a href="https://www.facebook.com/Sharegarage">Follow Share Garage on Facebook</a></p>
@@ -231,18 +234,7 @@ ol li {
     <td></td>
     <td class="container">
       
-      <!-- content -->
-      <div class="content">
-        <table>
-          <tr>
-            <td align="center">
-              <p>Don't like these annoying emails? <a href="#"><unsubscribe>Unsubscribe</unsubscribe></a>.
-              </p>
-            </td>
-          </tr>
-        </table>
-      </div>
-      <!-- /content -->
+
       
     </td>
     <td></td>

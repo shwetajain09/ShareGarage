@@ -192,24 +192,26 @@ ol li {
           <td>
             <p>Hi <%= @requestee_name %>,</p>
             <p>Great News! A user is interested in a book that you've shared on <%=link_to 'ShareGarage',"www.sharegarage.com"%>.</p>
-            <h1>Get In touch with <%=@requester%>.</h1>
-            <p>It's the right time to give away your read book to the one who needed it the most.</p>
-            
-            <h2>The title of the book "<%= @title %>"</h2>
+            <p>Get In touch with <b><%=@requester_email%><b>.</p>
+
+            <br/>
+            <p>It's the right time to share your book with the one who needs it the most.</p>
+            <br/>
+            <p>The title of the book <b>"<%= @title %>"</b></p><br/>
             <%if  @google_id.present? %>
-              <h2>The google Id of the book "<%= @google_id %>"</h2>
+              <p>The google Id of the book <b>"<%= @google_id %>"</b></p>
             <%end%>
             <p>Go! Contact them asap before it gets too late.</p>
             <!-- button -->
             <table class="btn-primary" cellpadding="0" cellspacing="0" border="0">
               <tr>
                 <td>
-                  <a href="www.sharegarage.com">See requester details</a>
+                  <a href="<%=root_url%>users/<%=@requester.id%>">See requester details</a> 
                 </td>
               </tr>
             </table>
             <!-- /button -->
-            <p>Feel free to send out an email to us at "team@sharegarage.com" for any question/concern.</p>
+            <p>Feel free to shoot us an email at "team@sharegarage.com" in case of any question or concern.</p>
             <p>Thanks, have a lovely day.</p>
             <p><a href="https://www.twitter.com/share_garage?s=08">Follow @share_garage on Twitter</a></p>
             <p><a href="https://www.facebook.com/Sharegarage">Follow Share Garage on Facebook</a></p>
@@ -232,18 +234,7 @@ ol li {
     <td></td>
     <td class="container">
       
-      <!-- content -->
-      <div class="content">
-        <table>
-          <tr>
-            <td align="center">
-              <p>Don't like these annoying emails? <a href="#"><unsubscribe>Unsubscribe</unsubscribe></a>.
-              </p>
-            </td>
-          </tr>
-        </table>
-      </div>
-      <!-- /content -->
+     
       
     </td>
     <td></td>
