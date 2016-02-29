@@ -4,7 +4,12 @@
                 <h2><i class="fa fa-phone"></i>+91-9205512899</h2>
                 <h2><i class="fa fa-envelope"></i>team@sharegarage.com</h2>
             </div>
+           
+            <!--   <div class="how-it-works pull-right">
+              <a href="<%=faq_home_path%>">FAQ'S</a>
+              </div> -->
             <div class="header-right">
+           
             	<div class="login-signup">
                 	<ul>
                         <%if user_signed_in?%>
@@ -23,14 +28,16 @@
                               <li><%=link_to 'Login',show_modal_home_path('login'),:remote => true%></li>
                               <li  style="border:none;"><%= link_to 'Sign Up', show_modal_home_path('sign up'),:remote => true%></li>
                             <%end%>
+                          
                     	
                     </ul>
                 </div>
                 <div class="question-icons">
-                	<div class="question"><a href="<%=faq_home_path%>"></a></div>
+                	<div class="question"><a href="<%=faq_home_path%>" title="FAQ'S"></a></div>
                 </div>
                 
             </div>
+           
             <div id="logo"><%= link_to root_url do %>
 
               <!-- <img src="/assets/webz/logo.gif" alt="Logo"> -->
@@ -84,10 +91,14 @@
                 <div class="menu">
                 	<ul>
                         <li><%= link_to 'Popular',library_books_path(:tag => 'popular')%></li>
-                        <li><%= link_to 'Top Indian Author',library_books_path(:tag => 'Indian author')%></li>
-                        <li><%= link_to 'Top Foreign Author',library_books_path(:tag => 'Foreign author')%></li>
+                        <li><%= link_to 'Top Indian Authors',library_books_path(:tag => 'Indian author')%></li>
+                        <li><%= link_to 'Top Foreign Authors',library_books_path(:tag => 'Foreign author')%></li>
                     	   <li><%= link_to 'Requested books',show_requested_books_users_path()%></li>
+                            <li class="how-it-works pull-right">
+              <a href="<%=root_url%>#how_it_works">HOW IT WORKS</a>
+              </li>
                     </ul>
+
                 </div>
             </div>        
         </div>

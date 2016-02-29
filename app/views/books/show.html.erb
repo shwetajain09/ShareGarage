@@ -13,6 +13,7 @@
 
 <%=render :partial => 'detail',:locals => {:book => @book ,:authors =>  (@book.authors.respond_to? :collect) ? @book.authors.collect(&:name).join(',') : @book.authors,:image_link => (@book.respond_to? :avatar) ? @book.avatar.url(:medium) : @book.image_link(:zoom => 2),
 	:average_rating=>(@book.respond_to? :google_provided_rating) ? @book.google_provided_rating : @book.average_rating,:categories => (@book.respond_to? :tag_list) ? @book.tag_list : @book.categories}%>
+<%#=render :partial => 'show_history'%>
 <% if @book.respond_to? :avatar%>
 	<%if current_user.present?%>
 		<div id="like_div_<%=@book.id%>">

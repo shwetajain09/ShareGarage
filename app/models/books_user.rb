@@ -6,10 +6,19 @@ class BooksUser < ActiveRecord::Base
 	validates_presence_of :locations, :if => :is_provided?
 
 	after_create :add_book_coin, :if => :adding_first_time	
+	after_create :add_history
 
 	def adding_first_time
 		!self.user.got_reward?
 	end
+
+	def add_history
+		if self.user.profile.location.present?
+			location = self.user.profile.location.name
+			BookUserHistory.create(:user_id => self.user_id,:book_id => self.user_id,:location => location)
+		end	
+	end
+
 
 	def add_book_coin
 		Token.generate_book_coin(self.user)

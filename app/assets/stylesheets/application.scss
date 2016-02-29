@@ -133,3 +133,36 @@ div.loading{
 .fa.fa-share-square-o {
     color: blue;
 }
+
+@media screen and (max-width:320px)
+
+{
+
+  .search-area input {
+    width: 58%;
+}
+.search-area input.search-here-share {
+    width: 49%;
+}
+
+}
+
+@media screen and (max-width:360px)
+
+{
+
+.search-area input {
+    width: 62%;
+}
+.search-area input.search-here-share {
+    width: 55%;
+}
+}
+
+
+li.how-it-works{
+  background: none repeat scroll 0 0 #099299 !important;
+}
+.how-it-works a{
+  color: #fff !important;
+}

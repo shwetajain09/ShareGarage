@@ -9,8 +9,8 @@ Location.destroy_all
 delhi_parent = Location.create(name: 'All Delhi/Ncr')
 pune_parent = Location.create(name: 'Pune')
 hyderabad_parent = Location.create(name: 'Hyderabad')
-banglore_parent = Location.create(name: 'banglore')
-mumbai_parent = Location.create(name: 'mumbai')
+banglore_parent = Location.create(name: 'Banglore')
+mumbai_parent = Location.create(name: 'Mumbai')
 #North Delhi
 Location.create([{name: 'Delhi University', parent_id: delhi_parent.id},{ name: 'Kashmere Gate', parent_id: delhi_parent.id},{name: 'Kamla Nagar', parent_id: delhi_parent.id},{name: 'Kohat Enclave', parent_id: delhi_parent.id},{name: 'Adarsh Nagar', parent_id: delhi_parent.id},{name: 'Rohini', parent_id: delhi_parent.id}])
 # West Dellhi
