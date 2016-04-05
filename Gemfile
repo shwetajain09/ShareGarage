@@ -23,6 +23,8 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'devise'
+gem "omniauth-google-oauth2"
+gem "figaro"
 gem "paperclip", "~> 4.3"
 gem 'will_paginate-bootstrap'
 gem 'googlebooks', '~> 0.0.9'
@@ -63,7 +65,7 @@ end
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
-  
+
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 end

@@ -7,7 +7,7 @@
                     <div class="panel-body">
                         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
                             <%= devise_error_messages! %>
-                          
+
                             <div class="form-group">
                                 <%= f.email_field :email, autofocus: true,:class=>"form-control input-sm", :placeholder=>"Email Address" %>
                             </div>
@@ -30,7 +30,8 @@
                         <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
                           <p class="text-center">Not registered yet? <%= link_to 'Sign Up', show_modal_home_path('sign up'),:remote => true%></p>
                         <% end -%>
-                       
+                        <%= link_to "Sign in with Google", user_omniauth_authorize_path(:google_oauth2) %>
+
                 <%#= render "users/shared/links" %>
                     </div>
                 </div>

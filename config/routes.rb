@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   post '/rate' => 'rater#create', :as => 'rate'
-  devise_for :users,:controllers => {:registrations => "users/registrations",:sessions => "users/sessions",:confirmations => "users/confirmations",
+  devise_for :users,:controllers => {:registrations => "users/registrations",:omniauth_callbacks => "users/sessions",:sessions => "users/sessions",:confirmations => "users/confirmations",
     :passwords => "users/passwords",:unlocks => "users/unlocks"}
   resources :comments do
     member do
@@ -13,7 +13,7 @@ Rails.application.routes.draw do
       member do
         get :unlock_book_coin
       end
-      collection do 
+      collection do
         get :show_token_form
         post :redeem_token
       end
@@ -22,18 +22,18 @@ Rails.application.routes.draw do
     resources :transactions
     member do
       get :shelf
-      
+
       get :show_meeting_form
       post :submit_meeting_review
     end
-    collection do 
+    collection do
       post :request_book
       get :show_requested_books
     end
 
   end
 
-  
+
 
   resource :home do
       get :show_modal
@@ -59,7 +59,7 @@ Rails.application.routes.draw do
       get :show_providers
       get :show_share_modal
       post :vote
-  
+
     end
 
   end
