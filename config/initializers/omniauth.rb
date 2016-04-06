@@ -6,5 +6,6 @@ Rails.application.config.middleware.use OmniAuth::Builder do
     scope: 'userinfo.profile,userinfo.email',
     provider_ignores_state: true
   }
+  provider :facebook, ENV['FACEBOOK_KEY'], ENV['FACEBOOK_SECRET']
 end
 OmniAuth.config.full_host = Rails.env.production? ? 'https://domain.com' : 'http://localhost:3000'

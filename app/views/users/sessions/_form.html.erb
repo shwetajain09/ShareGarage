@@ -30,7 +30,10 @@
                         <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
                           <p class="text-center">Not registered yet? <%= link_to 'Sign Up', show_modal_home_path('sign up'),:remote => true%></p>
                         <% end -%>
-                        <%= link_to "Sign in with Google", user_omniauth_authorize_path(:google_oauth2) %>
+
+                        <%= link_to "<span class='fa fa-google'></span> Sign in with Goofle".html_safe, user_omniauth_authorize_path(:google_oauth2), class: "btn btn-block btn-social btn-google" %>
+                        <%= link_to "<span class='fa fa-facebook'></span> Sign in with Goofle".html_safe, "#", class: "btn btn-block btn-social btn-facebook" %>
+
 
                 <%#= render "users/shared/links" %>
                     </div>

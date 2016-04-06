@@ -24,6 +24,7 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'devise'
 gem "omniauth-google-oauth2"
+gem 'omniauth-facebook'
 gem "figaro"
 gem "paperclip", "~> 4.3"
 gem 'will_paginate-bootstrap'
