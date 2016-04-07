@@ -31,8 +31,8 @@
                           <p class="text-center">Not registered yet? <%= link_to 'Sign Up', show_modal_home_path('sign up'),:remote => true%></p>
                         <% end -%>
 
-                        <%= link_to "<span class='fa fa-google'></span> Sign in with Goofle".html_safe, user_omniauth_authorize_path(:google_oauth2), class: "btn btn-block btn-social btn-google" %>
-                        <%= link_to "<span class='fa fa-facebook'></span> Sign in with Goofle".html_safe, "#", class: "btn btn-block btn-social btn-facebook" %>
+                        <%= link_to "<span class='fa fa-google'></span> Sign in with Google".html_safe, user_omniauth_authorize_path(:google_oauth2), class: "btn btn-block btn-social btn-google" %>
+                        <%= link_to "<span class='fa fa-facebook'></span> Sign in with Facebook".html_safe, user_omniauth_authorize_path(:facebook), class: "btn btn-block btn-social btn-facebook" %>
 
 
                 <%#= render "users/shared/links" %>

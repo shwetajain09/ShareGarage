@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
 
   devise :database_authenticatable, :registerable,:lockable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable,#,:confirmable
-         :omniauth_providers => [:google_oauth2]
+         :omniauth_providers => [:google_oauth2, :facebook]
   acts_as_voter
   attr_accessor :reward_not_received
 	has_many :books_users
