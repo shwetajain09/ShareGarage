@@ -21,8 +21,8 @@ class User < ActiveRecord::Base
   has_many :debit_token, :class_name => 'Token',:foreign_key => :owner
   has_one :profile
   has_many :book_requests
-  validates_presence_of :gender
-  validates_presence_of :phone_no, :if => :show_phone?
+  #validates_presence_of :gender
+  #validates_presence_of :phone_no, :if => :show_phone?
   after_create :generate_profile
 
   def slug_candidates
@@ -50,9 +50,6 @@ class User < ActiveRecord::Base
     #Token.generate_book_coin(self)
   end
 
-
-
-
   def after_confirmation
     super
     #add_credit
@@ -65,7 +62,7 @@ class User < ActiveRecord::Base
   # end
 
   def full_name
-    (first_name.capitalize.to_s+" "+last_name.capitalize.to_s).presence || email
+    "#{first_name.capitalize.to_s} #{last_name.try(:capitalize.to_s).presence}" || email
   end
 
   def self.from_omniauth(access_token)
@@ -78,7 +75,17 @@ class User < ActiveRecord::Base
         )
     end
     user
-end
+  end
 
+  def self.new_with_session(params, session)
+    if session["devise.user_attributes"]
+      new(session["devise.user_attributes"], without_protection: true) do |user|
+        user.attributes = params
+        user.valid?
+      end
+    else
+      super
+    end    
+  end
 
 end
