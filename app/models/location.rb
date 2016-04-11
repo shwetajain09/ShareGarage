@@ -7,5 +7,21 @@ class Location < ActiveRecord::Base
 		text :name
 	end
 
+	after_save :load_into_soulmate
+	before_destroy :remove_from_soulmate
+
+	private 
+
+	def load_into_soulmate
+		loader = Soulmate::Loader.new("locations")
+		loader.add("term" => name, "id" => self.id)
+	   	
+	end
+
+	def remove_from_soulmate
+		loader = Soulmate::Loader.new("locations")
+	    loader.remove("id" => self.id)
+	end
+
 end
 

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount Soulmate::Server, :at => "/autocomplete"
   post '/rate' => 'rater#create', :as => 'rate'
   devise_for :users,:controllers => {:registrations => "users/registrations",:omniauth_callbacks => "users/sessions",:sessions => "users/sessions",:confirmations => "users/confirmations",
     :passwords => "users/passwords",:unlocks => "users/unlocks"}
@@ -63,6 +64,7 @@ Rails.application.routes.draw do
     end
 
   end
+  resources :locations
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

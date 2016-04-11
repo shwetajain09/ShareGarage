@@ -67,11 +67,9 @@
         <div class="location">
             <img src="/assets/webz/location.png">
         </div>
+              <%#=select_tag "location_query", options_for_select(Location.all.order('name ASC').map { |e| e.name },:selected => "All Delhi/Ncr"),:class=>"select-option"%>
 
-
-
-              <%=select_tag "location_query", options_for_select(Location.all.order('name ASC').map { |e| e.name },:selected => "All Delhi/Ncr"),:class=>"select-option"%>
-
+            <%= text_field_tag "location_query", nil, placeholder: "Search Location", autocomplete: :off, :id=> "search", :class=> "search-here" %>
 
               <%=text_field_tag :book_query,nil,:placeholder => "Enter book title,author,isbn",:class=> "search-here"%>
               <button class="search-bg" type="submit"><img src="/assets/webz/search_icon.png" alt="#"></button>

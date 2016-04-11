@@ -24,6 +24,10 @@ class Book < ActiveRecord::Base
 
 	validates_presence_of :google_id
 	validates_uniqueness_of :google_id
+
+	after_save :load_into_soulmate
+	before_destroy :remove_from_soulmate
+
 	def slug_candidates
       [
         :title
@@ -44,6 +48,21 @@ class Book < ActiveRecord::Base
 	end
 	def is_available
 		self.books_users.where(:is_provided => true).present?
+	end
+
+	
+
+	private 
+
+	def load_into_soulmate
+		loader = Soulmate::Loader.new("books")
+		loader.add("term" => title, "id" => self.id)
+	   	
+	end
+
+	def remove_from_soulmate
+		loader = Soulmate::Loader.new("books")
+	    loader.remove("id" => self.id)
 	end
 end
 
