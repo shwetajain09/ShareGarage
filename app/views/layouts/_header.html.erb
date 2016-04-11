@@ -71,7 +71,7 @@
 
             <%= text_field_tag "location_query", nil, placeholder: "Search Location", autocomplete: :off, :id=> "search", :class=> "search-here" %>
 
-              <%=text_field_tag :book_query,nil,:placeholder => "Enter book title,author,isbn",:class=> "search-here"%>
+              <%=text_field_tag :book_query,nil,:placeholder => "Enter book title,author,isbn",:class=> "search-here", autocomplete: :off, :id=> "books_search" %>
               <button class="search-bg" type="submit"><img src="/assets/webz/search_icon.png" alt="#"></button>
 
         <%end%>

@@ -179,6 +179,12 @@ var ready = function(){
     // hide our autocomplete results
     $('ul#soulmate').hide();
 
+    // populate our search form with the autocomplete result
+    $('#book_query').val(term);
+   
+    // hide our autocomplete results
+    $('ul#book_query').hide();
+
     // then redirect to the result's link 
     // remember we have the link in the 'data' metadata
     return window.location.href = data.link
@@ -191,7 +197,17 @@ var ready = function(){
     selectCallback : select,
     minQueryLength : 2,
     maxResults     : 5
-  })
+  });
+
+
+  $('#books_search').soulmate({
+    url: '/autocomplete/search',
+    types: ['books'],
+    renderCallback : render,
+    selectCallback : select,
+    minQueryLength : 2,
+    maxResults     : 5
+  });
 
 
 }
