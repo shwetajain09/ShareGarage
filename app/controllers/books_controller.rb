@@ -14,7 +14,7 @@ class BooksController < ApplicationController
 
 	def search_with_tag
 		@grab = true
-		
+
 		redirect_to library_books_path
 	end
 
@@ -35,10 +35,10 @@ class BooksController < ApplicationController
 	  			@grab = false
 	  			@books = GoogleBooks.search("#{params[:book_query]}", {:count => 30})
 	  		end
-	  		@query = params[:location_query] +"  " + params[:book_query] 
+	  		@query = params[:location_query] +"  " + params[:book_query]
 		end
-		
-  		
+
+
 	end
 
 	def search
@@ -50,15 +50,15 @@ class BooksController < ApplicationController
 		begin
 			@book = Book.find_by_google_id(params[:google_id])
 			if @book.present?
-				add_book_provider(@book)
+				add_book_provider(@book, params[:book_can])
 			else
 				if params[:isbn].present?
-					book = GoogleBooks.search("isbn:#{params[:isbn]}").first 
+					book = GoogleBooks.search("isbn:#{params[:isbn]}").first
 				elsif book.nil? && params[:google_id].present?
 					book = GoogleBooks.search("id:#{params[:google_id]}").first
 				end
 				add_book_and_provider(book)
-			end	
+			end
 		rescue
 			redirect_to :back,:notice => "Oops! something went wrong, we are working really hard to get everything in place, please help us by providing that how did you landed here."
 		end
@@ -66,7 +66,7 @@ class BooksController < ApplicationController
 
 
 
-	def update_pick_location(book_user)
+	def update_pick_location(book_user, book_con)
 		#params[:location_ids].merge(current_user.profile.try(:location_id))
 		book_user.locations.destroy_all
 		loc = Location.include(&:parent).where('id in (?)',params[:location_ids]).uniq
@@ -78,6 +78,7 @@ class BooksController < ApplicationController
 		if book_user.save
 			if current_user.reward_not_received.present?
 				current_user.reward_not_received = false
+
 				current_user.save
 				message = "Woooh! you've got 1 BookCoin on your first book upload. keep sharing."
 			else
@@ -89,7 +90,7 @@ class BooksController < ApplicationController
 			redirect_to :back,:notice => "#{@errors}"
 		end
 	end
-	
+
 	def delete_shared
 		book_user = current_user.books_users.find_by_book_id(@book.id)
 		book_user.is_provided = false
@@ -112,7 +113,7 @@ class BooksController < ApplicationController
 			@book = GoogleBooks.search("id:#{params[:id]}").first
 		end
 
-		
+
 	end
 
 	def show_providers
@@ -126,12 +127,9 @@ class BooksController < ApplicationController
 			@book.liked_by current_user
 		else
 			@book.unliked_by current_user
-		end		
+		end
 		@likes = @book.get_likes.size
 	end
-
-
-
 
 	private
 	def add_author(book,author)
@@ -140,10 +138,10 @@ class BooksController < ApplicationController
 		book.authors << author
 	end
 
-	def add_book_provider(book)
+	def add_book_provider(book, book_con)
 		book_user = current_user.books_users.find_or_initialize_by(:book_id => book.id)
 		book_user.is_provided = true
-		update_pick_location(book_user)
+		update_pick_location(book_user, book_con)
 	end
 
 	def add_book_and_provider(book)
@@ -154,7 +152,7 @@ class BooksController < ApplicationController
 		@book.language = language
 		image_url = book.image_link(:zoom => 2)
 		@book.avatar = URI.parse(image_url) if image_url.present?
-		
+
 		if book.authors.kind_of?(Array)
 			book.authors.each do |author|
 				add_author(@book,author)
@@ -181,12 +179,11 @@ class BooksController < ApplicationController
 
 
     protected
-
     def configure_permitted_parameters
-        devise_parameter_sanitizer.for(:create) { |u| u.permit(:avatar) }
-        # devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:name, :email, :password, :current_password, :is_female, :date_of_birth, :avatar) }
+      devise_parameter_sanitizer.for(:create) { |u| u.permit(:avatar) }
+      # devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:name, :email, :password, :current_password, :is_female, :date_of_birth, :avatar) }
     end
     def book_params
-	    params.require(:book).permit(:tag_list) 
+	    params.require(:book).permit(:tag_list, :book_can)
 	end
 end

@@ -1,48 +1,48 @@
-    <div class="row">
-        <br>
-        <div class="form-group">
-            <div class="col-sm-12 col-md-12 col-lg-12">                
-                <input type="search" class="form-control location-search-box" id="search" placeholder="Filter locations...">
-            </div>
-        </div>
-    </div>    
-    <br/>
-<%=form_tag share_books_path,method: :post do %>
-<div class="modal-footer">
-        
-        <div class="loading" style="display:none;">
-                    <%= image_tag '/assets/loading.gif'%>
-                    </div>
-        <%=submit_tag :share,:class=>"btn btn-primary",:onclick => "$('.loading').show();"%>
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+<%=form_tag share_books_path, method: :post do %>
+  <div class="form-group">
+    <div class="col-sm-12 col-md-12 col-lg-12">
+        <%= select_tag :book_can, options_for_select(book_can), class: "form-control", style: "margin-bottom:2px;"  %>
     </div>
-    <div class="row add-location">
-        <div class="items-collection">  
-            <% @locations.each do |location| %>                        
-                <div class="items col-xs-6 col-sm-3 col-md-3 col-lg-3">
-                    <div class="info-block block-info clearfix">
-                        <div  class="btn-group itemcontent location-outer-block"><!-- data-toggle="buttons" -->
-                            <label class="btn btn-default location-outer-block">
-                                <div class="itemcontent">
-                                    <input type="checkbox" name="location_ids[]" autocomplete="off" value=<%=location.id%> <%=get_location_value(book_id,location.id)%>>
-                                    <h6 class="location-cell" title ="<%= h location.name -%>"><%= h location.name-%></h6>
-                                </div>
-                            </label>
-                        </div>
-                    </div>
-                </div>                
-            <% end %>
-            <%if local_assigns.has_key? :google_id%>
-                <%= hidden_field_tag 'google_id',google_id%>
-            <%end%> 
-             <%if local_assigns.has_key? :isbn%>
-                <%= hidden_field_tag 'isbn',isbn%>
-            <%end%> 
-        </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-12 col-md-12 col-lg-12">
+        <input type="search" class="form-control location-search-box" id="search" placeholder="Filter locations...">
     </div>
-    <br/>
-    
-    
+  </div>
+
+  <div class="form-group text-right">
+    <div class="loading" style="display:none;">
+      <%= image_tag '/assets/loading.gif'%>
+    </div>
+    <%=submit_tag :share,:class=>"btn btn-primary",:onclick => "$('.loading').show();"%>
+    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+  </div>
+  <div class="row add-location">
+      <div class="items-collection">
+          <% @locations.each do |location| %>
+              <div class="items col-xs-6 col-sm-3 col-md-3 col-lg-3">
+                  <div class="info-block block-info clearfix">
+                      <div  class="btn-group itemcontent location-outer-block"><!-- data-toggle="buttons" -->
+                          <label class="btn btn-default location-outer-block">
+                              <div class="itemcontent">
+                                  <input type="checkbox" name="location_ids[]" autocomplete="off" value=<%=location.id%> <%=get_location_value(book_id,location.id)%>>
+                                  <h6 class="location-cell" title ="<%= h location.name -%>"><%= h location.name-%></h6>
+                              </div>
+                          </label>
+                      </div>
+                  </div>
+              </div>
+          <% end %>
+          <%if local_assigns.has_key? :google_id%>
+              <%= hidden_field_tag 'google_id',google_id%>
+          <%end%>
+           <%if local_assigns.has_key? :isbn%>
+              <%= hidden_field_tag 'isbn',isbn%>
+          <%end%>
+      </div>
+  </div>
+
 <%end%>
 
 
