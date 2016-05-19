@@ -3,36 +3,68 @@
 <head>
   <title>Share Garage</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <meta name="description" content="Share Garage is a free online book sharing platform. Make the most of your used books.">
   
-
   <%= csrf_meta_tags %>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <%=favicon_link_tag '/assets/logos/favicon.gif'%>
+<script type="text/javascript">
+  if (navigator.geolocation) {
+  console.log('Geolocation is supported!');
+  }
+  else {
+    console.log('Geolocation is not supported for this Browser/OS version yet.');
+  }
+  $(function(){
+    var startPos;
+    var geoOptions = {
+      enableHighAccuracy: true
+    }
+
+    var geoSuccess = function(position) {
+      startPos = position;
+      document.getElementById('startLat').innerHTML = startPos.coords.latitude;
+      document.getElementById('startLon').innerHTML = startPos.coords.longitude;
+      console.log(startPos.coords.latitude);
+       console.log(startPos.coords.longitude);
+    };
+    var geoError = function(error) {
+      console.log('Error occurred. Error code: ' + error.code);
+      // error.code can be:
+      //   0: unknown error
+      //   1: permission denied
+      //   2: position unavailable (error response from location provider)
+      //   3: timed out
+    };
+
+    console.log(navigator.geolocation.getCurrentPosition(geoSuccess, geoError, geoOptions));
+  });
+  window.onload = function() {
+    
+  };
+</script>
 </head>
 
 <body >
-<div class="container-web">
-  <%= render 'layouts/header' %>
-  <%if current_page?(root_url)%>
-    <%= render 'layouts/modal'%>
-    <%= flash_messages %>
-    <%= yield %>
-  <%else%>
-    <div class="products">
-    <div class="wrapper">
+  <div class="container-web">
+    <%= render 'layouts/header' %>
+    <%if current_page?(root_url)%>
       <%= render 'layouts/modal'%>
       <%= flash_messages %>
       <%= yield %>
-    </div>
+    <%else%>
+      <div class="products">
+        <div class="wrapper">
+          <%= render 'layouts/modal'%>
+          <%= flash_messages %>
+          <%= yield %>
+        </div>
+      </div>
+    <%end%>
+    <%=render :partial => '/layouts/footer'%>
   </div>
-<%end%>
-  
-  <%=render :partial => '/layouts/footer'%>
-</div>
-
-
 </body>
+
 </html>

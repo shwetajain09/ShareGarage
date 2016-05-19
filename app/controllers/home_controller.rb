@@ -11,5 +11,9 @@ class HomeController < ApplicationController
   def donate_request
   	UserMailer.donate_request(params).deliver
   end
+
+  def locations
+
+  end
   
 end

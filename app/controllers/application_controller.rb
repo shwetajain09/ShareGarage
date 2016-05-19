@@ -8,6 +8,11 @@ class ApplicationController < ActionController::Base
 
   def load
   	@locations = Location.all.order('name ASC')
+    # require 'geoip'
+    # #@info = GeoIP.new(Rails.root.join("GeoLiteCity.dat")).city(ip_request_params[:host])
+    # db = GeoIP::City.new(Rails.root.join("GeoLiteCity.dat"))
+    # result = db.look_up(request.remote_ip)
+    # raise result.inspect
   end
 
   def after_sign_in_path_for(resource)
@@ -39,9 +44,12 @@ class ApplicationController < ActionController::Base
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:avatar) }
+    devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:latitude, :longitude) }
   end
 
   def initialize_omniauth_state
     session['omniauth.state'] = response.headers['X-CSRF-Token'] = form_authenticity_token
   end
+
+  
 end

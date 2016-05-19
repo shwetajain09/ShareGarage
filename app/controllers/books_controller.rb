@@ -1,4 +1,4 @@
-class BooksController < ApplicationController
+	class BooksController < ApplicationController
 	require 'googlebooks'
 
 	before_filter :authenticate_user!, :except => [:search,:library,:index,:show_share_modal,:show_providers,:vote,:show]

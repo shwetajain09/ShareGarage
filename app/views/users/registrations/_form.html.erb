@@ -59,6 +59,11 @@
                                       <%= f.label :show_phone %>
                                     </div>
                                 </div>
+                                <%= f.hidden_field :latitude %>
+                                <%= f.hidden_field :longitude %>
+                               <!--  <input type="hidden" id="userlat" name = "startlat" />
+<input type="hidden" id="userlongitude" name = "startlon" />
+ -->
 
                             </div>
                             <%= f.submit "Sign up" ,:class=>"btn btn-info btn-block"%>
@@ -72,3 +77,35 @@
                 </div>
             </div>
         </div>
+<script>
+    if (navigator.geolocation) {
+      console.log('Geolocation is supported!');
+    }
+    else {
+      console.log('Geolocation is not supported for this Browser/OS version yet.');
+    }
+    $(function(){
+        var startPos;
+        var geoOptions = {
+          enableHighAccuracy: true
+        }
+
+        var geoSuccess = function(position) {
+          startPos = position;
+          $('#user_latitude').val(startPos.coords.latitude);
+          $('#user_longitude').val(startPos.coords.longitude);
+          console.log(startPos.coords.latitude);
+           console.log(startPos.coords.longitude);
+        };
+        var geoError = function(error) {
+          console.log('Error occurred. Error code: ' + error.code);
+          // error.code can be:
+          //   0: unknown error
+          //   1: permission denied
+          //   2: position unavailable (error response from location provider)
+          //   3: timed out
+        };
+
+        console.log(navigator.geolocation.getCurrentPosition(geoSuccess, geoError, geoOptions));
+  });
+</script>

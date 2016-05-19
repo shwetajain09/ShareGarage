@@ -23,15 +23,33 @@ class User < ActiveRecord::Base
   has_many :book_requests
   #validates_presence_of :gender
   #validates_presence_of :phone_no, :if => :show_phone?
+  before_create :set_location
   after_create :generate_profile
+
+ # geocoded_by :address
+ # reverse_geocoded_by :latitude, :longitude
+  # geocoded_by :ip_address,
+  #  :latitude => :lat, :longitude => :lon
+  #  after_validation :geocode
 
   def slug_candidates
       [
         :first_name,:last_name
 
       ]
-    end
+  end
 
+  def set_location
+    if self.latitude and self.longitude
+      location = Geocoder.search("#{self.latitude}, #{self.longitude}")
+      if location
+          self.city = location.first.city
+          self.country = location.first.country
+          self.address = location.first.formatted_address
+      end
+    end
+  end
+  
   def set_picture_respect_to_gender
     self.gender == 'F' ? '/assets/girl.jpeg' : '/assets/boy.jpeg'
   end

@@ -1,116 +1,97 @@
-	<div id="header">
-    	<div class="wrapper">
-        	<div class="header-left">
-                <h2><i class="fa fa-phone"></i>+91-9205512899</h2>
-                <h2><i class="fa fa-envelope"></i>team@sharegarage.com</h2>
+<div id="header">
+	<div class="wrapper">
+    	<div class="header-left">
+            <h2><i class="fa fa-phone"></i>+91-9205512899</h2>
+            <h2><i class="fa fa-envelope"></i>team@sharegarage.com</h2>
+        </div>
+
+        <!--   <div class="how-it-works pull-right">
+          <a href="<%=faq_home_path%>">FAQ'S</a>
+          </div> -->
+        <div class="header-right">
+
+        	<div class="login-signup">
+            	<ul>
+                    <%if user_signed_in?%>
+                          <li class="dropdown"  style="border:none;">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i> <%=current_user.full_name%> <span class="caret"></span></a>
+                            <ul class="dropdown-menu user-dropdown">
+                              <li><a href="<%=user_path(current_user)%>">My Profile</a></li>
+                              <li><a href="<%=user_transactions_path(current_user)%>">Account</a></li>
+                              <li><%= link_to 'Book Shelf',shelf_user_path(current_user)%></li>
+                              <li><%= link_to 'My book requests',show_requested_books_users_path('my-books')%></li>
+                              <li><%= link_to 'Redeem Bc Code',show_token_form_user_tokens_path(current_user),:remote => true%></li>
+                              <li><%= link_to 'Log out',destroy_user_session_path, method: :delete%></li>
+                            </ul>
+                          </li>
+                        <%else%>
+                          <li><%=link_to 'Login',show_modal_home_path('login'),:remote => true%></li>
+                          <li  style="border:none;"><%= link_to 'Sign Up', show_modal_home_path('sign up'),:remote => true%></li>
+                        <%end%>
+
+
+                </ul>
+            </div>
+            <div class="question-icons">
+            	<div class="question"><a href="<%=faq_home_path%>" title="FAQ'S"></a></div>
             </div>
 
-            <!--   <div class="how-it-works pull-right">
-              <a href="<%=faq_home_path%>">FAQ'S</a>
-              </div> -->
-            <div class="header-right">
+        </div>
 
-            	<div class="login-signup">
-                	<ul>
-                        <%if user_signed_in?%>
-                              <li class="dropdown"  style="border:none;">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i> <%=current_user.full_name%> <span class="caret"></span></a>
-                                <ul class="dropdown-menu user-dropdown">
-                                  <li><a href="<%=user_path(current_user)%>">My Profile</a></li>
-                                  <li><a href="<%=user_transactions_path(current_user)%>">Account</a></li>
-                                  <li><%= link_to 'Book Shelf',shelf_user_path(current_user)%></li>
-                                  <li><%= link_to 'My book requests',show_requested_books_users_path('my-books')%></li>
-                                  <li><%= link_to 'Redeem Bc Code',show_token_form_user_tokens_path(current_user),:remote => true%></li>
-                                  <li><%= link_to 'Log out',destroy_user_session_path, method: :delete%></li>
-                                </ul>
-                              </li>
-                            <%else%>
-                              <li><%=link_to 'Login',show_modal_home_path('login'),:remote => true%></li>
-                              <li  style="border:none;"><%= link_to 'Sign Up', show_modal_home_path('sign up'),:remote => true%></li>
-                            <%end%>
+        <div id="logo"><%= link_to root_url do %>
 
+          <!-- <img src="/assets/webz/logo.gif" alt="Logo"> -->
+          <img src="/assets/logos/log.gif" alt="Logo">
+        <%end%>
+        </div>
 
-                    </ul>
-                </div>
-                <div class="question-icons">
-                	<div class="question"><a href="<%=faq_home_path%>" title="FAQ'S"></a></div>
-                </div>
-
-            </div>
-
-            <div id="logo"><%= link_to root_url do %>
-
-              <!-- <img src="/assets/webz/logo.gif" alt="Logo"> -->
-              <img src="/assets/logos/log.gif" alt="Logo">
-            <%end%>
-            </div>
-
-            <div class="search-area">
-            	<div class="grab-share">
-                    <ul>
-                        <li><a class="header-active" href="javascript:void(0);" onclick="toggleDiv(give_away,take,$(this));"><i class="fa fa-hand-rock-o"></i> GRAB</a></li>
-                        <li style="border:none;"><a href="javascript:void(0);" onclick="toggleDiv(take,give_away,$(this));"><i class="fa fa-hand-paper-o"></i> SHARE</a></li>
-                    </ul>
-            	</div>
+        <div class="search-area">
+        	<div class="grab-share">
+                <ul>
+                    <li><a class="header-active" href="javascript:void(0);" onclick="toggleDiv(give_away,take,$(this));"><i class="fa fa-hand-rock-o"></i> GRAB</a></li>
+                    <li style="border:none;"><a href="javascript:void(0);" onclick="toggleDiv(take,give_away,$(this));"><i class="fa fa-hand-paper-o"></i> SHARE</a></li>
+                </ul>
+        	</div>
 
 
 
 
 <%=form_tag search_books_path, method: :get, :class=>"form-inline", :role=>"search",:id=>"give_away" ,:style => 'display:none' do %>
 
-              <%=text_field_tag :book_query,nil,:placeholder => "Enter book title,author,isbn",:class=> "search-here-share"%>
+          <%=text_field_tag :book_query,nil,:placeholder => "Enter book title,author,isbn",:class=> "search-here-share"%>
 
-              <button class="search-bg" type="submit"><img src="/assets/webz/search_icon.png" alt="#"></button>
+          <button class="search-bg" type="submit"><img src="/assets/webz/search_icon.png" alt="#"></button>
 <%end%>
 
 <%=form_tag library_books_path, method: :get, :class=>"form-inline", :role=>"search",:id=>"take" do %>
-        <div class="location">
-            <img src="/assets/webz/location.png">
-        </div>
-              <%#=select_tag "location_query", options_for_select(Location.all.order('name ASC').map { |e| e.name },:selected => "All Delhi/Ncr"),:class=>"select-option"%>
+    <div class="location">
+        <img src="/assets/webz/location.png">
+    </div>
+          <%#=select_tag "location_query", options_for_select(Location.all.order('name ASC').map { |e| e.name },:selected => "All Delhi/Ncr"),:class=>"select-option"%>
 
-            <%= text_field_tag "location_query", nil, placeholder: "Search Location", autocomplete: :off, :id=> "search", :class=> "search-here" %>
+        <%= text_field_tag "location_query", nil, placeholder: "Search Location", autocomplete: :off, :id=> "search", :class=> "search-here" %>
 
-              <%=text_field_tag :book_query,nil,:placeholder => "Enter book title,author,isbn",:class=> "search-here", autocomplete: :off, :id=> "books_search" %>
-              <button class="search-bg" type="submit"><img src="/assets/webz/search_icon.png" alt="#"></button>
+          <%=text_field_tag :book_query,nil,:placeholder => "Enter book title,author,isbn",:class=> "search-here", autocomplete: :off, :id=> "books_search" %>
+          <button class="search-bg" type="submit"><img src="/assets/webz/search_icon.png" alt="#"></button>
 
-        <%end%>
-
-
-
-  </div>
+    <%end%>
 
 
 
-
-
-
-
-                <div class="menu">
-                	<ul>
-                    <li><%= link_to 'Popular',library_books_path(:tag => 'popular')%></li>
-                    <li><%= link_to 'Top Indian Authors',library_books_path(:tag => 'Indian author')%></li>
-                    <li><%= link_to 'Top Foreign Authors',library_books_path(:tag => 'Foreign author')%></li>
-                	  <li><%= link_to 'Requested books',show_requested_books_users_path()%></li>
-                    <li class="how-it-works"><%= link_to 'HOW IT WORKS', "#{root_path}#how_it_works" %></li>
-                  </ul>
-                </div>
+</div>
+          <div class="menu">
+            	<ul>
+                <li><%= link_to 'Popular',library_books_path(:tag => 'popular')%></li>
+                <li><%= link_to 'Top Indian Authors',library_books_path(:tag => 'Indian author')%></li>
+                <li><%= link_to 'Top Foreign Authors',library_books_path(:tag => 'Foreign author')%></li>
+            	  <li><%= link_to 'Requested books',show_requested_books_users_path()%></li>
+                <li class="how-it-works"><%= link_to 'HOW IT WORKS', "#{root_path}#how_it_works" %></li>
+              </ul>
             </div>
         </div>
+    </div>
+<input type="hidden" id="startLat" name = "startlat" />
+<input type="hidden" id="startLon" name = "startlon" />
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class="shadow"><img src="/assets/webz/shadow_img.png" alt="#"></div>
+<div class="shadow"><img src="/assets/webz/shadow_img.png" alt="#"></div>

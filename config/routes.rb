@@ -45,6 +45,7 @@ Rails.application.routes.draw do
       get :faq, as: 'faq'
       post :donate_request
       # get '/about', to: 'static_pages#about', as: 'about'
+      get :all_locations, to: "home#locations", as: 'all_locations'
     end
 
   resources :books do
