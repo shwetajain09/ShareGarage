@@ -79,7 +79,7 @@ p {
 	overflow:hidden;
 }
 
-.header-right{float:right; padding:0px; width:16%; margin:0px;}
+.header-right{float:right; padding:0px; width:24%; margin:0px;}
 .login-signup{margin:0px; padding:0px; float:left;}
 .login-signup ul{margin:0px; padding:0px; list-style:none;}
 .login-signup ul li{margin:0px 0 0 0; padding:0 0 0 0px; float:left; border-right:solid 1px #FFF;}
@@ -108,9 +108,9 @@ p {
 	height:36px;
 }
 
-#logo{margin:0px; padding:10px 0 0 0; float:left; clear:both; width:23%;}
+#logo{margin:0px; padding:10px 0 0 0; float:left; clear:both; width:10%;}
 
-.search-area{float:left; padding:0px; margin:0 20px; width:70%;}
+.search-area{float:left; padding:0px; margin:0 50px; width:70%;}
 .grab-share{margin:0 auto; padding:0px; width:165px; margin-bottom:10px; overflow:hidden;}
 .grab-share ul{margin:0px; padding:0px; list-style:none;}
 .grab-share ul li{margin:0px 0 0 0; padding:0 0 0 0px; float:left; border-right:solid 1px #FFF;}
@@ -391,7 +391,7 @@ p {
 .login-signup{ margin:4px 0 0 0;}
 .question-icons{ float:left;}	
 
-#logo{ width:70%; margin:0 auto; text-align:center; float:none; margin-top:10px;}
+#logo{ width:20%; margin:0 auto; text-align:center; float:none; margin-top:10px;}
 .search-area{ width:100%; float:none; margin:0px;}
 .grab-share{ width:175px; margin-top:20px;}
 .search-area select{ width:80%; border-top-right-radius:8px; border-bottom-right-radius:8px;}

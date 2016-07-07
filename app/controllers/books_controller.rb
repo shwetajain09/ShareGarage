@@ -60,7 +60,7 @@ class BooksController < ApplicationController
 				add_book_and_provider(book)
 			end	
 		rescue
-			redirect_to :back,:notice => "Oops! something went wrong, we are working really hard to get everything in place, please help us by providing that how did you landed here."
+			redirect_to :back,:notice => "Oops! something went wrong, we are working really hard to get everything in place, please help us by providing that how did you landed here ."
 		end
 	end
 
@@ -153,7 +153,7 @@ class BooksController < ApplicationController
 		language.save!
 		@book.language = language
 		image_url = book.image_link(:zoom => 2)
-		@book.avatar = URI.parse(image_url) if image_url.present?
+		#@book.avatar = URI.parse(image_url) if image_url.present?
 		
 		if book.authors.kind_of?(Array)
 			book.authors.each do |author|

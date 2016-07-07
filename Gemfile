@@ -31,6 +31,7 @@ gem 'jquery-turbolinks'
 
 gem 'sunspot_rails'
 gem 'sunspot_solr'
+
 gem 'progress_bar'
 gem "twitter-bootstrap-rails"
 gem 'bootstrap-sass', '~> 3.3.6'

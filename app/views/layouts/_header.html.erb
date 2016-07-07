@@ -2,7 +2,7 @@
     	<div class="wrapper">
         	<div class="header-left">
                 <h2><i class="fa fa-phone"></i>+91-9205512899</h2>
-                <h2><i class="fa fa-envelope"></i>team@sharegarage.com</h2>
+                <h2><i class="fa fa-envelope"></i>team@bibly.in</h2>
             </div>
            
             <!--   <div class="how-it-works pull-right">
@@ -12,6 +12,8 @@
            
             	<div class="login-signup">
                 	<ul>
+                	<li class="how-it-works"><%=link_to "Blogs",'https://biblysite.wordpress.com',:target => '_blank'%></li>
+                    	
                         <%if user_signed_in?%>
                               <li class="dropdown"  style="border:none;">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i> <%=current_user.full_name%> <span class="caret"></span></a>
@@ -29,11 +31,13 @@
                               <li  style="border:none;"><%= link_to 'Sign Up', show_modal_home_path('sign up'),:remote => true%></li>
                             <%end%>
                           
-                    	
                     </ul>
                 </div>
                 <div class="question-icons">
+<!-- 
                 	<div class="question"><a href="<%=faq_home_path%>" title="FAQ'S"></a></div>
+ -->
+<!--                 	<div ><a href="https://biblysite.wordpress.com" title="Blogs" target ="blank">Blogs</a></div> -->
                 </div>
                 
             </div>
@@ -41,7 +45,7 @@
             <div id="logo"><%= link_to root_url do %>
 
               <!-- <img src="/assets/webz/logo.gif" alt="Logo"> -->
-              <img src="/assets/logos/log.gif" alt="Logo">
+              <img src="/assets/logos/logo.jpg" alt="Logo">
             <%end%>
             </div>
             
